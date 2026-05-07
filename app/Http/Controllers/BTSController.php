@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class BTSController extends Controller
 {
     /**
-     * Home page: archive-style landing page with featured content.
+     * Home page: website landing page with featured content.
      */
     public function home()
     {
@@ -106,6 +106,7 @@ class BTSController extends Controller
             'user_agent' => substr((string) $request->userAgent(), 0, 1000),
         ]);
 
-        return back()->with('success', "You voted for " . ($member->stage_name ?: $member->nickname) . " 💜");
+        return back()->with('success', "You voted for " . ($member->stage_name ?: $member->nickname) . " ðŸ’œ");
     }
 }
+

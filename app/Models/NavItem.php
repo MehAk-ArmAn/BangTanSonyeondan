@@ -13,3 +13,4 @@ class NavItem extends Model
         return ['is_active' => 'boolean'];
     }
 }
+

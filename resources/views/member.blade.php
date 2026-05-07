@@ -1,6 +1,6 @@
 {{-- Member page: full member vault instead of one basic card. --}}
 @extends('layouts.frontend.app')
-@section('title', ($member->stage_name ?: $member->name) . ' · Member Vault')
+@section('title', ($member->stage_name ?: $member->name) . ' Â· Member Vault')
 @push('styles')
     <link rel="icon" href="{{ $member->faviconUrl() }}" type="image/png">
 @endpush
@@ -10,7 +10,7 @@
         <img src="{{ $member->imageUrl() }}" alt="{{ $member->stage_name ?: $member->name }}">
     </div>
     <div class="member-profile-copy">
-        <span class="eyebrow">{{ $member->emoji }} {{ $member->bt21_character }} · Member Vault</span>
+        <span class="eyebrow">{{ $member->emoji }} {{ $member->bt21_character }} Â· Member Vault</span>
         <h1>{{ $member->stage_name ?: $member->nickname }}</h1>
         <h2>{{ $member->name }} <small>{{ $member->korean_name }}</small></h2>
         <p class="lead">{{ $member->intro_title ?: $member->role }}</p>
@@ -56,9 +56,10 @@
     @if($relatedQuotes->isNotEmpty())
         <div class="quote-strip">
             @foreach($relatedQuotes as $quote)
-                <blockquote><p>“{{ $quote->quote }}”</p><cite>{{ $quote->source }}</cite></blockquote>
+                <blockquote><p>â€œ{{ $quote->quote }}â€</p><cite>{{ $quote->source }}</cite></blockquote>
             @endforeach
         </div>
     @endif
 </section>
 @endsection
+

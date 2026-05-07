@@ -1,4 +1,4 @@
-# BangTanSonyeondan Glow-Up Setup Guide
+﻿# BangTanSonyeondan Glow-Up Setup Guide
 
 ## What this package changed
 
@@ -103,4 +103,5 @@ If images uploaded from admin do not show, run:
 ```bash
 php artisan storage:link
 ```
+
 

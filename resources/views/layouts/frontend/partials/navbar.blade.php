@@ -16,5 +16,6 @@
         @endforeach
     </nav>
 
-    <a class="nav-cta" href="{{ route('vote') }}">Vote 💜</a>
+    <a class="nav-cta" href="{{ route('vote') }}">Vote ðŸ’œ</a>
 </header>
+

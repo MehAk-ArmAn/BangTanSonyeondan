@@ -8,3 +8,4 @@
 @if ($errors->any())
     <div class="admin-alert error">{{ $errors->first() }}</div>
 @endif
+

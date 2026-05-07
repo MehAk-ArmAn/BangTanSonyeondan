@@ -6,8 +6,8 @@
 | handled by DashboardController.
 --}}
 @extends('layouts.admin.app')
-@section('title', 'Dashboard · BTS Admin')
-@section('page_heading', 'Dashboard 💜')
+@section('title', 'Dashboard Â· BTS Admin')
+@section('page_heading', 'Dashboard ðŸ’œ')
 @section('content')
 <section class="admin-stats" id="overview">
     <div><span>Members</span><b>{{ $membersList->count() }}</b></div>
@@ -125,7 +125,7 @@
     <form method="POST" action="{{ route('admin.timeline.store') }}" class="admin-grid-form">@csrf
         <label>Year<input name="year" required></label><label>Category<input name="category" value="Milestone"></label><label class="span-2">Title<input name="title" required></label><label class="span-2">Body<textarea name="body"></textarea></label><label class="span-2">Bullet Points - one per line<textarea name="bullet_points_text"></textarea></label><label class="span-2">Image Paths - one per line<textarea name="image_paths_text"></textarea></label><label>Order<input type="number" name="sort_order" value="0"></label><label class="check-row"><input type="checkbox" name="is_active" value="1" checked> Active</label><button class="span-2">Add Timeline Event</button>
     </form>
-    @foreach($timelineList as $event)<details class="admin-details"><summary>{{ $event->year }} · {{ $event->title }}</summary><form method="POST" action="{{ route('admin.timeline.update', $event) }}" class="admin-grid-form">@csrf @method('PUT')<label>Year<input name="year" value="{{ $event->year }}"></label><label>Category<input name="category" value="{{ $event->category }}"></label><label class="span-2">Title<input name="title" value="{{ $event->title }}"></label><label class="span-2">Body<textarea name="body">{{ $event->body }}</textarea></label><label class="span-2">Bullet Points<textarea name="bullet_points_text">{{ implode("\n", $event->bullet_points ?? []) }}</textarea></label><label class="span-2">Image Paths<textarea name="image_paths_text">{{ implode("\n", $event->image_paths ?? []) }}</textarea></label><label>Order<input type="number" name="sort_order" value="{{ $event->sort_order }}"></label><label class="check-row"><input type="checkbox" name="is_active" value="1" {{ $event->is_active ? 'checked' : '' }}> Active</label><button>Save Event</button></form><form method="POST" action="{{ route('admin.timeline.delete', $event) }}" onsubmit="return confirm('Delete timeline event?')">@csrf @method('DELETE')<button class="danger">Delete Event</button></form></details>@endforeach
+    @foreach($timelineList as $event)<details class="admin-details"><summary>{{ $event->year }} Â· {{ $event->title }}</summary><form method="POST" action="{{ route('admin.timeline.update', $event) }}" class="admin-grid-form">@csrf @method('PUT')<label>Year<input name="year" value="{{ $event->year }}"></label><label>Category<input name="category" value="{{ $event->category }}"></label><label class="span-2">Title<input name="title" value="{{ $event->title }}"></label><label class="span-2">Body<textarea name="body">{{ $event->body }}</textarea></label><label class="span-2">Bullet Points<textarea name="bullet_points_text">{{ implode("\n", $event->bullet_points ?? []) }}</textarea></label><label class="span-2">Image Paths<textarea name="image_paths_text">{{ implode("\n", $event->image_paths ?? []) }}</textarea></label><label>Order<input type="number" name="sort_order" value="{{ $event->sort_order }}"></label><label class="check-row"><input type="checkbox" name="is_active" value="1" {{ $event->is_active ? 'checked' : '' }}> Active</label><button>Save Event</button></form><form method="POST" action="{{ route('admin.timeline.delete', $event) }}" onsubmit="return confirm('Delete timeline event?')">@csrf @method('DELETE')<button class="danger">Delete Event</button></form></details>@endforeach
 </section>
 
 <section class="admin-card" id="votes">
@@ -133,3 +133,4 @@
     <div class="admin-stats">@forelse($voteStats as $stat)<div><span>{{ $stat->member_name }}</span><b>{{ $stat->total }}</b></div>@empty<p>No votes yet.</p>@endforelse</div>
 </section>
 @endsection
+

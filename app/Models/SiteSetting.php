@@ -13,3 +13,4 @@ class SiteSetting extends Model
         return static::where('key', $key)->value('value') ?? $default;
     }
 }
+

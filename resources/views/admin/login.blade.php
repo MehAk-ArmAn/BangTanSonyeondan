@@ -1,11 +1,11 @@
 {{-- Admin login page. --}}
 @extends('layouts.admin.auth')
-@section('title', 'Admin Login · BangTanSonyeondan')
+@section('title', 'Admin Login Â· BangTanSonyeondan')
 @section('content')
 <section class="login-card">
     <img src="{{ asset('favicons/logo.png') }}" alt="Logo">
     <span class="eyebrow">Private Control Room</span>
-    <h1>Admin Login 💜</h1>
+    <h1>Admin Login ðŸ’œ</h1>
     <p>Manage members, songs, timeline, gallery, votes, and site settings.</p>
 
     <form method="POST" action="{{ route('admin.login.submit') }}">
@@ -19,3 +19,4 @@
     </form>
 </section>
 @endsection
+

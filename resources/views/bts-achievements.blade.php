@@ -1,9 +1,9 @@
 {{-- Dynamic timeline page. --}}
 @extends('layouts.frontend.app')
-@section('title', 'Timeline · BangTanSonyeondan')
+@section('title', 'Timeline Â· BangTanSonyeondan')
 @section('content')
 <section class="page-hero small">
-    <span class="eyebrow">Timeline Archive</span>
+    <span class="eyebrow">Timeline Vault</span>
     <h1>BTS Milestones</h1>
     <p>Database-driven timeline highlights. Add/edit events from admin instead of hardcoding forever.</p>
 </section>
@@ -28,3 +28,4 @@
     @endforeach
 </section>
 @endsection
+

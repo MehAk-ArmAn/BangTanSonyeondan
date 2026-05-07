@@ -1,6 +1,6 @@
 {{-- Gallery page. --}}
 @extends('layouts.frontend.app')
-@section('title', 'Gallery · BangTanSonyeondan')
+@section('title', 'Gallery Â· BangTanSonyeondan')
 @section('content')
 <section class="page-hero small">
     <span class="eyebrow">Meme Museum + Moments</span>
@@ -25,3 +25,4 @@
     @endforeach
 </div>
 @endsection
+

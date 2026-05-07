@@ -1,6 +1,6 @@
 {{-- BT21 page driven by member data. --}}
 @extends('layouts.frontend.app')
-@section('title', 'BT21 · BangTanSonyeondan')
+@section('title', 'BT21 Â· BangTanSonyeondan')
 @section('content')
 <section class="page-hero small">
     <span class="eyebrow">Cute Side Quest</span>
@@ -20,3 +20,4 @@
     @endforeach
 </div>
 @endsection
+

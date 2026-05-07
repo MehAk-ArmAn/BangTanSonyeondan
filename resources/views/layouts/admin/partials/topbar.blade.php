@@ -4,5 +4,6 @@
         <p class="eyebrow">BangTanSonyeondan Control Room</p>
         <h1>@yield('page_heading', 'Dashboard')</h1>
     </div>
-    <a href="{{ route('home') }}" target="_blank">Open Website ↗</a>
+    <a href="{{ route('home') }}" target="_blank">Open Website â†—</a>
 </div>
+

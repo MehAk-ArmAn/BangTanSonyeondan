@@ -21,3 +21,4 @@ class BtsCopy extends Model
 
 // Why $fillable is important?
 // Without it, Laravel blocks create() for security.
+

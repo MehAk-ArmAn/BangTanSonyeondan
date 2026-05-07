@@ -23,7 +23,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->route('admin.dashboard')->with('success', 'Welcome back to the control room 💜');
+            return redirect()->route('admin.dashboard')->with('success', 'Welcome back to the control room ðŸ’œ');
         }
 
         return back()->withErrors([
@@ -41,3 +41,4 @@ class AuthController extends Controller
         return redirect()->route('admin.login')->with('success', 'Logged out safely.');
     }
 }
+

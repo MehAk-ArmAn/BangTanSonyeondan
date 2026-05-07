@@ -8,7 +8,7 @@
     <div class="footer-grid">
         <div>
             <img class="footer-logo" src="{{ asset('favicons/logo.png') }}" alt="BangTanSonyeondan logo">
-            <p>{{ $siteSettings['footer_text'] ?? 'A fan-made purple universe for BTS and ARMY.' }}</p>
+            <p>{{ $siteSettings['footer_text'] ?? 'A fan-made BangTanSonyeondan website for ARMY.' }}</p>
         </div>
 
         <div>
@@ -39,7 +39,8 @@
     </div>
 
     <div class="footer-bottom">
-        <span>© {{ date('Y') }} {{ $siteSettings['site_title'] ?? 'BangTanSonyeondan Archive' }}.</span>
-        <span>Created by {{ $name }} · Fan-made · Support official BTS content.</span>
+        <span>Â© {{ date('Y') }} {{ $siteSettings['site_title'] ?? 'BangTanSonyeondan' }}.</span>
+        <span>Created by {{ $name }} Â· Fan-made Â· Support official BTS content.</span>
     </div>
 </footer>
+

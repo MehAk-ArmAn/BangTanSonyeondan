@@ -1,6 +1,6 @@
 {{-- Quotes page. --}}
 @extends('layouts.frontend.app')
-@section('title', 'BTS Quotes · BangTanSonyeondan')
+@section('title', 'BTS Quotes Â· BangTanSonyeondan')
 @section('content')
 <section class="page-hero small">
     <span class="eyebrow">Purple Words</span>
@@ -11,9 +11,10 @@
     @foreach($quotes as $quote)
         <article class="quote-card">
             <span>{{ $quote->context ?: 'Quote' }}</span>
-            <p>“{{ $quote->quote }}”</p>
+            <p>â€œ{{ $quote->quote }}â€</p>
             <h3>{{ $quote->source }}</h3>
         </article>
     @endforeach
 </div>
 @endsection
+

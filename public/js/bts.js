@@ -1,4 +1,4 @@
-// OT7 hidden navbar toggle
+﻿// OT7 hidden navbar toggle
 document.addEventListener('keydown', function(e) {
     if (e.key === '7') {
         const navbar = document.getElementById('secret-navbar');
@@ -6,4 +6,5 @@ document.addEventListener('keydown', function(e) {
         navbar.style.display = (navbar.style.display === 'none') ? 'block' : 'none';
     }
 });
+
 

@@ -18,3 +18,4 @@ class SongsController extends Controller
         return view('songs', compact('songs', 'eras'));
     }
 }
+

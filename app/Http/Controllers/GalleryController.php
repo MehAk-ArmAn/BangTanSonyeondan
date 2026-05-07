@@ -18,3 +18,4 @@ class GalleryController extends Controller
         return view('gallery', compact('pics', 'categories'));
     }
 }
+

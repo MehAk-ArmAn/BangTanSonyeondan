@@ -34,13 +34,13 @@ class BtsCopyController extends Controller
                 Rule::unique('bts_copies')->where('bts_name', $request->bts_name), // checks DB for duplicates PER MEMBER
                 function($attribute, $value, $fail) use ($request) {
                     if (!Str::contains($value, $request->bts_name)) {
-                        $fail("😤 The title must include the selected BTS member ({$request->bts_name}).");
+                        $fail("ðŸ˜¤ The title must include the selected BTS member ({$request->bts_name}).");
                     }
                 },
             ],
             'description' => ['nullable', 'string', 'max:5000'],
         ], [
-            'copy_title.unique' => '😤 This BTS copy already exists. Stop trying to clone it.',
+            'copy_title.unique' => 'ðŸ˜¤ This BTS copy already exists. Stop trying to clone it.',
         ]);
 
 
@@ -52,7 +52,7 @@ class BtsCopyController extends Controller
         // with('success', ...) stores a one-time message in session
         return redirect()
             ->route('bts_copies.create')
-            ->with('success', '✅ BTS Copy saved successfully!');
+            ->with('success', 'âœ… BTS Copy saved successfully!');
     }   
 
     // (Optional) Shows list of all saved copies
@@ -116,3 +116,4 @@ class BtsCopyController extends Controller
     }
 
 }
+

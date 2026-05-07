@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('navItems', $navItems);
 
         View::share('adminEmail', $settings['admin_email'] ?? 'hello@bangtansonyeondan.com');
-        View::share('location', $settings['location'] ?? 'Purple Universe');
+        View::share('location', $settings['location'] ?? 'ARMY Hub');
         View::share('name', $settings['creator_name'] ?? 'Mehak Arman');
         View::share('phone', $settings['phone'] ?? '');
 
@@ -84,3 +84,4 @@ class AppServiceProvider extends ServiceProvider
         View::share('whatsappChannel', $settings['whatsapp_channel'] ?? '');
     }
 }
+

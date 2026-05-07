@@ -1,28 +1,29 @@
-# 💜 BTS-Themed Laravel Project 💜
+﻿# ðŸ’œ BTS-Themed Laravel Project ðŸ’œ
 A routes testing project made in Laravel, carrying the theme of BTS !!!
 
 ## Built step by step with clean code, good vibes, and ARMY energy.
 
-🚀 Laravel
-💜 BTS
-🔥 Learning by doing
+ðŸš€ Laravel
+ðŸ’œ BTS
+ðŸ”¥ Learning by doing
 
-A hands-on Laravel project inspired by BTS 🎤✨, built to explore, experiment, and truly understand how Laravel works — not just routes 🚀
+A hands-on Laravel project inspired by BTS ðŸŽ¤âœ¨, built to explore, experiment, and truly understand how Laravel works â€” not just routes ðŸš€
 
-Created step by step with clean code 🧼💻, good vibes 🌈✨, and full ARMY energy 💜🔥
+Created step by step with clean code ðŸ§¼ðŸ’», good vibes ðŸŒˆâœ¨, and full ARMY energy ðŸ’œðŸ”¥
 
-## 🚀 What I’m Learning
-✨ Mastering Laravel fundamentals
+## ðŸš€ What Iâ€™m Learning
+âœ¨ Mastering Laravel fundamentals
 
-🛣️ Working with routes and controllers
+ðŸ›£ï¸ Working with routes and controllers
 
-🧪 Testing and experimenting with different code approaches
+ðŸ§ª Testing and experimenting with different code approaches
 
-🗄️ Connecting and interacting with the database
+ðŸ—„ï¸ Connecting and interacting with the database
 
-📚 Learning by doing — building real features, not just reading theory
+ðŸ“š Learning by doing â€” building real features, not just reading theory
 
 ---
 
-### 💜 Powered by BTS inspiration
-### 🔥 Focused on growth, creativity, and real development skills
+### ðŸ’œ Powered by BTS inspiration
+### ðŸ”¥ Focused on growth, creativity, and real development skills
+

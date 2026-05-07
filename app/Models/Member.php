@@ -51,3 +51,4 @@ class Member extends Model
         return $this->favicon ? asset('favicons/' . $this->favicon) : asset('favicons/logo.png');
     }
 }
+

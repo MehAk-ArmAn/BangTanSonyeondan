@@ -9,7 +9,7 @@
 
 @extends('layouts.frontend.app')
 
-@section('title', '⋆✦✧⋆ BTS Copies ⋆✦✧⋆')
+@section('title', 'â‹†âœ¦âœ§â‹† BTS Copies â‹†âœ¦âœ§â‹†')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/bts_copies.css') }}">
@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="container">
-        <h2>📚 BTS Copies</h2>
+        <h2>ðŸ“š BTS Copies</h2>
 
         {{-- Link to create page --}}
         <a href="{{ route('bts_copies.create') }}">+ Create New Copy</a>
@@ -44,7 +44,7 @@
                         <td>{{ $c->created_at }}</td>
                         <td>
                             {{-- Edit link --}}
-                            <a class="edit_link" href="{{ route('bts_copies.edit', $c->id) }}">✏️ Edit</a>
+                            <a class="edit_link" href="{{ route('bts_copies.edit', $c->id) }}">âœï¸ Edit</a>
 
                             {{-- Delete form --}}
                             <form action="{{ route('bts_copies.destroy', $c->id) }}" method="POST" style="display:inline;">
@@ -52,7 +52,7 @@
                                 @method('DELETE')
 
                                 <button class="delete_btn" type="submit" onclick="return confirm('Delete this copy?')">
-                                    🗑 Delete
+                                    ðŸ—‘ Delete
                                 </button>
                             </form>
                         </td>
@@ -66,3 +66,4 @@
         </table>
     </div>
 @endsection
+

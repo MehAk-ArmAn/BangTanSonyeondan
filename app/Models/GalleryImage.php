@@ -13,3 +13,4 @@ class GalleryImage extends Model
         return ['is_active' => 'boolean'];
     }
 }
+

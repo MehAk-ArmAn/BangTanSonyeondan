@@ -8,7 +8,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Main upgraded content seed for the BTS archive.
+        // Main upgraded content seed for BangTanSonyeondan.
         $this->call(GlowUpContentSeeder::class);
     }
 }
+
+

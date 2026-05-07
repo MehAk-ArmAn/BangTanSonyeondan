@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
@@ -226,13 +226,13 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `name`, `role`, `image`, `quote`, `nickname`, `created_at`, `updated_at`, `favicon`) VALUES
-(1, 'Kim Namjoon', 'Leader / Rapper', 'rm.jfif', 'Life is tough, but so are you 💜', 'Rm', '2026-02-10 02:54:40', '2026-02-10 02:54:40', 'KOYA.png'),
-(2, 'Kim Seokjin', 'Vocal', 'jin.jfif', 'Love yourself 💜', 'Jin', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'RJ.png'),
-(3, 'Min Yoongi', 'Rapper', 'suga.jfif', 'Effort never betrays you 💜', 'Suga', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'SHOOKY.png'),
-(4, 'Jung Hoseok', 'Dancer / Rapper', 'jhope.jfif', 'Smile, even if it hurts 💜', 'J-hope', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'MANG.png'),
-(5, 'Park Jimin', 'Vocal / Dancer', 'jimin.jfif', 'Do it with passion or not at all 💜', 'Jimin', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'CHIMMY.png'),
-(6, 'Kim Taehyung', 'Vocal', 'v.jfif', 'Never give up 💜', 'V', '2026-02-10 02:54:43', '2026-02-10 02:54:43', 'TATA.png'),
-(7, 'Jeon Jungkook', 'Main Vocal / Dancer', 'jk.jfif', 'Dream big, keep going 💜', 'Jk', '2026-02-10 02:54:43', '2026-02-10 02:54:43', 'COOKY.png');
+(1, 'Kim Namjoon', 'Leader / Rapper', 'rm.jfif', 'Life is tough, but so are you ðŸ’œ', 'Rm', '2026-02-10 02:54:40', '2026-02-10 02:54:40', 'KOYA.png'),
+(2, 'Kim Seokjin', 'Vocal', 'jin.jfif', 'Love yourself ðŸ’œ', 'Jin', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'RJ.png'),
+(3, 'Min Yoongi', 'Rapper', 'suga.jfif', 'Effort never betrays you ðŸ’œ', 'Suga', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'SHOOKY.png'),
+(4, 'Jung Hoseok', 'Dancer / Rapper', 'jhope.jfif', 'Smile, even if it hurts ðŸ’œ', 'J-hope', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'MANG.png'),
+(5, 'Park Jimin', 'Vocal / Dancer', 'jimin.jfif', 'Do it with passion or not at all ðŸ’œ', 'Jimin', '2026-02-10 02:54:42', '2026-02-10 02:54:42', 'CHIMMY.png'),
+(6, 'Kim Taehyung', 'Vocal', 'v.jfif', 'Never give up ðŸ’œ', 'V', '2026-02-10 02:54:43', '2026-02-10 02:54:43', 'TATA.png'),
+(7, 'Jeon Jungkook', 'Main Vocal / Dancer', 'jk.jfif', 'Dream big, keep going ðŸ’œ', 'Jk', '2026-02-10 02:54:43', '2026-02-10 02:54:43', 'COOKY.png');
 
 -- --------------------------------------------------------
 
@@ -291,18 +291,18 @@ CREATE TABLE `quotes` (
 --
 
 INSERT INTO `quotes` (`id`, `source`, `quote`, `created_at`, `updated_at`) VALUES
-(1, 'RM (Kim Namjoon - UN General Assembly speech)', 'You’ve got your own voice — don’t lose it.', NULL, NULL),
+(1, 'RM (Kim Namjoon - UN General Assembly speech)', 'Youâ€™ve got your own voice â€” donâ€™t lose it.', NULL, NULL),
 (2, 'V (Kim Taehyung)', 'Everybody wants happiness, nobody wants pain, but you can\'t have the rainbow without the rain', NULL, NULL),
 (3, 'Jin - Wings', 'Even if I fall, I still believe myself.', NULL, NULL),
 (4, 'Suga - Tomorrow', 'The dawn right before sunrise is the darkest.', NULL, NULL),
 (5, 'J-Hope', 'Hope is something you create.', NULL, NULL),
-(6, 'Jimin - Answer: Love Myself', 'I’m learning how to love myself.', NULL, NULL),
+(6, 'Jimin - Answer: Love Myself', 'Iâ€™m learning how to love myself.', NULL, NULL),
 (7, 'V (Kim taehyung)', 'Sometimes silence says everything.', NULL, NULL),
-(8, 'JungKook', 'I won’t run away anymore.', NULL, NULL),
+(8, 'JungKook', 'I wonâ€™t run away anymore.', NULL, NULL),
 (9, 'RM - MIC Drop', 'Haters gon\' hate, players gon\' play, Live a life.', NULL, NULL),
 (10, 'Jungkook', 'Living without passion is like being dead.', NULL, NULL),
 (11, 'BTS - Spring Day', 'The morning will come again. No darkness or no season can last forever.', NULL, NULL),
-(12, 'Suga', 'Don’t be satisfied with your life, try harder.', NULL, NULL),
+(12, 'Suga', 'Donâ€™t be satisfied with your life, try harder.', NULL, NULL),
 (13, 'Jimin', 'If you can\'t fly, then run. Today we run, tomorrow we fly.', NULL, NULL),
 (14, 'IDOL (Theme: Unapologetic self-confidence)', 'You can\'t stop me lovin\' myself.', NULL, NULL),
 (15, 'Mikrokosmos (Theme: Hope in darkness)', 'The deeper the night, the brighter the starlight.', NULL, NULL),
@@ -535,3 +535,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

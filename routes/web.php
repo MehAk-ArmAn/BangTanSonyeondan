@@ -77,3 +77,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 /* Old member URL compatibility: /Kim%20Namjoon, /Jin, etc. Keep at the very end. */
 Route::get('/{name}', [BTSController::class, 'memberPage']);
+

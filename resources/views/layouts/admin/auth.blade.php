@@ -10,3 +10,4 @@
     @stack('scripts')
 </body>
 </html>
+

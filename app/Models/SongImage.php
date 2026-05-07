@@ -20,3 +20,4 @@ class SongImage extends Model
         ];
     }
 }
+

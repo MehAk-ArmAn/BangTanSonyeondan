@@ -161,3 +161,4 @@ return new class extends Migration
         // Do not drop content tables on rollback; this avoids accidental data loss.
     }
 };
+

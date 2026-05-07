@@ -13,3 +13,4 @@ class AdminStarterSeeder extends Seeder
         $this->call(GlowUpContentSeeder::class);
     }
 }
+

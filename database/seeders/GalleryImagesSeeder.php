@@ -60,3 +60,4 @@ class GalleryImagesSeeder extends Seeder
         DB::table('gallery_images')->insert($images);
     }
 }
+

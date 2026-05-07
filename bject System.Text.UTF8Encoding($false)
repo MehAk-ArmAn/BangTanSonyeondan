@@ -1,0 +1,199 @@
+warning: in the working copy of 'README.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/Admin/AuthController.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/Admin/DashboardController.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/BTSController.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/BtsCopyController.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/Controller.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/GalleryController.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Controllers/SongsController.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Http/Middleware/AdminOnly.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/BtsCopy.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/GalleryImage.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/Member.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/NavItem.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/Quote.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/SiteSetting.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/SongImage.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/TimelineEvent.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/User.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Models/Vote.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'app/Providers/AppServiceProvider.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'bangtansonyeondan.sql', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'bootstrap/app.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'bootstrap/providers.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/app.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/auth.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/cache.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/database.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/filesystems.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/logging.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/mail.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/queue.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/services.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'config/session.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2013.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2016.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2017.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2018.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2019.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2020.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2021.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2022.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2023.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2025.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'content/timeline/2026.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/factories/UserFactory.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/0001_01_01_000000_create_users_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/0001_01_01_000001_create_cache_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/0001_01_01_000002_create_jobs_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_01_28_104910_create_members_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_01_28_110424_add_favicon_to_members_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_02_07_131748_create_bts_copies_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_02_17_050950_create_quotes_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_03_24_163105_create_songs_images_table.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_05_07_181046_upgrade_bts_site_for_admin.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/migrations/2026_05_07_200000_glow_up_content_upgrade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/seeders/AdminStarterSeeder.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/seeders/DatabaseSeeder.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/seeders/GalleryImagesSeeder.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/seeders/GlowUpContentSeeder.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/seeders/MembersTableSeeder.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'database/sql/2026_05_07_glow_up_update.sql', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'docs/SETUP_AND_UPDATE_GUIDE.md', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/css/admin.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/css/bts-ui.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/css/bts_copies.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/index.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/js/app.js', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/js/bts.js', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/robots.txt', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/admin/dashboard.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/admin/login.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/bt21.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/bts-achievements.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/bts_copies/create.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/bts_copies/edit.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/bts_copies/index.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/gallery.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/admin/app.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/admin/auth.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/admin/partials/alerts.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/admin/partials/head.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/admin/partials/sidebar.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/admin/partials/topbar.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/frontend/app.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/frontend/partials/footer.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/frontend/partials/head.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/layouts/frontend/partials/navbar.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/member.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/quotes.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/songs.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/vote.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/welcome.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'routes/console.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'routes/web.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'tests/Feature/ExampleTest.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'tests/TestCase.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'tests/Unit/ExampleTest.php', CRLF will be replaced by LF the next time Git touches it
+ README.md                                          |  29 [32m+++[m[31m---[m
+ app/Http/Controllers/Admin/AuthController.php      |   5 [32m+[m[31m-[m
+ app/Http/Controllers/Admin/DashboardController.php |   3 [32m+[m[31m-[m
+ app/Http/Controllers/BTSController.php             |   7 [32m+[m[31m-[m
+ app/Http/Controllers/BtsCopyController.php         |   9 [32m+[m[31m-[m
+ app/Http/Controllers/Controller.php                |   3 [32m+[m[31m-[m
+ app/Http/Controllers/GalleryController.php         |   3 [32m+[m[31m-[m
+ app/Http/Controllers/SongsController.php           |   3 [32m+[m[31m-[m
+ app/Http/Middleware/AdminOnly.php                  |   3 [32m+[m[31m-[m
+ app/Models/BtsCopy.php                             |   3 [32m+[m[31m-[m
+ app/Models/GalleryImage.php                        |   3 [32m+[m[31m-[m
+ app/Models/Member.php                              |   3 [32m+[m[31m-[m
+ app/Models/NavItem.php                             |   3 [32m+[m[31m-[m
+ app/Models/Quote.php                               |   3 [32m+[m[31m-[m
+ app/Models/SiteSetting.php                         |   3 [32m+[m[31m-[m
+ app/Models/SongImage.php                           |   3 [32m+[m[31m-[m
+ app/Models/TimelineEvent.php                       |   3 [32m+[m[31m-[m
+ app/Models/User.php                                |   3 [32m+[m[31m-[m
+ app/Models/Vote.php                                |   3 [32m+[m[31m-[m
+ app/Providers/AppServiceProvider.php               |   5 [32m+[m[31m-[m
+ bangtansonyeondan.sql                              |  25 [32m++[m[31m---[m
+ bootstrap/app.php                                  |   3 [32m+[m[31m-[m
+ bootstrap/providers.php                            |   3 [32m+[m[31m-[m
+ config/app.php                                     |   3 [32m+[m[31m-[m
+ config/auth.php                                    |   3 [32m+[m[31m-[m
+ config/cache.php                                   |   3 [32m+[m[31m-[m
+ config/database.php                                |   3 [32m+[m[31m-[m
+ config/filesystems.php                             |   3 [32m+[m[31m-[m
+ config/logging.php                                 |   3 [32m+[m[31m-[m
+ config/mail.php                                    |   3 [32m+[m[31m-[m
+ config/queue.php                                   |   3 [32m+[m[31m-[m
+ config/services.php                                |   3 [32m+[m[31m-[m
+ config/session.php                                 |   3 [32m+[m[31m-[m
+ content/timeline/2013.txt                          |   4 [32m+[m[31m-[m
+ content/timeline/2014.txt                          |   1 [32m+[m
+ content/timeline/2015.txt                          |   1 [32m+[m
+ content/timeline/2016.txt                          |   6 [32m+[m[31m-[m
+ content/timeline/2017.txt                          |   8 [32m+[m[31m-[m
+ content/timeline/2018.txt                          |  10 [32m+[m[31m-[m
+ content/timeline/2019.txt                          |  10 [32m+[m[31m-[m
+ content/timeline/2020.txt                          |  12 [32m+[m[31m--[m
+ content/timeline/2021.txt                          |   8 [32m+[m[31m-[m
+ content/timeline/2022.txt                          |   8 [32m+[m[31m-[m
+ content/timeline/2023.txt                          |  24 [32m++[m[31m---[m
+ content/timeline/2024.txt                          |   1 [32m+[m
+ content/timeline/2025.txt                          |   4 [32m+[m[31m-[m
+ content/timeline/2026.txt                          |  16 [32m++[m[31m--[m
+ database/factories/UserFactory.php                 |   3 [32m+[m[31m-[m
+ .../0001_01_01_000000_create_users_table.php       |   3 [32m+[m[31m-[m
+ .../0001_01_01_000001_create_cache_table.php       |   3 [32m+[m[31m-[m
+ .../0001_01_01_000002_create_jobs_table.php        |   3 [32m+[m[31m-[m
+ .../2026_01_28_104910_create_members_table.php     |   4 [32m+[m[31m-[m
+ ...6_01_28_110424_add_favicon_to_members_table.php |   3 [32m+[m[31m-[m
+ .../2026_02_07_131748_create_bts_copies_table.php  |   3 [32m+[m[31m-[m
+ .../2026_02_17_050950_create_quotes_table.php      |   3 [32m+[m[31m-[m
+ ...2026_03_24_163105_create_songs_images_table.php |   3 [32m+[m[31m-[m
+ ...026_05_07_181046_upgrade_bts_site_for_admin.php |   3 [32m+[m[31m-[m
+ .../2026_05_07_200000_glow_up_content_upgrade.php  |   3 [32m+[m[31m-[m
+ database/seeders/AdminStarterSeeder.php            |   3 [32m+[m[31m-[m
+ database/seeders/DatabaseSeeder.php                |   6 [32m+[m[31m-[m
+ database/seeders/GalleryImagesSeeder.php           |   3 [32m+[m[31m-[m
+ database/seeders/GlowUpContentSeeder.php           |  72 [32m++++++++[m[31m-------[m
+ database/seeders/MembersTableSeeder.php            |  18 [32m++[m[31m--[m
+ database/sql/2026_05_07_glow_up_update.sql         |  36 [32m++++[m[31m----[m
+ docs/SETUP_AND_UPDATE_GUIDE.md                     |   3 [32m+[m[31m-[m
+ public/css/admin.css                               |  53 [32m++++++++++[m[31m-[m
+ public/css/bts-ui.css                              | 101 [32m++++++++++++++++++++[m[31m-[m
+ public/css/bts_copies.css                          |   3 [32m+[m[31m-[m
+ public/index.php                                   |   3 [32m+[m[31m-[m
+ public/js/app.js                                   |   5 [32m+[m[31m-[m
+ public/js/bootstrap.js                             |   1 [32m+[m
+ public/js/bts.js                                   |   3 [32m+[m[31m-[m
+ public/robots.txt                                  |   3 [32m+[m[31m-[m
+ resources/views/admin/dashboard.blade.php          |   9 [32m+[m[31m-[m
+ resources/views/admin/login.blade.php              |   7 [32m+[m[31m-[m
+ resources/views/bt21.blade.php                     |   5 [32m+[m[31m-[m
+ resources/views/bts-achievements.blade.php         |   7 [32m+[m[31m-[m
+ resources/views/bts_copies/create.blade.php        |  13 [32m+[m[31m--[m
+ resources/views/bts_copies/edit.blade.php          |  13 [32m+[m[31m--[m
+ resources/views/bts_copies/index.blade.php         |  11 [32m++[m[31m-[m
+ resources/views/gallery.blade.php                  |   5 [32m+[m[31m-[m
+ resources/views/layouts/admin/app.blade.php        |   3 [32m+[m[31m-[m
+ resources/views/layouts/admin/auth.blade.php       |   3 [32m+[m[31m-[m
+ .../views/layouts/admin/partials/alerts.blade.php  |   3 [32m+[m[31m-[m
+ .../views/layouts/admin/partials/head.blade.php    |   3 [32m+[m[31m-[m
+ .../views/layouts/admin/partials/sidebar.blade.php |   3 [32m+[m[31m-[m
+ .../views/layouts/admin/partials/topbar.blade.php  |   5 [32m+[m[31m-[m
+ resources/views/layouts/frontend/app.blade.php     |   3 [32m+[m[31m-[m
+ .../layouts/frontend/partials/footer.blade.php     |   9 [32m+[m[31m-[m
+ .../views/layouts/frontend/partials/head.blade.php |   7 [32m+[m[31m-[m
+ .../layouts/frontend/partials/navbar.blade.php     |   5 [32m+[m[31m-[m
+ resources/views/member.blade.php                   |   9 [32m+[m[31m-[m
+ resources/views/quotes.blade.php                   |   7 [32m+[m[31m-[m
+ resources/views/songs.blade.php                    |  11 [32m++[m[31m-[m
+ resources/views/vote.blade.php                     |  11 [32m++[m[31m-[m
+ resources/views/welcome.blade.php                  |  29 [32m+++[m[31m---[m
+ routes/console.php                                 |   3 [32m+[m[31m-[m
+ routes/web.php                                     |   3 [32m+[m[31m-[m
+ tests/Feature/ExampleTest.php                      |   3 [32m+[m[31m-[m
+ tests/TestCase.php                                 |   3 [32m+[m[31m-[m
+ tests/Unit/ExampleTest.php                         |   3 [32m+[m[31m-[m
+ 101 files changed, 528 insertions(+), 289 deletions(-)

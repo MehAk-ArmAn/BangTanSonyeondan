@@ -18,3 +18,4 @@ class AdminOnly
         return $next($request);
     }
 }
+

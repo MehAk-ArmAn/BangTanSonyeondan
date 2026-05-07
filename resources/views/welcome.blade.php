@@ -1,20 +1,20 @@
-{{-- Home page: cinematic fan archive landing page. --}}
+{{-- Home page: cinematic fan website landing page. --}}
 @extends('layouts.frontend.app')
-@section('title', ($siteSettings['site_title'] ?? 'BangTanSonyeondan Archive') . ' · Home')
+@section('title', ($siteSettings['site_title'] ?? 'BangTanSonyeondan') . ' Â· Home')
 @section('content')
 <section class="hero-section">
     <div class="hero-copy">
-        <span class="eyebrow">{{ $siteSettings['hero_kicker'] ?? '⟭⟬ BTS FOREVER ⟬⟭' }}</span>
-        <h1>{{ $siteSettings['hero_title'] ?? 'Your cinematic BTS archive.' }}</h1>
-        <p>{{ $siteSettings['hero_body'] ?? 'Member vaults, songs, quotes, timelines, gallery moments, and ARMY energy in one clean purple universe.' }}</p>
+        <span class="eyebrow">{{ $siteSettings['hero_kicker'] ?? 'âŸ­âŸ¬ BTS FOREVER âŸ¬âŸ­' }}</span>
+        <h1>{{ $siteSettings['hero_title'] ?? '✨💜 ＢＡＮＧＴＡＮ ＳＯＮＹＥＯＮＤＡＮ 💜✨' }}</h1>
+        <p>{{ $siteSettings['hero_body'] ?? 'Member vaults, songs, quotes, timelines, gallery moments, and ARMY energy in one purple-red experience.' }}</p>
         <div class="hero-actions">
             <a class="btn primary" href="#members">Enter Member Vaults</a>
             <a class="btn ghost" href="{{ route('achievements') }}">Explore Timeline</a>
         </div>
     </div>
     <div class="hero-card">
-        <img src="{{ asset('imgs/btsssss.jfif') }}" alt="BTS archive hero">
-        <div class="floating-badge">방탄소년단 · ARMY</div>
+        <img src="{{ asset('imgs/btsssss.jfif') }}" alt="BangTanSonyeondan hero">
+        <div class="floating-badge">ë°©íƒ„ì†Œë…„ë‹¨ Â· ARMY</div>
     </div>
 </section>
 
@@ -22,13 +22,13 @@
     <div><b>{{ $members->count() ?: 7 }}</b><span>Member vaults</span></div>
     <div><b>{{ $featuredSongs->count() }}</b><span>Featured songs</span></div>
     <div><b>{{ $featuredTimeline->count() }}</b><span>Timeline highlights</span></div>
-    <div><b>∞</b><span>ARMY energy</span></div>
+    <div><b>âˆž</b><span>ARMY energy</span></div>
 </section>
 
 <section class="section-block" id="members">
     <div class="section-heading">
         <span class="eyebrow">Member Vaults</span>
-        <h2>Not just cards — actual profiles with personality.</h2>
+        <h2>Not just cards â€” actual profiles with personality.</h2>
         <p>Each member page has profile details, tags, facts, story-style text, and their own vibe.</p>
     </div>
     <div class="member-grid">
@@ -47,15 +47,15 @@
 
 <section class="section-block split-showcase">
     <div>
-        <span class="eyebrow">Archive Style</span>
-        <h2>Clean like an archive, fun like an ARMY group chat.</h2>
+        <span class="eyebrow">ARMY Hub Style</span>
+        <h2>Organized like a vault, fun like an ARMY group chat.</h2>
         <p>This site now has a stronger system: database-driven members, nav, songs, quotes, gallery, timeline, voting, settings, and admin controls.</p>
         <a class="btn primary" href="{{ route('songs') }}">Browse Songs</a>
     </div>
     <div class="timeline-mini">
         @foreach($featuredTimeline as $event)
             <article>
-                <span>{{ $event->year }} · {{ $event->category }}</span>
+                <span>{{ $event->year }} Â· {{ $event->category }}</span>
                 <h3>{{ $event->title }}</h3>
             </article>
         @endforeach
@@ -83,11 +83,12 @@
 <section class="section-block quote-strip">
     @forelse($featuredQuotes as $quote)
         <blockquote>
-            <p>“{{ $quote->quote }}”</p>
+            <p>â€œ{{ $quote->quote }}â€</p>
             <cite>{{ $quote->source }}</cite>
         </blockquote>
     @empty
-        <blockquote><p>“Seven people. Millions of stories. One purple universe.”</p><cite>ARMY</cite></blockquote>
+        <blockquote><p>â€œSeven people. Millions of stories. One purple-red stage.â€</p><cite>ARMY</cite></blockquote>
     @endforelse
 </section>
 @endsection
+

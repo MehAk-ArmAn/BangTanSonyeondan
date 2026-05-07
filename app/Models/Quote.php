@@ -15,3 +15,4 @@ class Quote extends Model
         return ['is_active' => 'boolean'];
     }
 }
+

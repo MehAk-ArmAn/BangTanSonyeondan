@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class GlowUpContentSeeder extends Seeder
 {
     /**
-     * Seeds polished starter content for the professional BTS fan archive.
+     * Seeds polished starter content for the professional BangTanSonyeondan fan website.
      *
      * Run with:
      * php artisan db:seed --class=GlowUpContentSeeder
@@ -29,14 +29,14 @@ class GlowUpContentSeeder extends Seeder
         );
 
         $settings = [
-            'site_title' => 'BangTanSonyeondan Archive',
-            'site_subtitle' => 'A purple, polished, fan-made universe for BTS members, music, memories, quotes, timelines, and ARMY energy.',
-            'hero_kicker' => '⟭⟬ BTS FOREVER · ARMY HOMEBASE ⟬⟭',
-            'hero_title' => 'Your cinematic BTS archive — fun, organized, purple, and actually useful.',
-            'hero_body' => 'Explore member vaults, eras, songs, quotes, gallery moments, votes, and timeline highlights in one clean fan archive built for real ARMY browsing.',
-            'footer_text' => 'BangTanSonyeondan Archive is a fan-made BTS universe created with love. Please support official BTS channels whenever possible.',
+            'site_title' => 'BangTanSonyeondan',
+            'site_subtitle' => 'A purple-red, polished BangTanSonyeondan website for BTS members, music, memories, quotes, timelines, and ARMY energy.',
+            'hero_kicker' => 'âŸ­âŸ¬ BTS FOREVER Â· ARMY HOMEBASE âŸ¬âŸ­',
+            'hero_title' => '✨💜 ＢＡＮＧＴＡＮ ＳＯＮＹＥＯＮＤＡＮ 💜✨ — fun, organized, purple-red, and actually useful.',
+            'hero_body' => 'Explore member vaults, eras, songs, quotes, gallery moments, votes, and timeline highlights in one clean BangTanSonyeondan website built for real ARMY browsing.',
+            'footer_text' => 'BangTanSonyeondan is a fan-made website created with love. Please support official BTS channels whenever possible.',
             'admin_email' => 'hello@bangtansonyeondan.com',
-            'location' => 'Purple Universe',
+            'location' => 'ARMY Hub',
             'creator_name' => 'Mehak Arman',
             'phone' => '',
             'instagram' => '',
@@ -72,41 +72,41 @@ class GlowUpContentSeeder extends Seeder
         $members = [
             [
                 'slug' => 'rm', 'name' => 'Kim Namjoon', 'stage_name' => 'RM', 'nickname' => 'RM',
-                'korean_name' => '김남준', 'role' => 'Leader · Rapper · Lyricist', 'birth_date' => '1994-09-12',
-                'birthplace' => 'Ilsan/Goyang, South Korea', 'emoji' => '🐨', 'accent_color' => '#7c3aed',
+                'korean_name' => 'ê¹€ë‚¨ì¤€', 'role' => 'Leader Â· Rapper Â· Lyricist', 'birth_date' => '1994-09-12',
+                'birthplace' => 'Ilsan/Goyang, South Korea', 'emoji' => 'ðŸ¨', 'accent_color' => '#7c3aed',
                 'bt21_character' => 'KOYA', 'image' => 'rm.jfif', 'favicon' => 'KOYA.png', 'sort_order' => 1,
                 'intro_title' => 'The thoughtful leader who turns chaos into poetry.',
                 'quote' => 'A calm brain, a giant heart, and words that feel like a deep purple sky.',
-                'profile_story' => 'RM is the group’s leader and one of the strongest creative voices behind BTS. His page is built like a mini vault: leadership, lyrics, art energy, and the kind of reflective aura that makes ARMY pause and think.',
+                'profile_story' => 'RM is the groupâ€™s leader and one of the strongest creative voices behind BTS. His page is built like a mini vault: leadership, lyrics, art energy, and the kind of reflective aura that makes ARMY pause and think.',
                 'skill_tags' => ['Leadership', 'Rap', 'Lyrics', 'Art lover', 'English speaker'],
                 'fun_facts' => ['Known for deep speeches and thoughtful interviews.', 'Loves museums, books, nature, and art spaces.', 'Represents the soft-intellectual side of BTS energy.'],
             ],
             [
                 'slug' => 'jin', 'name' => 'Kim Seokjin', 'stage_name' => 'Jin', 'nickname' => 'Jin',
-                'korean_name' => '김석진', 'role' => 'Vocalist · Visual · Worldwide Handsome', 'birth_date' => '1992-12-04',
-                'birthplace' => 'Gwacheon, South Korea', 'emoji' => '🐹', 'accent_color' => '#ec4899',
+                'korean_name' => 'ê¹€ì„ì§„', 'role' => 'Vocalist Â· Visual Â· Worldwide Handsome', 'birth_date' => '1992-12-04',
+                'birthplace' => 'Gwacheon, South Korea', 'emoji' => 'ðŸ¹', 'accent_color' => '#ec4899',
                 'bt21_character' => 'RJ', 'image' => 'jin.jfif', 'favicon' => 'RJ.png', 'sort_order' => 2,
                 'intro_title' => 'The worldwide handsome mood-maker with silver vocals.',
                 'quote' => 'A vocal prince with dad jokes, elegance, and full chaos mode unlocked.',
                 'profile_story' => 'Jin brings warmth, humor, confidence, and emotional vocals. His vault should feel like a sparkling royal comedy room: wholesome, iconic, and secretly very powerful.',
                 'skill_tags' => ['Vocal', 'Visual', 'Variety', 'Confidence', 'Humor'],
-                'fun_facts' => ['Known for “Worldwide Handsome” energy.', 'Often brings comfort through emotional solo songs.', 'Can turn any serious moment into a legendary meme.'],
+                'fun_facts' => ['Known for â€œWorldwide Handsomeâ€ energy.', 'Often brings comfort through emotional solo songs.', 'Can turn any serious moment into a legendary meme.'],
             ],
             [
                 'slug' => 'suga', 'name' => 'Min Yoongi', 'stage_name' => 'SUGA', 'nickname' => 'Suga',
-                'korean_name' => '민윤기', 'role' => 'Rapper · Producer · Songwriter', 'birth_date' => '1993-03-09',
-                'birthplace' => 'Daegu, South Korea', 'emoji' => '🐱', 'accent_color' => '#64748b',
+                'korean_name' => 'ë¯¼ìœ¤ê¸°', 'role' => 'Rapper Â· Producer Â· Songwriter', 'birth_date' => '1993-03-09',
+                'birthplace' => 'Daegu, South Korea', 'emoji' => 'ðŸ±', 'accent_color' => '#64748b',
                 'bt21_character' => 'SHOOKY', 'image' => 'suga.jfif', 'favicon' => 'SHOOKY.png', 'sort_order' => 3,
                 'intro_title' => 'The quiet producer with savage lyrics and soft-core honesty.',
                 'quote' => 'Calm on the outside, thunder in the studio, comfort in the lyrics.',
-                'profile_story' => 'SUGA is the production brain, sharp rapper, and emotional storyteller. His page should feel moody, cinematic, and honest — like late-night headphones and lyrics that hit too hard.',
+                'profile_story' => 'SUGA is the production brain, sharp rapper, and emotional storyteller. His page should feel moody, cinematic, and honest â€” like late-night headphones and lyrics that hit too hard.',
                 'skill_tags' => ['Rap', 'Production', 'Piano', 'Songwriting', 'Agust D'],
                 'fun_facts' => ['Known for direct, honest writing.', 'Has a strong producer identity beyond performance.', 'His calm vibe is half sleepy cat, half studio monster.'],
             ],
             [
                 'slug' => 'jhope', 'name' => 'Jung Hoseok', 'stage_name' => 'j-hope', 'nickname' => 'Hobi',
-                'korean_name' => '정호석', 'role' => 'Rapper · Main Dancer · Performance Leader', 'birth_date' => '1994-02-18',
-                'birthplace' => 'Gwangju, South Korea', 'emoji' => '🌞', 'accent_color' => '#f59e0b',
+                'korean_name' => 'ì •í˜¸ì„', 'role' => 'Rapper Â· Main Dancer Â· Performance Leader', 'birth_date' => '1994-02-18',
+                'birthplace' => 'Gwangju, South Korea', 'emoji' => 'ðŸŒž', 'accent_color' => '#f59e0b',
                 'bt21_character' => 'MANG', 'image' => 'jhope.jfif', 'favicon' => 'MANG.png', 'sort_order' => 4,
                 'intro_title' => 'The sunshine engine who turns practice into fireworks.',
                 'quote' => 'Bright smile, beast-mode dance lines, and stage energy that wakes the planet.',
@@ -116,19 +116,19 @@ class GlowUpContentSeeder extends Seeder
             ],
             [
                 'slug' => 'jimin', 'name' => 'Park Jimin', 'stage_name' => 'Jimin', 'nickname' => 'Jimin',
-                'korean_name' => '박지민', 'role' => 'Vocalist · Dancer', 'birth_date' => '1995-10-13',
-                'birthplace' => 'Busan, South Korea', 'emoji' => '🐣', 'accent_color' => '#a855f7',
+                'korean_name' => 'ë°•ì§€ë¯¼', 'role' => 'Vocalist Â· Dancer', 'birth_date' => '1995-10-13',
+                'birthplace' => 'Busan, South Korea', 'emoji' => 'ðŸ£', 'accent_color' => '#a855f7',
                 'bt21_character' => 'CHIMMY', 'image' => 'jimin.jfif', 'favicon' => 'CHIMMY.png', 'sort_order' => 5,
                 'intro_title' => 'The graceful performer with angel vocals and lethal duality.',
                 'quote' => 'Soft voice, sharp movement, and stage duality that should honestly be illegal.',
-                'profile_story' => 'Jimin brings elegance, emotion, and powerful dance detail. His vault should feel delicate and dramatic at the same time — ballet lines, emotional vocals, and iconic performance moments.',
+                'profile_story' => 'Jimin brings elegance, emotion, and powerful dance detail. His vault should feel delicate and dramatic at the same time â€” ballet lines, emotional vocals, and iconic performance moments.',
                 'skill_tags' => ['Dance', 'Vocal', 'Performance', 'Duality', 'Contemporary'],
                 'fun_facts' => ['Known for expressive dance lines.', 'Balances softness and intensity on stage.', 'Has one of the most recognizable performance auras in BTS.'],
             ],
             [
                 'slug' => 'v', 'name' => 'Kim Taehyung', 'stage_name' => 'V', 'nickname' => 'V',
-                'korean_name' => '김태형', 'role' => 'Vocalist · Visual · Actor', 'birth_date' => '1995-12-30',
-                'birthplace' => 'Daegu, South Korea', 'emoji' => '🐻', 'accent_color' => '#14b8a6',
+                'korean_name' => 'ê¹€íƒœí˜•', 'role' => 'Vocalist Â· Visual Â· Actor', 'birth_date' => '1995-12-30',
+                'birthplace' => 'Daegu, South Korea', 'emoji' => 'ðŸ»', 'accent_color' => '#14b8a6',
                 'bt21_character' => 'TATA', 'image' => 'v.jfif', 'favicon' => 'TATA.png', 'sort_order' => 6,
                 'intro_title' => 'The velvet-voiced art prince with cinematic energy.',
                 'quote' => 'Jazz soul, deep voice, model aura, and facial expressions that tell whole stories.',
@@ -138,14 +138,14 @@ class GlowUpContentSeeder extends Seeder
             ],
             [
                 'slug' => 'jungkook', 'name' => 'Jeon Jungkook', 'stage_name' => 'Jung Kook', 'nickname' => 'JK',
-                'korean_name' => '전정국', 'role' => 'Main Vocalist · Performer · Golden Maknae', 'birth_date' => '1997-09-01',
-                'birthplace' => 'Busan, South Korea', 'emoji' => '🐰', 'accent_color' => '#22c55e',
+                'korean_name' => 'ì „ì •êµ­', 'role' => 'Main Vocalist Â· Performer Â· Golden Maknae', 'birth_date' => '1997-09-01',
+                'birthplace' => 'Busan, South Korea', 'emoji' => 'ðŸ°', 'accent_color' => '#22c55e',
                 'bt21_character' => 'COOKY', 'image' => 'jk.jfif', 'favicon' => 'COOKY.png', 'sort_order' => 7,
                 'intro_title' => 'The golden maknae built like a final boss character.',
-                'quote' => 'Vocals, dance, sports, art, chaos — bro downloaded the all-rounder expansion pack.',
+                'quote' => 'Vocals, dance, sports, art, chaos â€” bro downloaded the all-rounder expansion pack.',
                 'profile_story' => 'Jung Kook is the powerhouse all-rounder: vocals, dance, performance, athletic energy, and playful maknae chaos. His vault should feel fast, bright, and impossible to ignore.',
                 'skill_tags' => ['Vocal', 'Dance', 'Performance', 'Sports', 'Golden Maknae'],
-                'fun_facts' => ['Known as the “Golden Maknae”.', 'Has strong vocals and sharp stage focus.', 'Somehow manages to be both chaotic and perfectionist.'],
+                'fun_facts' => ['Known as the â€œGolden Maknaeâ€.', 'Has strong vocals and sharp stage focus.', 'Somehow manages to be both chaotic and perfectionist.'],
             ],
         ];
 
@@ -161,7 +161,7 @@ class GlowUpContentSeeder extends Seeder
             ['Jimin', 'Grace hits hardest when it carries emotion.', 'Performance'],
             ['V', 'A deep voice can turn one quiet second into cinema.', 'Mood'],
             ['Jung Kook', 'Talent becomes legendary when effort refuses to sleep.', 'Growth'],
-            ['ARMY', 'Seven people. Millions of stories. One purple universe.', 'Fandom'],
+            ['ARMY', 'Seven people. Millions of stories. One purple-red stage.', 'Fandom'],
         ];
 
         foreach ($quotes as [$source, $quote, $context]) {
@@ -207,8 +207,8 @@ class GlowUpContentSeeder extends Seeder
             ['2018', 'Message', 'Love Yourself and Speak Yourself impact', 'Their message expanded beyond music into self-love, youth voice, and cultural impact.', ['Love Yourself message becomes central', 'Bigger stadium-scale presence', 'Global media focus'], ['imgs/timeline/2018/1.jfif', 'imgs/timeline/2018/2.jfif'], 4],
             ['2020', 'Record Era', 'Dynamite, BE, and worldwide comfort', 'BTS reached another global peak while releasing music that brought brightness and comfort during a difficult year.', ['Dynamite era explodes worldwide', 'BE carries a softer healing tone', 'BTS becomes a household global pop name'], ['imgs/timeline/2020/1.jfif', 'imgs/timeline/2020/2.jfif'], 5],
             ['2021', 'Stadium Pop', 'Butter and Permission to Dance', 'BTS leaned into polished pop brightness while keeping the fan connection strong.', ['English singles era continues', 'Performance scale grows', 'ARMY moments everywhere'], [], 6],
-            ['2022', 'Reflection', 'Proof anthology era', 'Proof looked back across the group’s journey and framed their story as something still moving forward.', ['Anthology project', 'Career reflection', 'Promise of the future'], [], 7],
-            ['2023–2025', 'Solo Chapter', 'Solo era and individual colors', 'Each member explored solo identity, showing different sounds, styles, and personal artistic colors while the seven-member story stayed connected.', ['Solo albums and singles', 'Member identities shine', 'Group bond remains central'], ['imgs/timeline/2023/1.jfif', 'imgs/timeline/2023/2.jfif', 'imgs/timeline/2023/3.jfif'], 8],
+            ['2022', 'Reflection', 'Proof anthology era', 'Proof looked back across the groupâ€™s journey and framed their story as something still moving forward.', ['Anthology project', 'Career reflection', 'Promise of the future'], [], 7],
+            ['2023â€“2025', 'Solo Chapter', 'Solo era and individual colors', 'Each member explored solo identity, showing different sounds, styles, and personal artistic colors while the seven-member story stayed connected.', ['Solo albums and singles', 'Member identities shine', 'Group bond remains central'], ['imgs/timeline/2023/1.jfif', 'imgs/timeline/2023/2.jfif', 'imgs/timeline/2023/3.jfif'], 8],
         ];
 
         foreach ($timeline as [$year, $category, $title, $body, $bullets, $images, $order]) {
@@ -223,11 +223,11 @@ class GlowUpContentSeeder extends Seeder
         }
 
         $gallery = [
-            ['Purple Energy', 'extra_gallery/BTS.jfif', 'Group energy for the archive hero mood.', 'Group', 1],
+            ['Purple Energy', 'extra_gallery/BTS.jfif', 'Group energy for the hero mood.', 'Group', 1],
             ['Meme Museum', 'extra_gallery/HAHAHA.jfif', 'Because BTS funny moments deserve a museum wing.', 'Meme', 2],
-            ['Run Era Mood', 'extra_gallery/run.jfif', 'High-energy archive card.', 'Era', 3],
+            ['Run Era Mood', 'extra_gallery/run.jfif', 'High-energy era card.', 'Era', 3],
             ['Life Goes On Comfort', 'extra_gallery/lifeGoesOn.jfif', 'Soft comfort energy.', 'Era', 4],
-            ['Taekook Moment', 'extra_gallery/taekook.jfif', 'Friendship archive moment.', 'Members', 5],
+            ['Taekook Moment', 'extra_gallery/taekook.jfif', 'Friendship member moment.', 'Members', 5],
             ['Jimin Smile', 'extra_gallery/jiminSmile.jfif', 'Soft gallery highlight.', 'Members', 6],
             ['Jin Smile', 'extra_gallery/jinSmile.jfif', 'Worldwide handsome gallery highlight.', 'Members', 7],
             ['SUGA Mood', 'extra_gallery/suga.jfif', 'Calm but powerful.', 'Members', 8],
@@ -243,3 +243,5 @@ class GlowUpContentSeeder extends Seeder
         }
     }
 }
+
+

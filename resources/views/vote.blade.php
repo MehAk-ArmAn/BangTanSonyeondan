@@ -1,10 +1,10 @@
 {{-- Vote page with DB-backed member options and result stats. --}}
 @extends('layouts.frontend.app')
-@section('title', 'Vote · BangTanSonyeondan')
+@section('title', 'Vote Â· BangTanSonyeondan')
 @section('content')
 <section class="page-hero small">
     <span class="eyebrow">Bias Check</span>
-    <h1>Vote for your bias 💜</h1>
+    <h1>Vote for your bias ðŸ’œ</h1>
     <p>Votes are now saved in the database and visible in the admin panel.</p>
 </section>
 @if(session('success'))<div class="public-alert success">{{ session('success') }}</div>@endif
@@ -16,10 +16,10 @@
         <select id="member_id" name="member_id" required>
             <option value="">Select member...</option>
             @foreach($members as $member)
-                <option value="{{ $member->id }}">{{ $member->emoji }} {{ $member->stage_name ?: $member->nickname }} — {{ $member->name }}</option>
+                <option value="{{ $member->id }}">{{ $member->emoji }} {{ $member->stage_name ?: $member->nickname }} â€” {{ $member->name }}</option>
             @endforeach
         </select>
-        <button class="btn primary" type="submit">Submit Vote 🎉</button>
+        <button class="btn primary" type="submit">Submit Vote ðŸŽ‰</button>
     </form>
 
     <div class="glass-panel">
@@ -32,3 +32,4 @@
     </div>
 </section>
 @endsection
+

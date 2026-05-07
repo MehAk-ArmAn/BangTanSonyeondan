@@ -9,7 +9,7 @@
 
 @extends('layouts.frontend.app')
 
-@section('title', '⋆✦✧⋆ BTS Copies Creator ⋆✦✧⋆')
+@section('title', 'â‹†âœ¦âœ§â‹† BTS Copies Creator â‹†âœ¦âœ§â‹†')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/bts_copies.css') }}">
@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="container">
-        <h2>🧩 BTS Copies Creator</h2>
+        <h2>ðŸ§© BTS Copies Creator</h2>
 
         {{-- Success message --}}
         @if (session('success'))
@@ -42,9 +42,9 @@
 
             <label>BTS Member *</label>
             <select name="bts_name" required>
-                <option value="">⋆✦✧⋆ Select BTS Member ⋆✦✧⋆</option>
+                <option value="">â‹†âœ¦âœ§â‹† Select BTS Member â‹†âœ¦âœ§â‹†</option>
                 @foreach($members as $name)
-                    <option value="{{ $name }}">⋆✦✧⋆ {{ $name }} ⋆✦✧⋆</option>
+                    <option value="{{ $name }}">â‹†âœ¦âœ§â‹† {{ $name }} â‹†âœ¦âœ§â‹†</option>
                 @endforeach
             </select>
             <br>
@@ -64,7 +64,8 @@
             <label>Description</label>
             <textarea name="description" rows="6" placeholder="Write details...">{{ old('description') }}</textarea>
 
-            <button type="submit">Save Copy ✅</button>
+            <button type="submit">Save Copy âœ…</button>
         </form>
     </div>
 @endsection
+

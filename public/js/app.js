@@ -1,5 +1,5 @@
-// document.addEventListener('keydown', function (e) {
-//     if (e.key === '7') { // OT7 💜
+﻿// document.addEventListener('keydown', function (e) {
+//     if (e.key === '7') { // OT7 ðŸ’œ
 //         const links = document.getElementById('secret-links');
 //         if (!links) return;
 
@@ -9,4 +9,5 @@
 //                 : 'none';
 //     }
 // });
+
 
