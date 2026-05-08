@@ -1,4 +1,4 @@
--- BangTanSonyeondan final database
+-- BangTanSonyeondan final database with dynamic footer + BT21 admin editing
 -- Import this file in phpMyAdmin into XAMPP / MariaDB.
 -- Admin login: admin@bangtansonyeondan.com / Army@2026!
 
@@ -11,7 +11,7 @@ START TRANSACTION;
 CREATE DATABASE IF NOT EXISTS `bangtansonyeondan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `bangtansonyeondan`;
 
-DROP TABLE IF EXISTS `daily_checkins`, `user_profile_assets`, `profile_assets`, `point_transactions`, `quiz_attempts`, `quiz_questions`, `learning_lessons`, `timeline_events`, `votes`, `gallery_images`, `nav_items`, `site_settings`, `songs_images`, `quotes`, `bts_copies`, `members`, `failed_jobs`, `job_batches`, `jobs`, `cache_locks`, `cache`, `sessions`, `password_reset_tokens`, `users`, `migrations`;
+DROP TABLE IF EXISTS `daily_checkins`, `user_profile_assets`, `profile_assets`, `point_transactions`, `quiz_attempts`, `quiz_questions`, `learning_lessons`, `timeline_events`, `votes`, `gallery_images`, `bt21_characters`, `nav_items`, `site_settings`, `songs_images`, `quotes`, `bts_copies`, `members`, `failed_jobs`, `job_batches`, `jobs`, `cache_locks`, `cache`, `sessions`, `password_reset_tokens`, `users`, `migrations`;
 
 CREATE TABLE `migrations` (`id` int unsigned NOT NULL AUTO_INCREMENT, `migration` varchar(255) NOT NULL, `batch` int NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `users` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `username` varchar(255) DEFAULT NULL, `email` varchar(255) NOT NULL, `email_verified_at` timestamp NULL DEFAULT NULL, `password` varchar(255) NOT NULL, `is_admin` tinyint(1) NOT NULL DEFAULT 0, `avatar_key` varchar(255) NOT NULL DEFAULT 'purple-heart', `profile_theme` varchar(255) NOT NULL DEFAULT 'galaxy-purple', `bio` varchar(500) DEFAULT NULL, `points` int unsigned NOT NULL DEFAULT 0, `streak_days` int unsigned NOT NULL DEFAULT 0, `last_streak_date` date DEFAULT NULL, `google_id` varchar(255) DEFAULT NULL, `auth_provider` varchar(255) NOT NULL DEFAULT 'email', `remember_token` varchar(100) DEFAULT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`), UNIQUE KEY `users_email_unique` (`email`), UNIQUE KEY `users_username_unique` (`username`), KEY `users_google_id_index` (`google_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -28,6 +28,7 @@ CREATE TABLE `quotes` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `source` va
 CREATE TABLE `songs_images` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `img_path` varchar(255) NOT NULL, `release_date` date DEFAULT NULL, `description` text DEFAULT NULL, `era` varchar(255) DEFAULT NULL, `spotify_url` varchar(1000) DEFAULT NULL, `sort_order` int unsigned NOT NULL DEFAULT 0, `is_active` tinyint(1) NOT NULL DEFAULT 1, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `site_settings` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `key` varchar(255) NOT NULL, `value` longtext DEFAULT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`), UNIQUE KEY `site_settings_key_unique` (`key`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `nav_items` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `label` varchar(255) NOT NULL, `url` varchar(255) NOT NULL, `sort_order` int unsigned NOT NULL DEFAULT 0, `is_active` tinyint(1) NOT NULL DEFAULT 1, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `bt21_characters` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `slug` varchar(255) NOT NULL, `member_name` varchar(255) DEFAULT NULL, `emoji` varchar(40) DEFAULT NULL, `image` varchar(255) DEFAULT NULL, `accent_color` varchar(30) NOT NULL DEFAULT '#a855f7', `mood` varchar(500) DEFAULT NULL, `power` varchar(500) DEFAULT NULL, `anatomy` json DEFAULT NULL, `moves` json DEFAULT NULL, `sort_order` int unsigned NOT NULL DEFAULT 0, `is_active` tinyint(1) NOT NULL DEFAULT 1, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`), UNIQUE KEY `bt21_characters_slug_unique` (`slug`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `gallery_images` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `name` varchar(255) DEFAULT NULL, `img_path` varchar(255) DEFAULT NULL, `caption` varchar(255) DEFAULT NULL, `category` varchar(255) NOT NULL DEFAULT 'Gallery', `sort_order` int unsigned NOT NULL DEFAULT 0, `is_active` tinyint(1) NOT NULL DEFAULT 1, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `votes` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `member_id` bigint unsigned DEFAULT NULL, `member_name` varchar(255) DEFAULT NULL, `ip_address` varchar(255) DEFAULT NULL, `user_agent` text DEFAULT NULL, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`), KEY `votes_member_id_foreign` (`member_id`), CONSTRAINT `votes_member_id_foreign` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`) ON DELETE SET NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE `timeline_events` (`id` bigint unsigned NOT NULL AUTO_INCREMENT, `year` varchar(20) NOT NULL, `category` varchar(255) NOT NULL DEFAULT 'Milestone', `title` varchar(255) NOT NULL, `body` longtext DEFAULT NULL, `bullet_points` json DEFAULT NULL, `image_paths` json DEFAULT NULL, `sort_order` int unsigned NOT NULL DEFAULT 0, `is_active` tinyint(1) NOT NULL DEFAULT 1, `created_at` timestamp NULL DEFAULT NULL, `updated_at` timestamp NULL DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -50,7 +51,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2026_03_24_163105_create_songs_images_table', 1),
 (9, '2026_05_07_181046_upgrade_bts_site_for_admin', 1),
 (10, '2026_05_07_200000_glow_up_content_upgrade', 1),
-(11, '2026_05_08_000000_create_army_learning_features', 1);
+(11, '2026_05_08_000000_create_army_learning_features', 1),
+(12, '2026_05_08_130000_create_bt21_characters_table', 1);
 
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `avatar_key`, `profile_theme`, `bio`, `points`, `streak_days`, `last_streak_date`, `google_id`, `auth_provider`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -100,6 +102,17 @@ INSERT INTO `nav_items` (`id`, `label`, `url`, `sort_order`, `is_active`, `creat
 (8, 'BT21', '/bt21', 8, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (9, 'Leaderboard', '/leaderboard', 9, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (10, 'Vote', '/vote', 10, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00');
+
+
+INSERT INTO `bt21_characters` (`id`, `name`, `slug`, `member_name`, `emoji`, `image`, `accent_color`, `mood`, `power`, `anatomy`, `moves`, `sort_order`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'KOYA', 'koya', 'RM', '🐨', 'favicons/KOYA.png', '#7c3aed', 'Sleepy genius dream koala', 'Deep thinking + soft leader energy', '["Detachable ears for extra cute chaos", "Big brain for ideas, lyrics, and tiny naps", "Soft sleepy eyes but secretly alert"]', '["Dream cloud float", "Leader calm shield", "Idea sparkle burst"]', 1, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(2, 'RJ', 'rj', 'Jin', '🦙', 'favicons/RJ.png', '#ec4899', 'Fluffy royal alpaca', 'Comfort food aura + worldwide handsome confidence', '["Cloud-fluff body built for warm hugs", "Chef-core heart full of snacks", "Tiny royal steps with maximum elegance"]', '["WWH wink", "Warm hug blanket", "Snack shield"]', 2, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(3, 'SHOOKY', 'shooky', 'SUGA', '🍪', 'favicons/SHOOKY.png', '#64748b', 'Tiny savage cookie', 'Studio focus + low-key chaos', '["Small body, giant attitude", "Crispy edge for savage comments", "Producer brain hidden in cookie mode"]', '["Savage crumb shot", "Studio silence mode", "Sleepy dodge"]', 3, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(4, 'MANG', 'mang', 'j-hope', '🕺', 'favicons/MANG.png', '#f59e0b', 'Masked dance sunshine', 'Rhythm, hope, and stage fireworks', '["Mystery mask for performance mode", "Dance-core legs with unlimited stamina", "Sunshine battery in the chest"]', '["Hope beam", "Dance combo spin", "Stage spark jump"]', 4, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(5, 'CHIMMY', 'chimmy', 'Jimin', '🐶', 'favicons/CHIMMY.png', '#a855f7', 'Yellow hoodie puppy', 'Sweetness + stage duality', '["Soft hoodie armor", "Tiny paws for dramatic cuteness", "Duality switch hidden under the hood"]', '["Puppy charm", "Graceful spin", "Duality glow"]', 5, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(6, 'TATA', 'tata', 'V', '💜', 'favicons/TATA.png', '#14b8a6', 'Alien heart prince', 'Cinematic imagination + artsy mystery', '["Heart-shaped head from Planet BT", "Tiny limbs, huge personality", "Mood detector for aesthetic moments"]', '["Alien heart pulse", "Vintage jazz aura", "Expression freeze frame"]', 6, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(7, 'COOKY', 'cooky', 'Jung Kook', '🐰', 'favicons/COOKY.png', '#22c55e', 'Pink bunny gym beast', 'Golden maknae energy + playful courage', '["Bunny ears tuned for challenges", "Tiny body with gym-boss power", "Heart mark loaded with confidence"]', '["Golden jump", "Boxing bunny combo", "Challenge accepted dash"]', 7, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(8, 'VAN', 'van', 'ARMY', '🤖', 'favicons/logo.png', '#94a3b8', 'Guardian robot watching over BT21', 'Protection + calm universe balance', '["Robot shell with soft guardian energy", "Scans chaos and protects the crew", "Half light, half shadow, all loyal"]', '["Guardian scan", "Shield pulse", "Orbit watch"]', 8, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00');
 
 
 INSERT INTO `quotes` (`id`, `source`, `quote`, `context`, `is_active`, `created_at`, `updated_at`) VALUES
@@ -214,6 +227,7 @@ ALTER TABLE `users` AUTO_INCREMENT=6;
 ALTER TABLE `members` AUTO_INCREMENT=8;
 ALTER TABLE `site_settings` AUTO_INCREMENT=16;
 ALTER TABLE `nav_items` AUTO_INCREMENT=11;
+ALTER TABLE `bt21_characters` AUTO_INCREMENT=9;
 ALTER TABLE `quotes` AUTO_INCREMENT=9;
 ALTER TABLE `songs_images` AUTO_INCREMENT=16;
 ALTER TABLE `gallery_images` AUTO_INCREMENT=9;

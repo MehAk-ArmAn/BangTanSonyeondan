@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bt21Character;
 use App\Models\GalleryImage;
 use App\Models\Member;
 use App\Models\Quote;
@@ -54,50 +55,10 @@ class BTSController extends Controller
 
     public function bt21()
     {
-        $characters = collect([
-            [
-                'name' => 'KOYA', 'member' => 'RM', 'image' => 'favicons/KOYA.png', 'accent' => '#7c3aed',
-                'mood' => 'Sleepy genius dream koala', 'power' => 'Deep thinking + soft leader energy',
-                'anatomy' => ['Detachable ears for extra cute chaos', 'Big brain for ideas, lyrics, and tiny naps', 'Soft sleepy eyes but secretly alert'],
-                'moves' => ['Dream cloud float', 'Leader calm shield', 'Idea sparkle burst'],
-            ],
-            [
-                'name' => 'RJ', 'member' => 'Jin', 'image' => 'favicons/RJ.png', 'accent' => '#ec4899',
-                'mood' => 'Fluffy royal alpaca', 'power' => 'Comfort food aura + worldwide handsome confidence',
-                'anatomy' => ['Cloud-fluff body built for warm hugs', 'Chef-core heart full of snacks', 'Tiny royal steps with maximum elegance'],
-                'moves' => ['WWH wink', 'Warm hug blanket', 'Snack shield'],
-            ],
-            [
-                'name' => 'SHOOKY', 'member' => 'SUGA', 'image' => 'favicons/SHOOKY.png', 'accent' => '#64748b',
-                'mood' => 'Tiny savage cookie', 'power' => 'Studio focus + low-key chaos',
-                'anatomy' => ['Small body, giant attitude', 'Crispy edge for savage comments', 'Producer brain hidden in cookie mode'],
-                'moves' => ['Savage crumb shot', 'Studio silence mode', 'Sleepy dodge'],
-            ],
-            [
-                'name' => 'MANG', 'member' => 'j-hope', 'image' => 'favicons/MANG.png', 'accent' => '#f59e0b',
-                'mood' => 'Masked dance sunshine', 'power' => 'Rhythm, hope, and stage fireworks',
-                'anatomy' => ['Mystery mask for performance mode', 'Dance-core legs with unlimited stamina', 'Sunshine battery in the chest'],
-                'moves' => ['Hope beam', 'Dance combo spin', 'Stage spark jump'],
-            ],
-            [
-                'name' => 'CHIMMY', 'member' => 'Jimin', 'image' => 'favicons/CHIMMY.png', 'accent' => '#a855f7',
-                'mood' => 'Yellow hoodie puppy', 'power' => 'Sweetness + stage duality',
-                'anatomy' => ['Soft hoodie armor', 'Tiny paws for dramatic cuteness', 'Duality switch hidden under the hood'],
-                'moves' => ['Puppy charm', 'Graceful spin', 'Duality glow'],
-            ],
-            [
-                'name' => 'TATA', 'member' => 'V', 'image' => 'favicons/TATA.png', 'accent' => '#14b8a6',
-                'mood' => 'Alien heart prince', 'power' => 'Cinematic imagination + artsy mystery',
-                'anatomy' => ['Heart-shaped head from Planet BT', 'Tiny limbs, huge personality', 'Mood detector for aesthetic moments'],
-                'moves' => ['Alien heart pulse', 'Vintage jazz aura', 'Expression freeze frame'],
-            ],
-            [
-                'name' => 'COOKY', 'member' => 'Jung Kook', 'image' => 'favicons/COOKY.png', 'accent' => '#22c55e',
-                'mood' => 'Pink bunny gym beast', 'power' => 'Golden maknae energy + playful courage',
-                'anatomy' => ['Bunny ears tuned for challenges', 'Tiny body with gym-boss power', 'Heart mark loaded with confidence'],
-                'moves' => ['Golden jump', 'Boxing bunny combo', 'Challenge accepted dash'],
-            ],
-        ]);
+        $characters = Bt21Character::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
 
         return view('bt21', compact('characters'));
     }

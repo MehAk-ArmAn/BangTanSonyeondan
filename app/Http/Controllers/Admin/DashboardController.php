@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bt21Character;
 use App\Models\GalleryImage;
 use App\Models\Member;
 use App\Models\NavItem;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
@@ -30,6 +32,7 @@ class DashboardController extends Controller
             'quotesList' => Quote::latest()->get(),
             'galleryList' => GalleryImage::orderBy('sort_order')->orderByDesc('id')->get(),
             'songsList' => SongImage::orderByDesc('release_date')->orderBy('sort_order')->get(),
+            'bt21List' => Bt21Character::orderBy('sort_order')->orderBy('id')->get(),
             'timelineList' => TimelineEvent::orderBy('sort_order')->orderBy('year')->get(),
             'voteStats' => Vote::selectRaw('member_name, count(*) as total')
                 ->groupBy('member_name')
@@ -289,6 +292,29 @@ class DashboardController extends Controller
         return back()->with('success', 'Song deleted.');
     }
 
+    public function storeBt21(Request $request)
+    {
+        $data = $this->validateBt21($request);
+        Bt21Character::create($data);
+
+        return back()->with('success', 'BT21 character added.');
+    }
+
+    public function updateBt21(Request $request, Bt21Character $bt21Character)
+    {
+        $data = $this->validateBt21($request, false, $bt21Character);
+        $bt21Character->update($data);
+
+        return back()->with('success', 'BT21 character updated.');
+    }
+
+    public function deleteBt21(Bt21Character $bt21Character)
+    {
+        $bt21Character->delete();
+
+        return back()->with('success', 'BT21 character deleted.');
+    }
+
     public function storeTimeline(Request $request)
     {
         $data = $this->validateTimeline($request);
@@ -312,263 +338,41 @@ class DashboardController extends Controller
         return back()->with('success', 'Timeline event deleted.');
     }
 
-
-    public function saveAll(Request $request)
+    private function validateBt21(Request $request, bool $defaultActive = true, ?Bt21Character $existing = null): array
     {
-        $this->saveSettingsBulk($request->input('settings', []));
-        $this->saveNavigationBulk($request->input('nav', []), $request->input('new_nav', []));
-        $this->saveMembersBulk($request->input('members', []), $request->file('member_image_files', []));
-        $this->saveQuotesBulk($request->input('quotes', []), $request->input('new_quote', []));
-        $this->saveSongsBulk($request->input('songs', []), $request->file('song_image_files', []), $request->input('new_song', []), $request->file('new_song_image_file'));
-        $this->saveGalleryBulk($request->input('gallery', []), $request->file('gallery_image_files', []), $request->input('new_gallery', []), $request->file('new_gallery_image_file'));
-        $this->saveTimelineBulk($request->input('timeline', []), $request->input('new_timeline', []));
+        $slugForValidation = Str::slug($request->input('slug') ?: $request->input('name'));
+        $request->merge(['slug' => $slugForValidation]);
 
-        return back()->with('success', 'All dashboard changes saved successfully.');
-    }
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique('bt21_characters', 'slug')->ignore($existing?->id)],
+            'member_name' => ['nullable', 'string', 'max:255'],
+            'emoji' => ['nullable', 'string', 'max:40'],
+            'image' => ['nullable', 'string', 'max:255'],
+            'accent_color' => ['nullable', 'string', 'max:30'],
+            'mood' => ['nullable', 'string', 'max:500'],
+            'power' => ['nullable', 'string', 'max:500'],
+            'anatomy_text' => ['nullable', 'string', 'max:5000'],
+            'moves_text' => ['nullable', 'string', 'max:3000'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'is_active' => ['nullable', 'boolean'],
+            'image_file' => ['nullable', 'image', 'max:4096'],
+        ]);
 
-    private function saveSettingsBulk(array $settings): void
-    {
-        foreach ($settings as $key => $value) {
-            SiteSetting::updateOrCreate(['key' => $key], ['value' => $value]);
-        }
-    }
+        $data['slug'] = $slugForValidation;
+        $data['accent_color'] = $data['accent_color'] ?: '#a855f7';
+        $data['anatomy'] = $this->linesToArray($request->input('anatomy_text'));
+        $data['moves'] = $this->linesToArray($request->input('moves_text'));
+        $data['is_active'] = $request->boolean('is_active', $defaultActive);
 
-    private function saveNavigationBulk(array $items, array $newItem): void
-    {
-        foreach ($items as $id => $data) {
-            $nav = NavItem::find($id);
-            if (!$nav) {
-                continue;
-            }
+        unset($data['anatomy_text'], $data['moves_text'], $data['image_file']);
 
-            if (!empty($data['delete'])) {
-                $nav->delete();
-                continue;
-            }
-
-            $nav->update([
-                'label' => $data['label'] ?? $nav->label,
-                'url' => $data['url'] ?? $nav->url,
-                'sort_order' => (int)($data['sort_order'] ?? 0),
-                'is_active' => !empty($data['is_active']),
-            ]);
+        if ($request->hasFile('image_file')) {
+            $path = $request->file('image_file')->store('uploads/bt21', 'public');
+            $data['image'] = 'storage/' . $path;
         }
 
-        if (!empty($newItem['label']) || !empty($newItem['url'])) {
-            NavItem::create([
-                'label' => $newItem['label'] ?? 'New Link',
-                'url' => $newItem['url'] ?? '#',
-                'sort_order' => (int)($newItem['sort_order'] ?? 0),
-                'is_active' => !empty($newItem['is_active']),
-            ]);
-        }
-    }
-
-    private function saveMembersBulk(array $members, array $files): void
-    {
-        foreach ($members as $id => $data) {
-            $member = Member::find($id);
-            if (!$member) {
-                continue;
-            }
-
-            $payload = [
-                'name' => $data['name'] ?? $member->name,
-                'stage_name' => $data['stage_name'] ?? null,
-                'nickname' => $data['nickname'] ?? null,
-                'korean_name' => $data['korean_name'] ?? null,
-                'role' => $data['role'] ?? null,
-                'birth_date' => $this->nullableDate($data['birth_date'] ?? null),
-                'birthplace' => $data['birthplace'] ?? null,
-                'emoji' => $data['emoji'] ?? null,
-                'accent_color' => $data['accent_color'] ?? null,
-                'bt21_character' => $data['bt21_character'] ?? null,
-                'intro_title' => $data['intro_title'] ?? null,
-                'image' => $data['image'] ?? null,
-                'favicon' => $data['favicon'] ?? null,
-                'sort_order' => (int)($data['sort_order'] ?? 0),
-                'quote' => $data['quote'] ?? null,
-                'profile_story' => $data['profile_story'] ?? null,
-                'skill_tags' => $this->linesToArray($data['skill_tags_text'] ?? ''),
-                'fun_facts' => $this->linesToArray($data['fun_facts_text'] ?? ''),
-                'is_active' => !empty($data['is_active']),
-            ];
-
-            if (!empty($payload['stage_name']) || !empty($payload['nickname']) || !empty($payload['name'])) {
-                $payload['slug'] = Str::slug($payload['stage_name'] ?: $payload['nickname'] ?: $payload['name']);
-            }
-
-            if (isset($files[$id]) && $files[$id] && $files[$id]->isValid()) {
-                $payload['image'] = 'storage/' . $files[$id]->store('uploads/members', 'public');
-            }
-
-            $member->update($payload);
-        }
-    }
-
-    private function saveQuotesBulk(array $quotes, array $newQuote): void
-    {
-        foreach ($quotes as $id => $data) {
-            $quote = Quote::find($id);
-            if (!$quote) {
-                continue;
-            }
-
-            if (!empty($data['delete'])) {
-                $quote->delete();
-                continue;
-            }
-
-            $quote->update([
-                'source' => $data['source'] ?? $quote->source,
-                'context' => $data['context'] ?? null,
-                'quote' => $data['quote'] ?? $quote->quote,
-                'is_active' => !empty($data['is_active']),
-            ]);
-        }
-
-        if (!empty($newQuote['quote'])) {
-            Quote::create([
-                'source' => $newQuote['source'] ?? 'BTS',
-                'context' => $newQuote['context'] ?? null,
-                'quote' => $newQuote['quote'],
-                'is_active' => !empty($newQuote['is_active']),
-            ]);
-        }
-    }
-
-    private function saveSongsBulk(array $songs, array $files, array $newSong, $newSongFile = null): void
-    {
-        foreach ($songs as $id => $data) {
-            $song = SongImage::find($id);
-            if (!$song) {
-                continue;
-            }
-
-            if (!empty($data['delete'])) {
-                $song->delete();
-                continue;
-            }
-
-            $payload = [
-                'name' => $data['name'] ?? $song->name,
-                'era' => $data['era'] ?? null,
-                'release_date' => $this->nullableDate($data['release_date'] ?? null),
-                'img_path' => $data['img_path'] ?? null,
-                'description' => $data['description'] ?? null,
-                'is_active' => !empty($data['is_active']),
-            ];
-
-            if (isset($files[$id]) && $files[$id] && $files[$id]->isValid()) {
-                $payload['img_path'] = 'storage/' . $files[$id]->store('uploads/songs', 'public');
-            }
-
-            $song->update($payload);
-        }
-
-        if (!empty($newSong['name'])) {
-            $imgPath = $newSong['img_path'] ?? null;
-            if ($newSongFile && $newSongFile->isValid()) {
-                $imgPath = 'storage/' . $newSongFile->store('uploads/songs', 'public');
-            }
-
-            SongImage::create([
-                'name' => $newSong['name'],
-                'era' => $newSong['era'] ?? null,
-                'release_date' => $this->nullableDate($newSong['release_date'] ?? null),
-                'img_path' => $imgPath,
-                'description' => $newSong['description'] ?? null,
-                'sort_order' => (int)($newSong['sort_order'] ?? 0),
-                'is_active' => !empty($newSong['is_active']),
-            ]);
-        }
-    }
-
-    private function saveGalleryBulk(array $gallery, array $files, array $newGallery, $newGalleryFile = null): void
-    {
-        foreach ($gallery as $id => $data) {
-            $pic = GalleryImage::find($id);
-            if (!$pic) {
-                continue;
-            }
-
-            if (!empty($data['delete'])) {
-                $pic->delete();
-                continue;
-            }
-
-            $payload = [
-                'name' => $data['name'] ?? null,
-                'category' => $data['category'] ?? null,
-                'img_path' => $data['img_path'] ?? null,
-                'is_active' => !empty($data['is_active']),
-            ];
-
-            if (isset($files[$id]) && $files[$id] && $files[$id]->isValid()) {
-                $payload['img_path'] = 'storage/' . $files[$id]->store('uploads/gallery', 'public');
-            }
-
-            $pic->update($payload);
-        }
-
-        if (!empty($newGallery['name']) || !empty($newGallery['img_path']) || $newGalleryFile) {
-            $imgPath = $newGallery['img_path'] ?? null;
-            if ($newGalleryFile && $newGalleryFile->isValid()) {
-                $imgPath = 'storage/' . $newGalleryFile->store('uploads/gallery', 'public');
-            }
-
-            GalleryImage::create([
-                'name' => $newGallery['name'] ?? 'New Gallery Image',
-                'category' => $newGallery['category'] ?? 'Gallery',
-                'img_path' => $imgPath,
-                'sort_order' => (int)($newGallery['sort_order'] ?? 0),
-                'is_active' => !empty($newGallery['is_active']),
-            ]);
-        }
-    }
-
-    private function saveTimelineBulk(array $events, array $newEvent): void
-    {
-        foreach ($events as $id => $data) {
-            $event = TimelineEvent::find($id);
-            if (!$event) {
-                continue;
-            }
-
-            if (!empty($data['delete'])) {
-                $event->delete();
-                continue;
-            }
-
-            $event->update([
-                'year' => $data['year'] ?? $event->year,
-                'category' => $data['category'] ?? 'Milestone',
-                'title' => $data['title'] ?? $event->title,
-                'body' => $data['body'] ?? null,
-                'bullet_points' => $this->linesToArray($data['bullet_points_text'] ?? ''),
-                'image_paths' => $this->linesToArray($data['image_paths_text'] ?? ''),
-                'sort_order' => (int)($data['sort_order'] ?? 0),
-                'is_active' => !empty($data['is_active']),
-            ]);
-        }
-
-        if (!empty($newEvent['year']) || !empty($newEvent['title'])) {
-            TimelineEvent::create([
-                'year' => $newEvent['year'] ?? '',
-                'category' => $newEvent['category'] ?? 'Milestone',
-                'title' => $newEvent['title'] ?? 'New Timeline Event',
-                'body' => $newEvent['body'] ?? null,
-                'bullet_points' => $this->linesToArray($newEvent['bullet_points_text'] ?? ''),
-                'image_paths' => $this->linesToArray($newEvent['image_paths_text'] ?? ''),
-                'sort_order' => (int)($newEvent['sort_order'] ?? 0),
-                'is_active' => !empty($newEvent['is_active']),
-            ]);
-        }
-    }
-
-    private function nullableDate(?string $value): ?string
-    {
-        return filled($value) ? $value : null;
+        return $data;
     }
 
     private function validateTimeline(Request $request, bool $defaultActive = true): array

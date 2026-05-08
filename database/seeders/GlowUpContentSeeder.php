@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bt21Character;
 use App\Models\GalleryImage;
 use App\Models\LearningLesson;
 use App\Models\Member;
@@ -181,6 +182,69 @@ class GlowUpContentSeeder extends Seeder
 
         foreach ($members as $member) {
             Member::updateOrCreate(['name' => $member['name']], array_merge($member, ['is_active' => true]));
+        }
+
+        $bt21Characters = [
+            [
+                'name' => 'KOYA', 'slug' => 'koya', 'member_name' => 'RM', 'emoji' => '🐨',
+                'image' => 'favicons/KOYA.png', 'accent_color' => '#7c3aed',
+                'mood' => 'Sleepy genius dream koala', 'power' => 'Deep thinking + soft leader energy',
+                'anatomy' => ['Detachable ears for extra cute chaos', 'Big brain for ideas, lyrics, and tiny naps', 'Soft sleepy eyes but secretly alert'],
+                'moves' => ['Dream cloud float', 'Leader calm shield', 'Idea sparkle burst'], 'sort_order' => 1,
+            ],
+            [
+                'name' => 'RJ', 'slug' => 'rj', 'member_name' => 'Jin', 'emoji' => '🦙',
+                'image' => 'favicons/RJ.png', 'accent_color' => '#ec4899',
+                'mood' => 'Fluffy royal alpaca', 'power' => 'Comfort food aura + worldwide handsome confidence',
+                'anatomy' => ['Cloud-fluff body built for warm hugs', 'Chef-core heart full of snacks', 'Tiny royal steps with maximum elegance'],
+                'moves' => ['WWH wink', 'Warm hug blanket', 'Snack shield'], 'sort_order' => 2,
+            ],
+            [
+                'name' => 'SHOOKY', 'slug' => 'shooky', 'member_name' => 'SUGA', 'emoji' => '🍪',
+                'image' => 'favicons/SHOOKY.png', 'accent_color' => '#64748b',
+                'mood' => 'Tiny savage cookie', 'power' => 'Studio focus + low-key chaos',
+                'anatomy' => ['Small body, giant attitude', 'Crispy edge for savage comments', 'Producer brain hidden in cookie mode'],
+                'moves' => ['Savage crumb shot', 'Studio silence mode', 'Sleepy dodge'], 'sort_order' => 3,
+            ],
+            [
+                'name' => 'MANG', 'slug' => 'mang', 'member_name' => 'j-hope', 'emoji' => '🕺',
+                'image' => 'favicons/MANG.png', 'accent_color' => '#f59e0b',
+                'mood' => 'Masked dance sunshine', 'power' => 'Rhythm, hope, and stage fireworks',
+                'anatomy' => ['Mystery mask for performance mode', 'Dance-core legs with unlimited stamina', 'Sunshine battery in the chest'],
+                'moves' => ['Hope beam', 'Dance combo spin', 'Stage spark jump'], 'sort_order' => 4,
+            ],
+            [
+                'name' => 'CHIMMY', 'slug' => 'chimmy', 'member_name' => 'Jimin', 'emoji' => '🐶',
+                'image' => 'favicons/CHIMMY.png', 'accent_color' => '#a855f7',
+                'mood' => 'Yellow hoodie puppy', 'power' => 'Sweetness + stage duality',
+                'anatomy' => ['Soft hoodie armor', 'Tiny paws for dramatic cuteness', 'Duality switch hidden under the hood'],
+                'moves' => ['Puppy charm', 'Graceful spin', 'Duality glow'], 'sort_order' => 5,
+            ],
+            [
+                'name' => 'TATA', 'slug' => 'tata', 'member_name' => 'V', 'emoji' => '💜',
+                'image' => 'favicons/TATA.png', 'accent_color' => '#14b8a6',
+                'mood' => 'Alien heart prince', 'power' => 'Cinematic imagination + artsy mystery',
+                'anatomy' => ['Heart-shaped head from Planet BT', 'Tiny limbs, huge personality', 'Mood detector for aesthetic moments'],
+                'moves' => ['Alien heart pulse', 'Vintage jazz aura', 'Expression freeze frame'], 'sort_order' => 6,
+            ],
+            [
+                'name' => 'COOKY', 'slug' => 'cooky', 'member_name' => 'Jung Kook', 'emoji' => '🐰',
+                'image' => 'favicons/COOKY.png', 'accent_color' => '#22c55e',
+                'mood' => 'Pink bunny gym beast', 'power' => 'Golden maknae energy + playful courage',
+                'anatomy' => ['Bunny ears tuned for challenges', 'Tiny body with gym-boss power', 'Heart mark loaded with confidence'],
+                'moves' => ['Golden jump', 'Boxing bunny combo', 'Challenge accepted dash'], 'sort_order' => 7,
+            ],
+            [
+                'name' => 'VAN', 'slug' => 'van', 'member_name' => 'ARMY', 'emoji' => '🤖',
+                'image' => 'favicons/logo.png', 'accent_color' => '#94a3b8',
+                'mood' => 'Guardian robot watching over BT21', 'power' => 'Protection + calm universe balance',
+                'anatomy' => ['Robot shell with soft guardian energy', 'Scans chaos and protects the crew', 'Half light, half shadow, all loyal'],
+                'moves' => ['Guardian scan', 'Shield pulse', 'Orbit watch'], 'sort_order' => 8,
+            ],
+        ];
+
+        foreach ($bt21Characters as $character) {
+            Bt21Character::updateOrCreate(['slug' => $character['slug']], array_merge($character, ['is_active' => true]));
         }
 
         $quotes = [

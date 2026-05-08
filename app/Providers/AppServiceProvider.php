@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Bt21Character;
 use App\Models\Member;
 use App\Models\NavItem;
 use App\Models\SiteSetting;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
          */
         $settings = [];
         $members = collect();
+        $bt21Characters = collect();
         $navItems = collect([
             (object) ['label' => 'Home', 'url' => '/'],
             (object) ['label' => 'Members', 'url' => '/#members'],
@@ -63,6 +65,13 @@ class AppServiceProvider extends ServiceProvider
                     $navItems = $dbNavItems;
                 }
             }
+
+            if (Schema::hasTable('bt21_characters')) {
+                $bt21Characters = Bt21Character::where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('id')
+                    ->get();
+            }
         } catch (Throwable $exception) {
             // Never throw DB errors from shared view data during deployment.
         }
@@ -70,6 +79,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('siteSettings', $settings);
         View::share('members', $members);
         View::share('navItems', $navItems);
+        View::share('footerBt21Characters', $bt21Characters);
 
         View::share('adminEmail', $settings['admin_email'] ?? 'hello@bangtansonyeondan.com');
         View::share('location', $settings['location'] ?? 'ARMY Hub');

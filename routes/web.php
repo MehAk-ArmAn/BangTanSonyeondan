@@ -72,7 +72,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::post('/dashboard/save-all', [DashboardController::class, 'saveAll'])->name('dashboard.saveAll');
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::post('/settings', [DashboardController::class, 'updateSettings'])->name('settings.update');
@@ -94,6 +93,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/songs', [DashboardController::class, 'storeSong'])->name('songs.store');
         Route::put('/songs/{songImage}', [DashboardController::class, 'updateSong'])->name('songs.update');
         Route::delete('/songs/{songImage}', [DashboardController::class, 'deleteSong'])->name('songs.delete');
+
+        Route::post('/bt21', [DashboardController::class, 'storeBt21'])->name('bt21.store');
+        Route::put('/bt21/{bt21Character}', [DashboardController::class, 'updateBt21'])->name('bt21.update');
+        Route::delete('/bt21/{bt21Character}', [DashboardController::class, 'deleteBt21'])->name('bt21.delete');
 
         Route::post('/timeline', [DashboardController::class, 'storeTimeline'])->name('timeline.store');
         Route::put('/timeline/{timelineEvent}', [DashboardController::class, 'updateTimeline'])->name('timeline.update');
