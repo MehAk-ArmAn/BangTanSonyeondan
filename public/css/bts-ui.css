@@ -382,8 +382,100 @@ textarea { min-height: 110px; resize: vertical; }
 .footer-brand-link h2 { margin:0; font-size:clamp(1.45rem,3vw,2.15rem); letter-spacing:-.04em; }
 .footer-brand-link span { display:block; margin-top:4px; color:#d8b4fe; font-size:.95rem; }
 .footer-brand-card p { max-width:780px; margin:0; color:rgba(248,243,255,.78); line-height:1.75; }
-.footer-mini-badges { display:flex; flex-wrap:wrap; gap:10px; }
-.footer-mini-badges span { padding:8px 12px; border-radius:999px; color:#f5e8ff; background:rgba(168,85,247,.18); border:1px solid rgba(216,180,254,.22); font-size:.82rem; font-weight:800; }
+
+/* =========================================
+   FOOTER MINI BUTTONS - BTS GLOW STYLE
+========================================= */
+
+.footer-mini-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.footer-mini-badges span,
+.footer-mini-badges a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 18px;
+
+    border-radius: 999px;
+
+    color: #ffffff !important;
+    text-decoration: none;
+
+    font-size: 0.84rem;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+
+    border: 1px solid rgba(255,255,255,0.16);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(168,85,247,0.36),
+            rgba(236,72,153,0.24)
+        );
+
+    box-shadow:
+        0 10px 28px rgba(168,85,247,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+
+    backdrop-filter: blur(12px);
+
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.footer-mini-badges span::before,
+.footer-mini-badges a::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.16),
+            transparent
+        );
+
+    transform: translateX(-120%);
+    transition: transform .55s ease;
+}
+
+.footer-mini-badges span:hover,
+.footer-mini-badges a:hover {
+    transform: translateY(-4px) scale(1.05);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(192,132,252,0.48),
+            rgba(244,114,182,0.34)
+        );
+
+    box-shadow:
+        0 18px 40px rgba(168,85,247,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+.footer-mini-badges span:hover::before,
+.footer-mini-badges a:hover::before {
+    transform: translateX(120%);
+}
+
 .footer-grid { display:grid; grid-template-columns:1fr 1fr 1.25fr 1.1fr; gap:22px; max-width:none; margin:0; }
 .footer-column { padding:22px; border-radius:24px; background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.10); }
 .footer-column h3 { margin:0 0 16px; font-size:1rem; color:#fff; letter-spacing:.02em; }

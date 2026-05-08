@@ -21,9 +21,9 @@
             <p>{{ $footerText }}</p>
 
             <div class="footer-mini-badges">
-                <span>Learn BTS</span>
-                <span>Take quizzes</span>
-                <span>Earn points</span>
+                <a href="{{ url('/learn') }}">Learn BTS</a>
+                <a href="{{ url('/learn') }}">Take quizzes</a>
+                <a href="{{ url('/learn') }}">Earn points</a>
             </div>
         </div>
 

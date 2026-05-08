@@ -72,6 +72,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('/dashboard/save-all', [DashboardController::class, 'saveAll'])->name('dashboard.saveAll');
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::post('/settings', [DashboardController::class, 'updateSettings'])->name('settings.update');
