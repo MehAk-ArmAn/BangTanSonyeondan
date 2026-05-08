@@ -1,0 +1,15 @@
+BangTanSonyeondan FINAL PROJECT
+
+Main import file:
+- bangtansonyeondan_final.sql
+
+Admin login:
+- admin@bangtansonyeondan.com
+- Army@2026!
+
+Important:
+- Email/password auth is ready.
+- Google login page is prepared as a safe setup notice. Real Google OAuth needs your own Google Client ID/Secret and Laravel Socialite.
+- The old achievements hero style has been restored in resources/views/bts-achievements.blade.php and public/css/bts-ui.css.
+- BT21 now uses its own colorful animated anatomy page and does not route back to member vaults.
+- Global search is available at /search and in the navbar.

@@ -1,0 +1,289 @@
+/* Add this to your admin CSS file. It upgrades the dashboard into a cleaner professional bulk-edit layout. */
+
+.admin-page-shell {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.admin-side-nav {
+    position: sticky;
+    top: 24px;
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    background: rgba(13, 10, 24, 0.82);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+.admin-side-nav a {
+    color: rgba(255, 255, 255, 0.76);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 14px;
+    transition: 0.2s ease;
+}
+
+.admin-side-nav a:hover {
+    color: #fff;
+    background: rgba(155, 92, 255, 0.18);
+}
+
+.admin-main-panel {
+    min-width: 0;
+}
+
+.professional-card {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(145deg, rgba(18, 15, 34, 0.96), rgba(29, 20, 48, 0.92));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+}
+
+.admin-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-card-header h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: -0.03em;
+}
+
+.admin-eyebrow {
+    margin: 0 0 4px;
+    color: #c9a7ff;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.admin-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    border-radius: 999px;
+    color: #eadcff;
+    background: rgba(155, 92, 255, 0.16);
+    border: 1px solid rgba(155, 92, 255, 0.28);
+    font-size: 0.78rem;
+    white-space: nowrap;
+}
+
+.admin-alert {
+    margin: 0 0 18px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    border: 1px solid transparent;
+}
+
+.admin-alert.success {
+    color: #eafff2;
+    background: rgba(20, 130, 76, 0.2);
+    border-color: rgba(87, 255, 171, 0.25);
+}
+
+.admin-alert.danger {
+    color: #ffe8e8;
+    background: rgba(150, 32, 44, 0.18);
+    border-color: rgba(255, 120, 120, 0.24);
+}
+
+.professional-table table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.professional-table th {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.professional-table td {
+    background: rgba(255, 255, 255, 0.045);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.professional-table td:first-child {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px 0 0 16px;
+}
+
+.professional-table td:last-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0 16px 16px 0;
+}
+
+.new-row td {
+    background: rgba(155, 92, 255, 0.08);
+    border-color: rgba(155, 92, 255, 0.22);
+}
+
+.muted {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.82rem;
+}
+
+.switch-mini,
+.delete-check,
+.check-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.delete-check {
+    color: #ffb8c1;
+}
+
+.professional-details {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.045);
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.professional-details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    cursor: pointer;
+    padding: 16px 18px;
+    font-weight: 800;
+}
+
+.professional-details summary small {
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+}
+
+.inside-details {
+    padding: 0 18px 18px;
+}
+
+.compact-new-box {
+    margin-bottom: 18px;
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(155, 92, 255, 0.08);
+    border: 1px solid rgba(155, 92, 255, 0.18);
+}
+
+.professional-mini-grid {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.professional-mini-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.055);
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.professional-mini-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.mini-card-body {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+}
+
+.admin-save-panel {
+    margin: 24px 0 90px;
+    padding: 22px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: linear-gradient(135deg, rgba(155, 92, 255, 0.22), rgba(255, 255, 255, 0.06));
+    border: 1px solid rgba(184, 138, 255, 0.28);
+}
+
+.admin-save-panel h2 {
+    margin: 0 0 6px;
+}
+
+.admin-save-panel p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.admin-save-all-btn,
+.admin-sticky-save button {
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 20px;
+    color: #160b25;
+    font-weight: 900;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ffffff, #d9c2ff);
+    box-shadow: 0 12px 30px rgba(155, 92, 255, 0.25);
+}
+
+.admin-sticky-save {
+    position: sticky;
+    bottom: 18px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 12px 14px 12px 18px;
+    border-radius: 999px;
+    background: rgba(15, 11, 29, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+}
+
+.admin-sticky-save span {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1000px) {
+    .admin-page-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-side-nav {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .admin-save-panel,
+    .admin-sticky-save {
+        align-items: stretch;
+        border-radius: 22px;
+        flex-direction: column;
+    }
+
+    .admin-side-nav {
+        grid-template-columns: 1fr;
+    }
+}
