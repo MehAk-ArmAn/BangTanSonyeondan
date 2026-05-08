@@ -11,6 +11,15 @@ use App\Http\Controllers\SongsController;
 use App\Http\Controllers\UserDashboardController;
 use App\Models\ProfileAsset;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Bt21Controller;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\MembersController;
+use App\Http\Controllers\Admin\NavigationController;
+use App\Http\Controllers\Admin\QuotesController;
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SongsController as AdminSongsController;
+use App\Http\Controllers\Admin\TimelineController;
+use App\Http\Controllers\Admin\VotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,36 +81,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::post('/dashboard/save-all', [DashboardController::class, 'saveAll'])->name('dashboard.saveAll');
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::post('/settings', [DashboardController::class, 'updateSettings'])->name('settings.update');
-        Route::post('/password', [DashboardController::class, 'updatePassword'])->name('password.update');
+        Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+        Route::post('/settings/password', [SettingsController::class, 'password'])->name('settings.password');
 
-        Route::post('/nav', [DashboardController::class, 'storeNav'])->name('nav.store');
-        Route::put('/nav/{navItem}', [DashboardController::class, 'updateNav'])->name('nav.update');
-        Route::delete('/nav/{navItem}', [DashboardController::class, 'deleteNav'])->name('nav.delete');
-
-        Route::put('/members/{member}', [DashboardController::class, 'updateMember'])->name('members.update');
-
-        Route::post('/quotes', [DashboardController::class, 'storeQuote'])->name('quotes.store');
-        Route::put('/quotes/{quote}', [DashboardController::class, 'updateQuote'])->name('quotes.update');
-        Route::delete('/quotes/{quote}', [DashboardController::class, 'deleteQuote'])->name('quotes.delete');
-
-        Route::post('/gallery', [DashboardController::class, 'storeGallery'])->name('gallery.store');
-        Route::delete('/gallery/{galleryImage}', [DashboardController::class, 'deleteGallery'])->name('gallery.delete');
-
-        Route::post('/songs', [DashboardController::class, 'storeSong'])->name('songs.store');
-        Route::put('/songs/{songImage}', [DashboardController::class, 'updateSong'])->name('songs.update');
-        Route::delete('/songs/{songImage}', [DashboardController::class, 'deleteSong'])->name('songs.delete');
-
-        Route::post('/bt21', [DashboardController::class, 'storeBt21'])->name('bt21.store');
-        Route::put('/bt21/{bt21Character}', [DashboardController::class, 'updateBt21'])->name('bt21.update');
-        Route::delete('/bt21/{bt21Character}', [DashboardController::class, 'deleteBt21'])->name('bt21.delete');
-
-        Route::post('/timeline', [DashboardController::class, 'storeTimeline'])->name('timeline.store');
-        Route::put('/timeline/{timelineEvent}', [DashboardController::class, 'updateTimeline'])->name('timeline.update');
-        Route::delete('/timeline/{timelineEvent}', [DashboardController::class, 'deleteTimeline'])->name('timeline.delete');
+        Route::resource('/navigation', NavigationController::class)->except(['show', 'create', 'edit']);
+        Route::resource('/members', MembersController::class)->only(['index', 'update']);
+        Route::resource('/songs', AdminSongsController::class)->except(['show', 'create', 'edit']);
+        Route::resource('/gallery', AdminGalleryController::class)->except(['show', 'create', 'edit']);
+        Route::resource('/quotes', QuotesController::class)->except(['show', 'create', 'edit']);
+        Route::resource('/timeline', TimelineController::class)->except(['show', 'create', 'edit']);
+        Route::resource('/bt21', Bt21Controller::class)->except(['show', 'create', 'edit']);
+        Route::get('/votes', [VotesController::class, 'index'])->name('votes.index');
     });
 });
 

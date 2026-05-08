@@ -1,0 +1,58 @@
+/* Separate Admin Pages - clean BTS control room */
+.admin-section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 22px;
+}
+.admin-section-nav a {
+    display: inline-flex;
+    padding: 10px 14px;
+    border-radius: 999px;
+    color: #eadcff;
+    text-decoration: none;
+    background: rgba(155, 92, 255, 0.14);
+    border: 1px solid rgba(216, 180, 254, 0.18);
+    font-weight: 800;
+}
+.admin-section-nav a:hover { background: rgba(155, 92, 255, 0.24); color: #fff; }
+.professional-card {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(145deg, rgba(18, 15, 34, 0.96), rgba(29, 20, 48, 0.92));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+}
+.admin-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-card-header h2 { margin: 0; font-size: 1.35rem; letter-spacing: -0.03em; }
+.admin-eyebrow { margin: 0 0 4px; color: #c9a7ff; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+.admin-chip { display: inline-flex; align-items: center; justify-content: center; padding: 7px 10px; border-radius: 999px; color: #eadcff; background: rgba(155, 92, 255, 0.16); border: 1px solid rgba(155, 92, 255, 0.28); font-size: 0.78rem; white-space: nowrap; }
+.admin-alert { margin: 0 0 18px; padding: 14px 16px; border-radius: 18px; border: 1px solid transparent; }
+.admin-alert.success { color: #eafff2; background: rgba(20, 130, 76, 0.2); border-color: rgba(87, 255, 171, 0.25); }
+.admin-alert.danger { color: #ffe8e8; background: rgba(150, 32, 44, 0.18); border-color: rgba(255, 120, 120, 0.24); }
+.admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.admin-stats-grid a, .admin-stats-grid div { display: block; padding: 20px; border-radius: 22px; color: #fff; text-decoration: none; background: rgba(255, 255, 255, 0.055); border: 1px solid rgba(255, 255, 255, 0.1); }
+.admin-stats-grid span { display: block; color: rgba(255,255,255,.62); font-weight: 800; }
+.admin-stats-grid b { display: block; margin-top: 8px; font-size: 34px; }
+.professional-table table { border-collapse: separate; border-spacing: 0 10px; width: 100%; }
+.professional-table th { color: rgba(255, 255, 255, 0.62); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.professional-table td { background: rgba(255, 255, 255, 0.045); border-top: 1px solid rgba(255, 255, 255, 0.08); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 10px; }
+.professional-table td:first-child { border-left: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px 0 0 16px; }
+.professional-table td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0 16px 16px 0; }
+.professional-details { border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; background: rgba(255, 255, 255, 0.045); margin-bottom: 12px; overflow: hidden; }
+.professional-details summary { display: flex; align-items: center; justify-content: space-between; gap: 14px; cursor: pointer; padding: 16px 18px; font-weight: 800; }
+.professional-details summary small { color: rgba(255, 255, 255, 0.55); font-weight: 600; }
+.inside-details { padding: 0 18px 18px; }
+.professional-mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.professional-mini-card { border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.055); border-radius: 22px; overflow: hidden; }
+.professional-mini-card img { width: 100%; height: 170px; object-fit: cover; }
+.mini-card-body { display: grid; gap: 10px; padding: 14px; }
+.compact-form { grid-template-columns: 1fr 1fr; }
+@media (max-width: 720px) { .compact-form { grid-template-columns: 1fr; } }
