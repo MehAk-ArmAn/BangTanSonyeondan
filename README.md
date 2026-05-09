@@ -25,7 +25,7 @@ Dark black + purple BTS fan/learning website built in Laravel.
 
 Email: `admin@bangtansonyeondan.com`
 
-Password: `Army@2026!`
+Password: `...`
 
 ## XAMPP setup
 
