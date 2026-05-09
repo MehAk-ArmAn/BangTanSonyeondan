@@ -6,16 +6,16 @@
     </a>
 
     <nav>
-        <a href="#overview">Overview</a>
-        <a href="#settings">Settings</a>
-        <a href="#password">Password</a>
-        <a href="#navigation">Navigation</a>
-        <a href="#members">Members</a>
-        <a href="#quotes">Quotes</a>
-        <a href="#songs">Songs</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#votes">Votes</a>
+        <a href="/admin/overview">Overview</a>
+        <a href="/admin/settings">Settings</a>
+        <a href="/admin/settings#password">Password</a>
+        <a href="/admin/navigation">Navigation</a>
+        <a href="/admin/members">Members</a>
+        <a href="/admin/quotes">Quotes</a>
+        <a href="/admin/songs">Songs</a>
+        <a href="/admin/gallery">Gallery</a>
+        <a href="/admin/timeline">Timeline</a>
+        <a href="/admin/votes">Votes</a>
         <a href="{{ route('home') }}" target="_blank">View Site</a>
     </nav>
 

@@ -23,6 +23,8 @@
         @yield('content')
     </main>
 
+    <script src="{{ asset('js/bts.js') }}"></script>
+    
     @include('layouts.frontend.partials.footer')
     @stack('scripts')
 </body>

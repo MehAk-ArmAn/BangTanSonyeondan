@@ -43,8 +43,7 @@
                 <div class="footer-links-grid">
                     @foreach($members as $member)
                         <a href="{{ route('member.show', $member->slug ?: $member->name) }}">
-                            <span>{{ $member->emoji }}</span>
-                            <span>{{ $member->stage_name ?: $member->nickname ?: $member->name }}</span>
+                            <span>{{ $member->name }}</span>
                         </a>
                     @endforeach
                 </div>

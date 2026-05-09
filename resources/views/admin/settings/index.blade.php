@@ -19,7 +19,7 @@
     </form>
 </section>
 
-<section class="admin-card professional-card">
+<section id="password" class="admin-card professional-card">
     <div class="admin-card-header"><div><p class="admin-eyebrow">Security</p><h2>Change Admin Password</h2></div></div>
     <form method="POST" action="{{ route('admin.settings.password') }}" class="admin-row-form">
         @csrf
