@@ -70,7 +70,7 @@ The Google button is safely prepared as a setup notice. Real Google OAuth needs 
 Use this file for phpMyAdmin import:
 
 ```text
-bangtansonyeondan_final.sql
+bangtansonyeondan.sql
 ```
 
 It creates the database `bangtansonyeondan` and inserts all starter data.
