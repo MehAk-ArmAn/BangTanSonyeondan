@@ -2,86 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LearningLesson;
-use App\Models\PointTransaction;
-use App\Models\QuizAttempt;
+use App\Models\LearningMaterial;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class LearningController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $query = trim((string) $request->query('q', ''));
+        $category = trim((string) $request->query('category', ''));
+        $type = trim((string) $request->query('type', ''));
+
+        $materialsQuery = LearningMaterial::visible()
+            ->when($query !== '', function ($q) use ($query) {
+                $like = '%' . $query . '%';
+                $q->where(function ($inner) use ($like) {
+                    $inner->where('title', 'like', $like)
+                        ->orWhere('category', 'like', $like)
+                        ->orWhere('topic_type', 'like', $like)
+                        ->orWhere('excerpt', 'like', $like)
+                        ->orWhere('body', 'like', $like);
+                });
+            })
+            ->when($category !== '', fn ($q) => $q->where('category', $category))
+            ->when($type !== '', fn ($q) => $q->where('topic_type', $type));
+
         return view('learn.index', [
-            'lessons' => LearningLesson::where('is_active', true)->orderBy('sort_order')->get(),
+            'materials' => $materialsQuery->orderByDesc('is_featured')->orderBy('sort_order')->orderBy('title')->get(),
+            'categories' => LearningMaterial::visible()->select('category')->distinct()->orderBy('category')->pluck('category'),
+            'types' => LearningMaterial::visible()->select('topic_type')->distinct()->orderBy('topic_type')->pluck('topic_type'),
+            'query' => $query,
+            'category' => $category,
+            'type' => $type,
         ]);
     }
 
     public function show(string $slug)
     {
-        $lesson = LearningLesson::where('slug', $slug)
-            ->where('is_active', true)
-            ->with(['questions' => fn ($q) => $q->where('is_active', true)->orderBy('sort_order')])
+        $material = LearningMaterial::visible()
+            ->where('slug', $slug)
             ->firstOrFail();
 
-        $bestAttempt = Auth::check()
-            ? QuizAttempt::where('user_id', Auth::id())->where('learning_lesson_id', $lesson->id)->orderByDesc('score')->first()
-            : null;
+        $related = LearningMaterial::visible()
+            ->where('id', '!=', $material->id)
+            ->where(function ($query) use ($material) {
+                $query->where('category', $material->category)
+                    ->orWhere('topic_type', $material->topic_type);
+            })
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->limit(3)
+            ->get();
 
-        return view('learn.show', compact('lesson', 'bestAttempt'));
-    }
-
-    public function submit(Request $request, LearningLesson $lesson)
-    {
-        $questions = $lesson->questions()->where('is_active', true)->get();
-        $answers = $request->validate([
-            'answers' => ['required', 'array'],
-            'answers.*' => ['required', 'integer', 'min:0', 'max:5'],
-        ])['answers'];
-
-        $score = 0;
-        $points = 0;
-        $review = [];
-
-        foreach ($questions as $question) {
-            $picked = (int)($answers[$question->id] ?? -1);
-            $correct = $picked === (int)$question->correct_option;
-            if ($correct) {
-                $score++;
-                $points += $question->points;
-            }
-            $review[$question->id] = [
-                'picked' => $picked,
-                'correct_option' => (int)$question->correct_option,
-                'correct' => $correct,
-            ];
-        }
-
-        $attempt = QuizAttempt::create([
-            'user_id' => Auth::id(),
-            'learning_lesson_id' => $lesson->id,
-            'score' => $score,
-            'total' => $questions->count(),
-            'points_earned' => $points,
-            'answers' => $review,
-        ]);
-
-        if ($points > 0) {
-            $user = Auth::user();
-            $user->increment('points', $points);
-
-            PointTransaction::create([
-                'user_id' => $user->id,
-                'type' => 'earn',
-                'points' => $points,
-                'reason' => 'Quiz reward: ' . $lesson->title,
-                'meta' => ['lesson_slug' => $lesson->slug, 'attempt_id' => $attempt->id],
-            ]);
-        }
-
-        return redirect()->route('learn.show', $lesson->slug)
-            ->with('success', "Quiz submitted: {$score}/{$questions->count()} correct. +{$points} points.");
+        return view('learn.show', compact('material', 'related'));
     }
 
     public function leaderboard()

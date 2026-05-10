@@ -1,0 +1,425 @@
+.learn-cinema-hero,
+.learn-detail-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    padding: 80px 32px;
+    margin-bottom: 34px;
+    background:
+        radial-gradient(circle at top left, rgba(168, 85, 247, .45), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(236, 72, 153, .28), transparent 35%),
+        linear-gradient(135deg, rgba(18, 10, 32, .96), rgba(50, 20, 82, .9));
+    border: 1px solid rgba(255, 255, 255, .14);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .38);
+}
+
+.learn-cinema-hero h1,
+.learn-detail-hero h1 {
+    max-width: 980px;
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    line-height: .95;
+    margin: 14px 0;
+    letter-spacing: -3px;
+}
+
+.learn-cinema-hero p,
+.learn-detail-hero p {
+    max-width: 760px;
+    font-size: 1.08rem;
+    color: rgba(255, 255, 255, .78);
+}
+
+.learn-hero-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: 8%;
+    top: 20%;
+    background: rgba(196, 125, 255, .25);
+    filter: blur(40px);
+    border-radius: 999px;
+    animation: learnFloat 6s ease-in-out infinite;
+}
+
+.learn-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 26px;
+}
+
+.learn-topic-card {
+    display: block;
+    overflow: hidden;
+    border-radius: 30px;
+    min-height: 520px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .13);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .32);
+    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+.learn-topic-card:hover {
+    transform: translateY(-10px) scale(1.015);
+    border-color: rgba(216, 180, 254, .75);
+    box-shadow: 0 34px 90px rgba(168, 85, 247, .25);
+}
+
+.learn-topic-image {
+    height: 300px;
+    overflow: hidden;
+}
+
+.learn-topic-image img,
+.learn-detail-bg img,
+.learn-gallery-card img,
+.learn-video-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.learn-topic-card:hover .learn-topic-image img {
+    transform: scale(1.08);
+}
+
+.learn-topic-content {
+    padding: 26px;
+}
+
+.learn-category {
+    color: #e9d5ff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: .75rem;
+}
+
+.learn-topic-content h2 {
+    margin: 12px 0;
+    font-size: 2rem;
+    color: white;
+}
+
+.learn-topic-content p {
+    color: rgba(255, 255, 255, .74);
+    line-height: 1.8;
+}
+
+.learn-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+    color: #f5d0fe;
+    font-weight: 900;
+}
+
+.learn-image-placeholder,
+.learn-video-placeholder {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 24px;
+    color: rgba(255, 255, 255, .76);
+    background:
+        linear-gradient(135deg, rgba(168, 85, 247, .24), rgba(236, 72, 153, .16)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 10px, transparent 10px 20px);
+}
+
+.learn-image-placeholder span,
+.learn-video-placeholder span {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.learn-image-placeholder small,
+.learn-video-placeholder small {
+    display: block;
+    margin-top: 8px;
+    color: rgba(255, 255, 255, .55);
+}
+
+.learn-detail-hero {
+    min-height: 680px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.learn-detail-bg,
+.learn-detail-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.learn-detail-bg {
+    opacity: .36;
+}
+
+.learn-detail-overlay {
+    background: linear-gradient(180deg, rgba(5, 2, 12, .25), rgba(5, 2, 12, .92));
+}
+
+.learn-detail-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1080px;
+}
+
+.learn-back-link {
+    display: inline-flex;
+    margin-bottom: 18px;
+    color: #f5d0fe;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.learn-detail-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.learn-detail-pills span {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .16);
+    color: white;
+    font-weight: 800;
+}
+
+.learn-big-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(280px, .8fr);
+    gap: 28px;
+    margin: 34px 0;
+}
+
+.learn-main-story,
+.learn-side-panel,
+.learn-info-box,
+.learn-links-panel,
+.learn-video-card {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 30px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+}
+
+.learn-main-story {
+    padding: 38px;
+}
+
+.learn-main-story p {
+    font-size: 1.08rem;
+    line-height: 2;
+    color: rgba(255, 255, 255, .78);
+}
+
+.learn-section-title h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    margin: 8px 0 18px;
+    color: white;
+}
+
+.learn-section-title.center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 26px;
+}
+
+.learn-section-title.center p {
+    color: rgba(255, 255, 255, .7);
+}
+
+.learn-side-panel {
+    padding: 28px;
+    position: sticky;
+    top: 90px;
+    height: fit-content;
+}
+
+.learn-side-panel h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.learn-side-panel code {
+    display: block;
+    padding: 14px;
+    border-radius: 14px;
+    white-space: normal;
+    color: #f5d0fe;
+    background: rgba(0, 0, 0, .28);
+}
+
+.learn-side-panel li {
+    margin: 8px 0;
+    color: rgba(255, 255, 255, .78);
+}
+
+.learn-media-section {
+    margin: 44px 0;
+}
+
+.learn-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.learn-gallery-card {
+    overflow: hidden;
+    min-height: 360px;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .13);
+    transition: transform .3s ease;
+}
+
+.learn-gallery-card:hover {
+    transform: scale(1.035) rotate(-1deg);
+}
+
+.learn-image-placeholder.tall {
+    min-height: 360px;
+}
+
+.learn-video-zone {
+    margin: 44px 0;
+}
+
+.learn-video-card {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+}
+
+.learn-video-card > img,
+.learn-video-placeholder {
+    min-height: 420px;
+}
+
+.learn-video-content {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.learn-video-content h2 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1;
+    margin: 10px 0;
+}
+
+.learn-video-content p {
+    line-height: 1.9;
+    color: rgba(255, 255, 255, .72);
+}
+
+.learn-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 44px 0;
+}
+
+.learn-info-box {
+    padding: 32px;
+}
+
+.learn-info-box h2 {
+    font-size: 2.2rem;
+    margin-top: 0;
+}
+
+.learn-info-box p {
+    line-height: 1.8;
+    color: rgba(255, 255, 255, .75);
+}
+
+.learn-links-panel {
+    padding: 34px;
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 26px;
+    align-items: center;
+}
+
+.learn-links-panel h2 {
+    font-size: 2.4rem;
+    margin: 8px 0;
+}
+
+.learn-official-links {
+    display: grid;
+    gap: 12px;
+}
+
+.learn-official-links a {
+    padding: 16px 18px;
+    border-radius: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .14);
+    transition: transform .25s ease, background .25s ease;
+}
+
+.learn-official-links a:hover {
+    transform: translateX(8px);
+    background: rgba(168, 85, 247, .28);
+}
+
+@keyframes learnFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-24px) scale(1.12);
+    }
+}
+
+@media (max-width: 980px) {
+    .learn-big-layout,
+    .learn-video-card,
+    .learn-info-grid,
+    .learn-links-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .learn-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .learn-detail-hero {
+        min-height: 560px;
+    }
+}
+
+@media (max-width: 620px) {
+    .learn-cinema-hero,
+    .learn-detail-hero {
+        padding: 54px 20px;
+        border-radius: 24px;
+    }
+
+    .learn-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .learn-main-story,
+    .learn-side-panel,
+    .learn-info-box,
+    .learn-links-panel {
+        padding: 24px;
+    }
+}

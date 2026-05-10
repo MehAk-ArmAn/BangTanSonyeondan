@@ -22,8 +22,8 @@
 
             <div class="footer-mini-badges">
                 <a href="{{ url('/learn') }}">Learn BTS</a>
-                <a href="{{ url('/learn') }}">Take quizzes</a>
-                <a href="{{ url('/learn') }}">Earn points</a>
+                <a href="{{ url('/quizzes') }}">Take quizzes</a>
+                <a href="{{ url('/quizzes') }}">Earn points</a>
             </div>
         </div>
 

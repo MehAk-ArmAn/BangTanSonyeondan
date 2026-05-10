@@ -6,7 +6,7 @@
         <img src="{{ $member->imageUrl() }}" alt="{{ $member->stage_name ?: $member->name }}">
     </div>
     <div class="member-profile-copy">
-        <span class="eyebrow">{{ $member->emoji }} · {{ $member->bt21_character }} · Member Vault</span>
+        <span class="eyebrow">{{ $member->bt21_character }} · Member Vault</span>
         <h1>{{ $member->stage_name ?: $member->nickname }}</h1>
         <h2>{{ $member->name }}</h2>
         <small>{{ $member->role }}</small>

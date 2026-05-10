@@ -56,3 +56,31 @@
 .mini-card-body { display: grid; gap: 10px; padding: 14px; }
 .compact-form { grid-template-columns: 1fr 1fr; }
 @media (max-width: 720px) { .compact-form { grid-template-columns: 1fr; } }
+
+
+/* User admin control room */
+.users-stats-grid div { min-height: 112px; }
+.admin-user-search { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; }
+.admin-user-search a { color: #eadcff; text-decoration: none; font-weight: 900; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+.admin-user-card { position: relative; overflow: hidden; }
+.admin-user-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at top right, rgba(236,72,153,.16), transparent 36%); }
+.admin-user-meta { margin: 6px 0 0; color: rgba(255,255,255,.62); font-weight: 700; }
+.danger-chip { background: rgba(239, 68, 68, .16); border-color: rgba(239, 68, 68, .35); }
+.admin-user-create-form,
+.admin-user-edit-form { position: relative; z-index: 1; }
+.admin-unlock-box { border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 14px; background: rgba(255,255,255,.045); }
+.admin-unlock-title { margin: 0 0 12px; color: #eadcff; font-weight: 900; }
+.admin-unlock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.admin-unlock-item { display: flex; align-items: center; gap: 9px; padding: 10px; border-radius: 14px; background: rgba(255,255,255,.045); }
+.admin-unlock-item input { width: auto; }
+.admin-unlock-item small { display: block; color: rgba(255,255,255,.58); font-weight: 800; }
+.admin-user-delete-form { margin-top: 14px; position: relative; z-index: 1; }
+.admin-user-delete-form button[disabled],
+.admin-user-edit-form input[disabled] { opacity: .45; cursor: not-allowed; }
+.admin-pagination { margin: 24px 0; color: #fff; }
+.admin-pagination nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.admin-pagination a,
+.admin-pagination span { color: #fff; }
+@media (max-width: 760px) {
+    .admin-user-search { grid-template-columns: 1fr; }
+}

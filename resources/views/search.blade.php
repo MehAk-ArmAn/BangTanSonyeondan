@@ -7,11 +7,11 @@
     <div class="section-heading center">
         <p class="eyebrow">Find your way around the ARMY hub</p>
         <h1>Search BangTanSonyeondan</h1>
-        <p>Search members, songs, quotes, BTS timeline moments, and learning lessons from one place.</p>
+        <p>Search members, songs, quotes, BTS timeline moments, learning materials, and quizzes from one place.</p>
     </div>
 
     <form class="big-search-card" action="{{ route('search') }}" method="GET">
-        <input type="search" name="q" value="{{ $query }}" placeholder="Try: Jung Kook, Dynamite, ARMY, BT21, Grammy..." autofocus>
+        <input type="search" name="q" value="{{ $query }}" placeholder="Try: Jung Kook, Dynamite, ARMY, BT21, Spring Day..." autofocus>
         <button type="submit">Search</button>
     </form>
 
@@ -24,7 +24,7 @@
 
         @php($total = collect($results)->sum(fn($items) => $items->count()))
         @if($total === 0)
-            <div class="empty-state-card">No matches yet. Try another keyword like a member name, song, year, or quote.</div>
+            <div class="empty-state-card">No matches yet. Try another keyword like a member name, song, year, quote, MV, or quiz level.</div>
         @else
             <div class="search-result-stack">
                 @if($results['members']->isNotEmpty())
@@ -55,6 +55,34 @@
                     </div>
                 @endif
 
+                @if($results['materials']->isNotEmpty())
+                    <div class="result-panel">
+                        <h2>Learning Materials</h2>
+                        <div class="mini-card-grid">
+                            @foreach($results['materials'] as $material)
+                                <a class="mini-result-card" href="{{ route('learn.show', $material->slug) }}">
+                                    <strong>{{ $material->title }}</strong>
+                                    <span>{{ $material->category }} · {{ $material->topic_type }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                @if($results['quizzes']->isNotEmpty())
+                    <div class="result-panel">
+                        <h2>Quizzes</h2>
+                        <div class="mini-card-grid">
+                            @foreach($results['quizzes'] as $quiz)
+                                <a class="mini-result-card" href="{{ route('quizzes.show', $quiz->slug) }}">
+                                    <strong>{{ $quiz->title }}</strong>
+                                    <span>{{ $quiz->category }} · {{ ucfirst($quiz->difficulty) }} · +{{ $quiz->points_per_question }} per correct</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
                 @if($results['quotes']->isNotEmpty())
                     <div class="result-panel">
                         <h2>Quotes</h2>
@@ -77,20 +105,6 @@
                                 <a class="mini-result-card" href="{{ route('achievements') }}#timeline-{{ $event->id }}">
                                     <strong>{{ $event->year }} - {{ $event->title }}</strong>
                                     <span>{{ $event->category }}</span>
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-
-                @if($results['lessons']->isNotEmpty())
-                    <div class="result-panel">
-                        <h2>Learning Lessons</h2>
-                        <div class="mini-card-grid">
-                            @foreach($results['lessons'] as $lesson)
-                                <a class="mini-result-card" href="{{ route('learn.show', $lesson->slug) }}">
-                                    <strong>{{ $lesson->title }}</strong>
-                                    <span>{{ $lesson->category }} - +{{ $lesson->reward_points }} pts</span>
                                 </a>
                             @endforeach
                         </div>

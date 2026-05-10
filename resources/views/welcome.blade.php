@@ -50,7 +50,7 @@
             <a class="member-tile" href="{{ route('member.show', $member->slug ?: $member->name) }}" style="--accent: {{ $member->accent_color ?? '#a855f7' }}">
                 <img src="{{ $member->imageUrl() }}" alt="{{ $member->stage_name ?: $member->name }}">
                 <div>
-                    <span>{{ $member->emoji }} {{ $member->bt21_character }}</span>
+                    <span>{{ $member->bt21_character }}</span>
                     <h3>{{ $member->stage_name ?: $member->nickname }}</h3>
                     <p>{{ $member->intro_title ?: $member->role }}</p>
                 </div>

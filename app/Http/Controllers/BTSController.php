@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Bt21Character;
 use App\Models\GalleryImage;
+use App\Models\LearningMaterial;
 use App\Models\Member;
+use App\Models\QuizGame;
 use App\Models\Quote;
 use App\Models\SongImage;
 use App\Models\TimelineEvent;
@@ -63,7 +65,6 @@ class BTSController extends Controller
         return view('bt21', compact('characters'));
     }
 
-
     public function search(Request $request)
     {
         $query = trim((string) $request->query('q', ''));
@@ -73,7 +74,8 @@ class BTSController extends Controller
             'songs' => collect(),
             'quotes' => collect(),
             'timeline' => collect(),
-            'lessons' => collect(),
+            'materials' => collect(),
+            'quizzes' => collect(),
         ];
 
         if ($query !== '') {
@@ -122,13 +124,27 @@ class BTSController extends Controller
                 ->limit(8)
                 ->get();
 
-            $results['lessons'] = \App\Models\LearningLesson::where('is_active', true)
+            $results['materials'] = LearningMaterial::where('is_active', true)
                 ->where(function ($q) use ($like) {
                     $q->where('title', 'like', $like)
                         ->orWhere('category', 'like', $like)
+                        ->orWhere('topic_type', 'like', $like)
                         ->orWhere('excerpt', 'like', $like)
                         ->orWhere('body', 'like', $like);
                 })
+                ->orderByDesc('is_featured')
+                ->orderBy('sort_order')
+                ->limit(8)
+                ->get();
+
+            $results['quizzes'] = QuizGame::where('is_active', true)
+                ->where(function ($q) use ($like) {
+                    $q->where('title', 'like', $like)
+                        ->orWhere('category', 'like', $like)
+                        ->orWhere('difficulty', 'like', $like)
+                        ->orWhere('description', 'like', $like);
+                })
+                ->orderByDesc('is_featured')
                 ->orderBy('sort_order')
                 ->limit(8)
                 ->get();

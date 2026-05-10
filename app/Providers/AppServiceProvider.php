@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             (object) ['label' => 'Members', 'url' => '/#members'],
             (object) ['label' => 'Timeline', 'url' => '/bts-achievements'],
             (object) ['label' => 'Learn', 'url' => '/learn'],
+            (object) ['label' => 'Quizzes', 'url' => '/quizzes'],
             (object) ['label' => 'Leaderboard', 'url' => '/leaderboard'],
             (object) ['label' => 'Songs', 'url' => '/songs'],
             (object) ['label' => 'Gallery', 'url' => '/gallery'],
@@ -81,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('navItems', $navItems);
         View::share('footerBt21Characters', $bt21Characters);
 
-        View::share('adminEmail', $settings['admin_email'] ?? 'admin@bangtansonyeondan.com');
+        View::share('adminEmail', $settings['admin_email'] ?? 'hello@bangtansonyeondan.com');
         View::share('location', $settings['location'] ?? 'ARMY Hub');
         View::share('name', $settings['creator_name'] ?? 'Mehak Arman');
         View::share('phone', $settings['phone'] ?? '');

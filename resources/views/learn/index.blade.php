@@ -1,20 +1,48 @@
 @extends('layouts.frontend.app')
-@section('title', 'Learn BTS · BangTanSonyeondan')
+
+@section('title', 'BTS Learning Gallery · BangTanSonyeondan')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/bts-learning-cinematic.css') }}">
+@endpush
+
 @section('content')
-<section class="page-hero small">
-    <span class="eyebrow">BTS Learning Library</span>
-    <h1>Learn everything, then prove it in quizzes.</h1>
-    <p>Each lesson teaches a BTS topic and includes quiz questions. Login to earn points.</p>
+<section class="learn-cinema-hero">
+    <div class="learn-hero-glow"></div>
+
+    <span class="eyebrow">BTS Learning Gallery</span>
+    <h1>Explore BTS by topic, era, music, members, history, MVs, and ARMY culture.</h1>
+    <p>
+        Pick a topic and open a full learning page filled with story sections, image spaces,
+        video spaces, fun facts, history notes, and official links.
+    </p>
 </section>
 
-<div class="lesson-grid full">
-    @foreach($lessons as $lesson)
-        <a class="lesson-card large" href="{{ route('learn.show', $lesson->slug) }}">
-            <span>{{ $lesson->category }}</span>
-            <h2>{{ $lesson->title }}</h2>
-            <p>{{ $lesson->excerpt }}</p>
-            <small>{{ $lesson->reward_points }} possible points</small>
+<section class="learn-topic-grid">
+    @foreach($materials as $lesson)
+        <a class="learn-topic-card" href="{{ route('learn.show', $lesson->slug) }}">
+            <div class="learn-topic-image">
+                @if($lesson->image_path)
+                    <img src="{{ asset($lesson->image_path) }}" alt="{{ $lesson->title }}">
+                @else
+                    <div class="learn-image-placeholder">
+                        <span>Image space</span>
+                        <small>public/imgs/learn/{{ $lesson->slug }}/cover.jpg</small>
+                    </div>
+                @endif
+            </div>
+
+            <div class="learn-topic-content">
+                <span class="learn-category">{{ $lesson->category }}</span>
+                <h2>{{ $lesson->title }}</h2>
+                <p>{{ $lesson->excerpt }}</p>
+
+                <div class="learn-card-footer">
+                    <span>Open full topic</span>
+                    <b>→</b>
+                </div>
+            </div>
         </a>
     @endforeach
-</div>
+</section>
 @endsection

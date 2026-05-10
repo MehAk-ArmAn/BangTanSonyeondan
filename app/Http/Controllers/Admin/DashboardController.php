@@ -11,6 +11,7 @@ use App\Models\Quote;
 use App\Models\SiteSetting;
 use App\Models\SongImage;
 use App\Models\TimelineEvent;
+use App\Models\User;
 use App\Models\Vote;
 
 class DashboardController extends Controller
@@ -25,6 +26,7 @@ class DashboardController extends Controller
             'galleryCount' => GalleryImage::count(),
             'quotesCount' => Quote::count(),
             'timelineCount' => TimelineEvent::count(),
+            'usersCount' => User::count(),
             'bt21Count' => Bt21Character::count(),
             'votesCount' => Vote::count(),
         ]);

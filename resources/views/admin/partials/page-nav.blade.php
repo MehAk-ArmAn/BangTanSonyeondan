@@ -6,6 +6,8 @@
         ['label' => 'Members', 'url' => route('admin.members.index')],
         ['label' => 'Songs', 'url' => route('admin.songs.index')],
         ['label' => 'Gallery', 'url' => route('admin.gallery.index')],
+        ['label' => 'Learning', 'url' => route('admin.learning-materials.index')],
+        ['label' => 'Quizzes', 'url' => route('admin.quizzes.index')],
         ['label' => 'Quotes', 'url' => route('admin.quotes.index')],
         ['label' => 'Timeline', 'url' => route('admin.timeline.index')],
         ['label' => 'BT21', 'url' => route('admin.bt21.index')],

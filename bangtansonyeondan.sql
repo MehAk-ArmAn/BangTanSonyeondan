@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2026 at 11:43 AM
+-- Generation Time: May 10, 2026 at 04:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -109,7 +109,7 @@ CREATE TABLE `daily_checkins` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `checkin_date` date NOT NULL,
-  `points_earned` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `points_earned` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
   `streak_after` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -222,7 +222,7 @@ CREATE TABLE `learning_lessons` (
   `excerpt` varchar(500) DEFAULT NULL,
   `body` longtext DEFAULT NULL,
   `image_path` varchar(255) DEFAULT NULL,
-  `reward_points` int(10) UNSIGNED NOT NULL DEFAULT 30,
+  `reward_points` bigint(20) UNSIGNED NOT NULL DEFAULT 30,
   `sort_order` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -237,6 +237,48 @@ INSERT INTO `learning_lessons` (`id`, `slug`, `title`, `category`, `excerpt`, `b
 (1, 'bts-origin-story', 'BTS Origin Story', 'BTS 101', 'Learn how BTS started, what their early identity was, and why their message felt different.', 'BTS debuted in 2013 with a hip-hop-heavy identity and a message focused on young people, pressure, dreams, and self-expression.\n\nTheir early school trilogy was not just about looking cool. It questioned expectations and gave fans lyrics that felt direct. This is why the website teaches the story first: BTS is easier to understand when you see the message behind the eras.\n\nKey idea: BTS grew because music, performance, personality, and ARMY connection all worked together.', NULL, 30, 1, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (2, 'members-and-roles', 'Members and Roles', 'Member Vaults', 'A simple guide to the seven members, their broad roles, and the energy each one brings.', 'BTS has seven members: RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook.\n\nRM is the leader and rapper. Jin brings vocals, humor, and comfort. SUGA is a rapper and producer. j-hope is a dancer, rapper, and performance leader. Jimin brings vocals and dance with graceful detail. V brings deep vocals and cinematic mood. Jung Kook is the main vocalist and all-rounder.\n\nThe member vault pages are built so each profile feels personal instead of being just a boring card.', NULL, 30, 2, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (3, 'bt21-anatomy', 'BT21 Character Anatomy', 'BT21', 'Learn what BT21 means on this site and why each character has its own animated profile zone.', 'BT21 is treated as its own colorful side quest in this final project. Instead of linking back to member vaults, the BT21 page has character anatomy notes, fun powers, and animated cards.\n\nKOYA, RJ, SHOOKY, MANG, CHIMMY, TATA, and COOKY each get a playful identity. This keeps the BTS member profiles serious and detailed while letting BT21 stay cute, bright, and chaotic.', NULL, 30, 3, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `learning_materials`
+--
+
+CREATE TABLE `learning_materials` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL DEFAULT 'BTS 101',
+  `topic_type` varchar(255) NOT NULL DEFAULT 'Article',
+  `difficulty` varchar(255) DEFAULT NULL,
+  `excerpt` varchar(600) DEFAULT NULL,
+  `body` longtext DEFAULT NULL,
+  `image_path` varchar(255) DEFAULT NULL,
+  `gallery_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`gallery_images`)),
+  `video_poster` varchar(1000) DEFAULT NULL,
+  `official_url` varchar(1000) DEFAULT NULL,
+  `youtube_url` varchar(1000) DEFAULT NULL,
+  `source_label` varchar(255) DEFAULT NULL,
+  `links` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`links`)),
+  `fun_facts` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`fun_facts`)),
+  `history_notes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`history_notes`)),
+  `sort_order` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `learning_materials`
+--
+
+INSERT INTO `learning_materials` (`id`, `slug`, `title`, `category`, `topic_type`, `difficulty`, `excerpt`, `body`, `image_path`, `gallery_images`, `video_poster`, `official_url`, `youtube_url`, `source_label`, `links`, `fun_facts`, `history_notes`, `sort_order`, `is_featured`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'bts-101-official-start-here', 'BTS 101: Start Here', 'BTS 101', 'Guide', 'Beginner', 'A clean starter guide for new ARMY: who BTS are, why they matter, and where to watch official content.', 'BTS, also known as Bangtan Sonyeondan, are a seven-member group from South Korea.\n\nUse this page as a starter map: learn the members, check official channels, watch the MVs, then try the quizzes separately in the Quiz Arena.\n\nFor a real fan site, always guide users back to official sources so streams, views, and support go to BTS directly.', 'imgs/learn/bts-101-official-start-here/cover.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/', 'https://www.youtube.com/@BTS', 'Official BTS site + BANGTANTV', '[{\"label\":\"Official BTS Website\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/\",\"type\":\"Official\"},{\"label\":\"BANGTANTV YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@BTS\",\"type\":\"Official YouTube\"},{\"label\":\"HYBE LABELS YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@HYBELABELS\",\"type\":\"Official YouTube\"}]', NULL, NULL, 1, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(2, 'members-and-bt21-map', 'Members + BT21 Map', 'Members', 'Guide', 'Beginner', 'A quick guide connecting the seven members with their roles, charms, and BT21 characters.', 'This topic helps users understand the difference between BTS member profiles and BT21 character pages.\n\nMember pages should feel emotional and story-based. BT21 pages should feel colorful, playful, animated, and character-anatomy focused.', 'imgs/learn/members-and-bt21-map/cover.jpg', NULL, NULL, 'https://www.bt21.com/', 'https://www.youtube.com/@BT21_official', 'BT21 Official', '[{\"label\":\"BT21 Official Website\",\"url\":\"https:\\/\\/www.bt21.com\\/\",\"type\":\"Official\"},{\"label\":\"BT21 Official YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@BT21_official\",\"type\":\"Official YouTube\"}]', NULL, NULL, 2, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(3, 'spring-day-mv-study', 'MV Study: Spring Day', 'Music Videos', 'MV Study', 'Intermediate', 'Watch the official MV, then learn the themes, visuals, and emotional meaning fans connect with Spring Day.', 'Spring Day is one of BTS’s most emotional songs. A learning material like this can include: release context, lyrics themes, visual motifs, fan interpretations, and official links.\n\nKeep the quiz separate. This page is for learning, watching, reading, and saving useful links.', 'imgs/learn/spring-day-mv-study/cover.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/discography/detail/you_never_walk_alone.html', 'https://www.youtube.com/watch?v=xEeFrLSkMm8', 'Official MV', '[{\"label\":\"Spring Day Official MV\",\"url\":\"https:\\/\\/www.youtube.com\\/watch?v=xEeFrLSkMm8\",\"type\":\"Official MV\"},{\"label\":\"You Never Walk Alone Discography\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/discography\\/detail\\/you_never_walk_alone.html\",\"type\":\"Official\"}]', NULL, NULL, 3, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(4, 'dynamite-mv-study', 'MV Study: Dynamite', 'Music Videos', 'MV Study', 'Beginner', 'A bright MV guide for Dynamite with official MV link, comeback energy, styling notes, and quiz prep hints.', 'Dynamite is perfect for a beginner MV study because it is colorful, easy to recognize, and popular with casual listeners too.\n\nUse this page to explain styling, setting, choreography moments, and the feel-good disco-pop concept.', 'imgs/learn/dynamite-mv-study/cover.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/discography/detail/dynamite.html', 'https://www.youtube.com/watch?v=gdZLi9oWNZg', 'Official MV', '[{\"label\":\"Dynamite Official MV\",\"url\":\"https:\\/\\/www.youtube.com\\/watch?v=gdZLi9oWNZg\",\"type\":\"Official MV\"},{\"label\":\"Dynamite Discography\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/discography\\/detail\\/dynamite.html\",\"type\":\"Official\"}]', NULL, NULL, 4, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(5, 'army-terms-and-fandom-culture', 'ARMY Terms + Fandom Culture', 'ARMY Culture', 'Glossary', 'Beginner', 'A friendly glossary for new users: bias, comeback, era, streaming, purple, borahae, and more.', 'This page can become a full glossary. Keep it helpful, warm, and beginner-friendly so new ARMY do not feel lost.\n\nAdmin can keep adding terms and links as the website grows.', 'imgs/learn/army-terms-and-fandom-culture/cover.jpg', NULL, NULL, 'https://weverse.io/bts/feed', 'https://www.youtube.com/@BTS', 'Official community + videos', '[{\"label\":\"BTS on Weverse\",\"url\":\"https:\\/\\/weverse.io\\/bts\\/feed\",\"type\":\"Official Community\"},{\"label\":\"BANGTANTV\",\"url\":\"https:\\/\\/www.youtube.com\\/@BTS\",\"type\":\"Official YouTube\"}]', NULL, NULL, 5, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23');
 
 -- --------------------------------------------------------
 
@@ -277,13 +319,13 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `slug`, `name`, `stage_name`, `korean_name`, `birth_date`, `birthplace`, `emoji`, `accent_color`, `bt21_character`, `intro_title`, `role`, `image`, `quote`, `profile_story`, `fun_facts`, `skill_tags`, `spotify_url`, `instagram_url`, `nickname`, `favicon`, `sort_order`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'rm', 'Kim Namjoon', 'RM', 'Kim Namjoon', '1994-09-12', 'Ilsan/Goyang, South Korea', 'KOYA', '#7c3aed', 'KOYA', 'The thoughtful leader who turns chaos into poetry.', 'Leader · Rapper · Lyricist', 'rm.jfif', 'A calm brain, a giant heart, and words that feel like a deep purple sky.', 'RM is the leader and one of the strongest creative voices behind BTS. His vault focuses on leadership, lyrics, art energy, and reflective comfort.', '[\"Known for thoughtful speeches and interviews.\", \"Loves museums, books, nature, and art spaces.\", \"Represents the soft-intellectual side of BTS energy.\"]', '[\"Leadership\", \"Rap\", \"Lyrics\", \"Art lover\", \"English speaker\"]', NULL, NULL, 'RM', 'KOYA.png', 1, 1, '2026-05-08 12:00:00', '2026-05-08 04:23:36'),
-(2, 'jin', 'Kim Seokjin', 'Jin', 'Kim Seokjin', '1992-12-04', 'Gwacheon, South Korea', 'RJ', '#ec4899', 'RJ', 'The worldwide handsome mood-maker with silver vocals.', 'Vocalist · Visual · Worldwide Handsome', 'jin.jfif', 'A vocal prince with dad jokes, elegance, and full chaos mode unlocked.', 'Jin brings warmth, humor, confidence, and emotional vocals. His vault feels wholesome, royal, funny, and secretly powerful.', '[\"Known for Worldwide Handsome energy.\", \"Often brings comfort through emotional solo songs.\", \"Can turn any serious moment into a legendary meme.\"]', '[\"Vocal\", \"Visual\", \"Variety\", \"Confidence\", \"Humor\"]', NULL, NULL, 'Jin', 'RJ.png', 2, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(3, 'suga', 'Min Yoongi', 'SUGA', 'Min Yoongi', '1993-03-09', 'Daegu, South Korea', 'SHOOKY', '#64748b', 'SHOOKY', 'The quiet producer with savage lyrics and soft-core honesty.', 'Rapper · Producer · Songwriter', 'suga.jfif', 'Calm outside, thunder in the studio, comfort in the lyrics.', 'SUGA is the production brain, sharp rapper, and emotional storyteller. His page is moody, cinematic, and honest.', '[\"Known for direct, honest writing.\", \"Has a strong producer identity beyond performance.\", \"His calm vibe is half sleepy cat, half studio monster.\"]', '[\"Rap\", \"Production\", \"Piano\", \"Songwriting\", \"Agust D\"]', NULL, NULL, 'Suga', 'SHOOKY.png', 3, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(4, 'jhope', 'Jung Hoseok', 'j-hope', 'Jung Hoseok', '1994-02-18', 'Gwangju, South Korea', 'MANG', '#f59e0b', 'MANG', 'The sunshine engine who turns practice into fireworks.', 'Rapper · Main Dancer · Performance Leader', 'jhope.jfif', 'Bright smile, beast-mode dance lines, and stage energy that wakes the planet.', 'j-hope is movement, precision, and joy. His vault feels like stage lights switching on: dance practice, sunshine, rap flow, and motivation.', '[\"Known for powerful dance leadership.\", \"Brings bright energy with serious discipline.\", \"His stage presence can flip a whole room instantly.\"]', '[\"Dance\", \"Rap\", \"Performance\", \"Choreography\", \"Energy\"]', NULL, NULL, 'Hobi', 'MANG.png', 4, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(5, 'jimin', 'Park Jimin', 'Jimin', 'Park Jimin', '1995-10-13', 'Busan, South Korea', 'CHIMMY', '#a855f7', 'CHIMMY', 'The graceful performer with angel vocals and lethal duality.', 'Vocalist · Dancer', 'jimin.jfif', 'Soft voice, sharp movement, and stage duality that should honestly be illegal.', 'Jimin brings elegance, emotion, and powerful dance detail. His vault feels delicate and dramatic at the same time.', '[\"Known for expressive dance lines.\", \"Balances softness and intensity on stage.\", \"Has one of the most recognizable performance auras in BTS.\"]', '[\"Dance\", \"Vocal\", \"Performance\", \"Duality\", \"Contemporary\"]', NULL, NULL, 'Jimin', 'CHIMMY.png', 5, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(6, 'v', 'Kim Taehyung', 'V', 'Kim Taehyung', '1995-12-30', 'Daegu, South Korea', 'TATA', '#14b8a6', 'TATA', 'The velvet-voiced art prince with cinematic energy.', 'Vocalist · Visual · Actor', 'v.jfif', 'Jazz soul, deep voice, model aura, and facial expressions that tell whole stories.', 'V brings color, mood, and a film-like presence. His vault feels like vintage jazz, fashion editorials, soft photography, and mysterious charisma.', '[\"Known for a deep, warm vocal color.\", \"Loves art, photography, jazz, and classic aesthetics.\", \"His expressions can change a whole stage mood.\"]', '[\"Vocal\", \"Jazz tone\", \"Visual\", \"Acting\", \"Fashion\"]', NULL, NULL, 'V', 'TATA.png', 6, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(7, 'jungkook', 'Jeon Jungkook', 'Jung Kook', 'Jeon Jungkook', '1997-09-01', 'Busan, South Korea', 'COOKY', '#22c55e', 'COOKY', 'The golden maknae built like a final boss character.', 'Main Vocalist · Performer · Golden Maknae', 'jk.jfif', 'Vocals, dance, sports, art, chaos — bro downloaded the all-rounder expansion pack.', 'Jung Kook is the powerhouse all-rounder: vocals, dance, performance, athletic energy, and playful maknae chaos.', '[\"Known as the Golden Maknae.\", \"Has strong vocals and sharp stage focus.\", \"Somehow manages to be both chaotic and perfectionist.\"]', '[\"Vocal\", \"Dance\", \"Performance\", \"Sports\", \"Golden Maknae\"]', NULL, NULL, 'JK', 'COOKY.png', 7, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00');
+(1, 'rm', 'Kim Namjoon', 'RM', 'Kim Namjoon', '1994-09-12', 'Ilsan/Goyang, South Korea', NULL, '#7c3aed', 'KOYA', 'The thoughtful leader who turns chaos into poetry.', 'Leader · Rapper · Lyricist', 'rm.jfif', 'A calm brain, a giant heart, and words that feel like a deep purple sky.', 'RM is the leader and one of the strongest creative voices behind BTS. His vault focuses on leadership, lyrics, art energy, and reflective comfort.', '[\"Known for thoughtful speeches and interviews.\", \"Loves museums, books, nature, and art spaces.\", \"Represents the soft-intellectual side of BTS energy.\"]', '[\"Leadership\", \"Rap\", \"Lyrics\", \"Art lover\", \"English speaker\"]', NULL, NULL, 'RM', 'KOYA.png', 1, 1, '2026-05-08 12:00:00', '2026-05-08 04:23:36'),
+(2, 'jin', 'Kim Seokjin', 'Jin', 'Kim Seokjin', '1992-12-04', 'Gwacheon, South Korea', NULL, '#ec4899', 'RJ', 'The worldwide handsome mood-maker with silver vocals.', 'Vocalist · Visual · Worldwide Handsome', 'jin.jfif', 'A vocal prince with dad jokes, elegance, and full chaos mode unlocked.', 'Jin brings warmth, humor, confidence, and emotional vocals. His vault feels wholesome, royal, funny, and secretly powerful.', '[\"Known for Worldwide Handsome energy.\", \"Often brings comfort through emotional solo songs.\", \"Can turn any serious moment into a legendary meme.\"]', '[\"Vocal\", \"Visual\", \"Variety\", \"Confidence\", \"Humor\"]', NULL, NULL, 'Jin', 'RJ.png', 2, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(3, 'suga', 'Min Yoongi', 'SUGA', 'Min Yoongi', '1993-03-09', 'Daegu, South Korea', NULL, '#64748b', 'SHOOKY', 'The quiet producer with savage lyrics and soft-core honesty.', 'Rapper · Producer · Songwriter', 'suga.jfif', 'Calm outside, thunder in the studio, comfort in the lyrics.', 'SUGA is the production brain, sharp rapper, and emotional storyteller. His page is moody, cinematic, and honest.', '[\"Known for direct, honest writing.\", \"Has a strong producer identity beyond performance.\", \"His calm vibe is half sleepy cat, half studio monster.\"]', '[\"Rap\", \"Production\", \"Piano\", \"Songwriting\", \"Agust D\"]', NULL, NULL, 'Suga', 'SHOOKY.png', 3, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(4, 'jhope', 'Jung Hoseok', 'j-hope', 'Jung Hoseok', '1994-02-18', 'Gwangju, South Korea', NULL, '#f59e0b', 'MANG', 'The sunshine engine who turns practice into fireworks.', 'Rapper · Main Dancer · Performance Leader', 'jhope.jfif', 'Bright smile, beast-mode dance lines, and stage energy that wakes the planet.', 'j-hope is movement, precision, and joy. His vault feels like stage lights switching on: dance practice, sunshine, rap flow, and motivation.', '[\"Known for powerful dance leadership.\", \"Brings bright energy with serious discipline.\", \"His stage presence can flip a whole room instantly.\"]', '[\"Dance\", \"Rap\", \"Performance\", \"Choreography\", \"Energy\"]', NULL, NULL, 'Hobi', 'MANG.png', 4, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(5, 'jimin', 'Park Jimin', 'Jimin', 'Park Jimin', '1995-10-13', 'Busan, South Korea', NULL, '#a855f7', 'CHIMMY', 'The graceful performer with angel vocals and lethal duality.', 'Vocalist · Dancer', 'jimin.jfif', 'Soft voice, sharp movement, and stage duality that should honestly be illegal.', 'Jimin brings elegance, emotion, and powerful dance detail. His vault feels delicate and dramatic at the same time.', '[\"Known for expressive dance lines.\", \"Balances softness and intensity on stage.\", \"Has one of the most recognizable performance auras in BTS.\"]', '[\"Dance\", \"Vocal\", \"Performance\", \"Duality\", \"Contemporary\"]', NULL, NULL, 'Jimin', 'CHIMMY.png', 5, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(6, 'v', 'Kim Taehyung', 'V', 'Kim Taehyung', '1995-12-30', 'Daegu, South Korea', NULL, '#14b8a6', 'TATA', 'The velvet-voiced art prince with cinematic energy.', 'Vocalist · Visual · Actor', 'v.jfif', 'Jazz soul, deep voice, model aura, and facial expressions that tell whole stories.', 'V brings color, mood, and a film-like presence. His vault feels like vintage jazz, fashion editorials, soft photography, and mysterious charisma.', '[\"Known for a deep, warm vocal color.\", \"Loves art, photography, jazz, and classic aesthetics.\", \"His expressions can change a whole stage mood.\"]', '[\"Vocal\", \"Jazz tone\", \"Visual\", \"Acting\", \"Fashion\"]', NULL, NULL, 'V', 'TATA.png', 6, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(7, 'jungkook', 'Jeon Jungkook', 'Jung Kook', 'Jeon Jungkook', '1997-09-01', 'Busan, South Korea', NULL, '#22c55e', 'COOKY', 'The golden maknae built like a final boss character.', 'Main Vocalist · Performer · Golden Maknae', 'jk.jfif', 'Vocals, dance, sports, art, chaos — bro downloaded the all-rounder expansion pack.', 'Jung Kook is the powerhouse all-rounder: vocals, dance, performance, athletic energy, and playful maknae chaos.', '[\"Known as the Golden Maknae.\", \"Has strong vocals and sharp stage focus.\", \"Somehow manages to be both chaotic and perfectionist.\"]', '[\"Vocal\", \"Dance\", \"Performance\", \"Sports\", \"Golden Maknae\"]', NULL, NULL, 'JK', 'COOKY.png', 7, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -316,7 +358,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2026_05_08_130000_create_bt21_characters_table', 2),
 (13, '2026_05_09_203738_update_profile_assets_table', 3),
 (14, '2026_05_09_204648_add_bundle_fields_to_profile_assets', 3),
-(15, '2026_05_09_192315_add_image_path_to_assets_table', 4);
+(15, '2026_05_09_192315_add_image_path_to_assets_table', 4),
+(16, '2026_05_10_090000_expand_user_points_columns', 5),
+(17, '2026_05_10_100000_split_learning_and_quizzes', 5);
 
 -- --------------------------------------------------------
 
@@ -341,14 +385,15 @@ CREATE TABLE `nav_items` (
 INSERT INTO `nav_items` (`id`, `label`, `url`, `sort_order`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'Home', '/', 1, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (2, 'Members', '/#members', 2, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(3, 'Learn', '/learn', 3, 1, '2026-05-08 12:00:00', '2026-05-08 05:21:32'),
-(4, 'Timeline', '/bts-achievements', 4, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(5, 'Songs', '/songs', 5, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(6, 'Gallery', '/gallery', 6, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(7, 'Quotes', '/quotes', 7, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(8, 'BT21', '/bt21', 8, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(9, 'Leaderboard', '/leaderboard', 9, 1, '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(10, 'Vote', '/vote', 10, 1, '2026-05-08 12:00:00', '2026-05-08 05:21:32');
+(3, 'Learn', '/learn', 3, 1, '2026-05-10 08:44:31', '2026-05-10 08:44:31'),
+(4, 'Timeline', '/bts-achievements', 5, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:33'),
+(5, 'Songs', '/songs', 6, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:22'),
+(6, 'Gallery', '/gallery', 7, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:18'),
+(7, 'Quotes', '/quotes', 8, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:15'),
+(8, 'BT21', '/bt21', 9, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:11'),
+(9, 'Leaderboard', '/leaderboard', 10, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:07'),
+(10, 'Vote', '/vote', 11, 1, '2026-05-08 12:00:00', '2026-05-10 09:48:59'),
+(11, 'Quizzes', '/quizzes', 4, 1, '2026-05-10 08:44:31', '2026-05-10 08:44:31');
 
 -- --------------------------------------------------------
 
@@ -372,7 +417,7 @@ CREATE TABLE `point_transactions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `type` varchar(255) NOT NULL DEFAULT 'earn',
-  `points` int(11) NOT NULL,
+  `points` bigint(20) NOT NULL,
   `reason` varchar(255) DEFAULT NULL,
   `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`meta`)),
   `created_at` timestamp NULL DEFAULT NULL,
@@ -407,7 +452,21 @@ INSERT INTO `point_transactions` (`id`, `user_id`, `type`, `points`, `reason`, `
 (25, 7, 'earn', 20, 'Quiz reward: Members and Roles', '{\"lesson_slug\":\"members-and-roles\",\"attempt_id\":14}', '2026-05-09 13:32:55', '2026-05-09 13:32:55'),
 (26, 7, 'spend', -120, 'Unlocked profile upgrade: Galaxy Stage Theme', '{\"asset_key\":\"galaxy-stage\"}', '2026-05-09 16:29:40', '2026-05-09 16:29:40'),
 (27, 7, 'spend', -100, 'Unlocked profile upgrade: BT21 CHIMMY Avatar', '{\"asset_key\":\"chimmy-avatar\"}', '2026-05-09 17:09:44', '2026-05-09 17:09:44'),
-(28, 1, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-10 05:39:01', '2026-05-10 05:39:01');
+(28, 1, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-10 05:39:01', '2026-05-10 05:39:01'),
+(29, 7, 'spend', -100, 'Unlocked profile upgrade: BT21 KOYA Avatar', '{\"asset_key\":\"koya-avatar\"}', '2026-05-10 10:19:59', '2026-05-10 10:19:59'),
+(30, 7, 'spend', -180, 'Unlocked profile upgrade: BT21 CHIMMY Bundle', '{\"asset_key\":\"chimmy-bundle\"}', '2026-05-10 10:20:04', '2026-05-10 10:20:04'),
+(31, 7, 'spend', -120, 'Unlocked profile upgrade: BT21 TATA Theme', '{\"asset_key\":\"tata-theme\"}', '2026-05-10 10:20:07', '2026-05-10 10:20:07'),
+(32, 7, 'spend', -100, 'Unlocked profile upgrade: BT21 SHOOKY Avatar', '{\"asset_key\":\"shooky-avatar\"}', '2026-05-10 10:20:10', '2026-05-10 10:20:10'),
+(33, 7, 'spend', -100, 'Unlocked profile upgrade: BT21 MANG Avatar', '{\"asset_key\":\"mang-avatar\"}', '2026-05-10 10:20:13', '2026-05-10 10:20:13'),
+(34, 7, 'spend', -100, 'Unlocked profile upgrade: BT21 RJ Avatar', '{\"asset_key\":\"rj-avatar\"}', '2026-05-10 10:20:17', '2026-05-10 10:20:17'),
+(35, 7, 'spend', -100, 'Unlocked profile upgrade: BT21 TATA Avatar', '{\"asset_key\":\"tata-avatar\"}', '2026-05-10 10:20:36', '2026-05-10 10:20:36'),
+(36, 7, 'spend', -180, 'Unlocked profile upgrade: BT21 MANG Bundle', '{\"asset_key\":\"mang-bundle\"}', '2026-05-10 10:20:40', '2026-05-10 10:20:40'),
+(37, 7, 'spend', -180, 'Unlocked profile upgrade: BT21 RJ Bundle', '{\"asset_key\":\"rj-bundle\"}', '2026-05-10 10:20:44', '2026-05-10 10:20:44'),
+(38, 7, 'spend', -120, 'Unlocked profile upgrade: BT21 KOYA Theme', '{\"asset_key\":\"koya-theme\"}', '2026-05-10 10:21:13', '2026-05-10 10:21:13'),
+(39, 7, 'spend', -180, 'Unlocked profile upgrade: BT21 COOKY Bundle', '{\"asset_key\":\"cooky-bundle\"}', '2026-05-10 10:21:21', '2026-05-10 10:21:21'),
+(40, 7, 'spend', -180, 'Unlocked profile upgrade: BT21 TATA Bundle', '{\"asset_key\":\"tata-bundle\"}', '2026-05-10 10:26:01', '2026-05-10 10:26:01'),
+(41, 7, 'earn', 100, 'Quiz reward: MV Detective: Round One', '{\"quiz_slug\":\"mv-detective-round-one\",\"attempt_id\":1}', '2026-05-10 10:27:01', '2026-05-10 10:27:01'),
+(42, 8, 'earn', 50, 'Welcome bonus', '{\"source\":\"registration\"}', '2026-05-10 10:48:30', '2026-05-10 10:48:30');
 
 -- --------------------------------------------------------
 
@@ -421,7 +480,7 @@ CREATE TABLE `profile_assets` (
   `label` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL DEFAULT 'avatar',
   `description` varchar(500) DEFAULT NULL,
-  `cost` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `cost` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
   `image_path` varchar(255) DEFAULT NULL,
   `gradient` varchar(255) DEFAULT NULL,
   `sort_order` int(10) UNSIGNED NOT NULL DEFAULT 0,
@@ -468,7 +527,7 @@ CREATE TABLE `quiz_attempts` (
   `learning_lesson_id` bigint(20) UNSIGNED NOT NULL,
   `score` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `total` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `points_earned` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `points_earned` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
   `answers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`answers`)),
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -497,6 +556,100 @@ INSERT INTO `quiz_attempts` (`id`, `user_id`, `learning_lesson_id`, `score`, `to
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quiz_games`
+--
+
+CREATE TABLE `quiz_games` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL DEFAULT 'BTS 101',
+  `difficulty` varchar(255) NOT NULL DEFAULT 'easy',
+  `description` varchar(1000) DEFAULT NULL,
+  `cover_image` varchar(255) DEFAULT NULL,
+  `time_limit_seconds` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `points_per_question` bigint(20) UNSIGNED NOT NULL DEFAULT 10,
+  `bonus_points` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `sort_order` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `quiz_games`
+--
+
+INSERT INTO `quiz_games` (`id`, `slug`, `title`, `category`, `difficulty`, `description`, `cover_image`, `time_limit_seconds`, `points_per_question`, `bonus_points`, `sort_order`, `is_featured`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'bts-101-rookie-army', 'BTS 101: Rookie ARMY', 'BTS 101', 'easy', 'Quick starter quiz for new ARMY. Simple, cute, and point-friendly.', 'imgs/btsssss.jfif', 0, 10, 20, 1, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(2, 'mv-detective-round-one', 'MV Detective: Round One', 'Music Videos', 'medium', 'Spot the MV, era, and concept clues. More points, more drama.', 'imgs/songs/dna.jfif', 0, 20, 40, 2, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(3, 'borahae-legend-mode', 'Borahae Legend Mode', 'ARMY Culture', 'hard', 'Harder ARMY culture questions for users who want serious leaderboard energy.', 'imgs/bts-crowd.jfif', 0, 35, 80, 3, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_game_attempts`
+--
+
+CREATE TABLE `quiz_game_attempts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `quiz_game_id` bigint(20) UNSIGNED NOT NULL,
+  `score` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `total` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `points_earned` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `accuracy` decimal(5,2) NOT NULL DEFAULT 0.00,
+  `answers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`answers`)),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `quiz_game_attempts`
+--
+
+INSERT INTO `quiz_game_attempts` (`id`, `user_id`, `quiz_game_id`, `score`, `total`, `points_earned`, `accuracy`, `answers`, `created_at`, `updated_at`) VALUES
+(1, 7, 2, 3, 3, 100, 100.00, '{\"4\":{\"picked\":1,\"correct_option\":1,\"correct\":true},\"5\":{\"picked\":0,\"correct_option\":0,\"correct\":true},\"6\":{\"picked\":1,\"correct_option\":1,\"correct\":true}}', '2026-05-10 10:27:01', '2026-05-10 10:27:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_game_questions`
+--
+
+CREATE TABLE `quiz_game_questions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `quiz_game_id` bigint(20) UNSIGNED NOT NULL,
+  `question` varchar(1000) NOT NULL,
+  `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`options`)),
+  `correct_option` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `explanation` text DEFAULT NULL,
+  `points` bigint(20) UNSIGNED NOT NULL DEFAULT 10,
+  `sort_order` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `quiz_game_questions`
+--
+
+INSERT INTO `quiz_game_questions` (`id`, `quiz_game_id`, `question`, `options`, `correct_option`, `explanation`, `points`, `sort_order`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'What does BTS also stand for?', '[\"Bangtan Sonyeondan\",\"Big Time Stars\",\"Born To Sing\",\"Bright Team Seoul\"]', 0, 'BTS is also known as Bangtan Sonyeondan.', 10, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(2, 1, 'How many members are in BTS?', '[\"5\",\"6\",\"7\",\"8\"]', 2, 'BTS has seven members.', 10, 2, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(3, 1, 'What color is strongly connected with ARMY love?', '[\"Blue\",\"Purple\",\"Orange\",\"Green\"]', 1, 'Purple is deeply connected with BTS and ARMY through borahae.', 10, 3, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(4, 2, 'Which BTS song is famous for the line “Cause I-I-I’m in the stars tonight”?', '[\"DNA\",\"Dynamite\",\"Black Swan\",\"Fire\"]', 1, 'That line is from Dynamite.', 20, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(5, 2, 'Which MV is often connected with emotional longing and winter/spring imagery?', '[\"Spring Day\",\"Idol\",\"Dope\",\"Butter\"]', 0, 'Spring Day is known for emotional imagery and longing.', 20, 2, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(6, 2, 'Which song title is also a type of genetic molecule?', '[\"Fire\",\"DNA\",\"Save Me\",\"Mic Drop\"]', 1, 'DNA is the correct answer.', 20, 3, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(7, 3, 'What does “bias” usually mean in K-pop fandom language?', '[\"Favorite member\",\"Least favorite song\",\"Stage outfit\",\"Album version\"]', 0, 'A bias is usually your favorite member.', 35, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(8, 3, 'What does “comeback” usually refer to?', '[\"A new release\\/promotion period\",\"An old concert only\",\"A fan account\",\"A hairstyle\"]', 0, 'A comeback is a new release and promotional era.', 35, 2, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(9, 3, 'Which platform is commonly used for official artist-fan community updates?', '[\"Weverse\",\"Only maps\",\"A calculator app\",\"A weather site\"]', 0, 'Weverse is used for official community updates.', 35, 3, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quiz_questions`
 --
 
@@ -507,7 +660,7 @@ CREATE TABLE `quiz_questions` (
   `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`options`)),
   `correct_option` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `explanation` text DEFAULT NULL,
-  `points` int(10) UNSIGNED NOT NULL DEFAULT 10,
+  `points` bigint(20) UNSIGNED NOT NULL DEFAULT 10,
   `sort_order` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -579,7 +732,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('r670CuaEKrjiEEvvOxhduPdxBaac4ZfzluX1BNIS', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUFNNd2lWWWZOSEQ3UUV0UDF5SFZRVHlEV2doRnRhdWNHd0UzbHhITiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjtzOjU6InJvdXRlIjtzOjE0OiJ1c2VyLmRhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778405942);
+('1eTDC2xvdSWWl65RotXGGuJZmhiwGBEZjou5IVVU', 8, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQzFFekN1RkNyWFpYNk53cXh0MnZtTjNRRGhrRWk1M2U5VjJQWE0wSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sZWFkZXJib2FyZCI7czo1OiJyb3V0ZSI7czoxMToibGVhZGVyYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo4O30=', 1778424833);
 
 -- --------------------------------------------------------
 
@@ -739,7 +892,7 @@ CREATE TABLE `users` (
   `avatar_key` varchar(255) NOT NULL DEFAULT 'purple-heart',
   `profile_theme` varchar(255) NOT NULL DEFAULT 'galaxy-purple',
   `bio` varchar(500) DEFAULT NULL,
-  `points` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `points` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
   `streak_days` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `last_streak_date` date DEFAULT NULL,
   `google_id` varchar(255) DEFAULT NULL,
@@ -754,9 +907,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `avatar_key`, `profile_theme`, `bio`, `points`, `streak_days`, `last_streak_date`, `google_id`, `auth_provider`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'BTS Admin', 'bts_admin', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 12, 1, '2026-05-10', NULL, 'email', 'JZrJdyEMOokRxnrX60QZ59lBHYIa8AwB3rzlSXrWjmPwpfhUF9zUrcQ5353E', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
-(6, 'Mehak Arman', 'mehak_frostnap', 'mehakarmaan1@gmail.com', NULL, '$2y$12$NSL1PCrWzlEJrBAYPNZuLuCPUVptKOnRY4a/tM58ChAJsZSRdaS42', 0, 'purple-heart', 'galaxy-purple', NULL, 62, 1, '2026-05-08', NULL, 'email', NULL, '2026-05-08 04:02:54', '2026-05-08 04:08:31'),
-(7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/logo.png', 'purple-heart-theme', '67', 4294967295, 1, '2026-05-09', NULL, 'email', 'kZCocE9ReCNcT0OgRrc8EQ4FY8cbvSRslRQgUj49tloFSemHmbIfAjQgJ0ce', '2026-05-09 12:45:32', '2026-05-09 17:09:43');
+(1, 'BTS Admin', 'bts_admin', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 12, 1, '2026-05-10', NULL, 'email', 'WbKUAbgFx7Uh4nTjr5193ot9eljm6KqEHpPeKEibRk6zJwCK3G3dumW0pj7G', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
+(6, 'Mehak Arman', 'mehak_frostnap', 'mehakarmaan1@gmail.com', NULL, '$2y$12$NSL1PCrWzlEJrBAYPNZuLuCPUVptKOnRY4a/tM58ChAJsZSRdaS42', 0, 'purple-heart', 'galaxy-purple', NULL, 18446744073709551615, 1, '2026-05-08', NULL, 'email', NULL, '2026-05-08 04:02:54', '2026-05-08 04:08:31'),
+(7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/TATA.png', 'tata-theme', '67', 0, 1, '2026-05-09', NULL, 'email', 'q72pd1t26Z2AfLP0rTAPGpgyhKryCXpHVuOQTpmML3O9q5M6BDr74QdfiDqm', '2026-05-09 12:45:32', '2026-05-10 10:30:14'),
+(8, 'Mahreen Arman', 'ARMY_BTS_0t7I_-6-7', 'mahreenarmaan10@gmail.com', NULL, '$2y$12$8GBbL5u6jEM/cuM36lpWgukiBg2q8fqjxwKQUzwJq9DT.oLACoR5.', 0, 'favicons/logo.png', 'purple-heart-theme', '6-7', 18446744073709551615, 0, NULL, NULL, 'email', NULL, '2026-05-10 10:48:30', '2026-05-10 10:49:48');
 
 -- --------------------------------------------------------
 
@@ -776,7 +930,20 @@ CREATE TABLE `user_profile_assets` (
 --
 
 INSERT INTO `user_profile_assets` (`id`, `user_id`, `profile_asset_id`, `unlocked_at`) VALUES
-(16, 7, 26, '2026-05-09 21:09:43');
+(16, 7, 26, '2026-05-09 21:09:43'),
+(17, 7, 32, '2026-05-10 14:19:59'),
+(18, 7, 28, '2026-05-10 14:20:04'),
+(19, 7, 30, '2026-05-10 14:20:07'),
+(20, 7, 37, '2026-05-10 14:20:10'),
+(21, 7, 41, '2026-05-10 14:20:13'),
+(22, 7, 35, '2026-05-10 14:20:17'),
+(23, 7, 29, '2026-05-10 14:20:36'),
+(24, 7, 42, '2026-05-10 14:20:40'),
+(25, 7, 36, '2026-05-10 14:20:44'),
+(26, 7, 33, '2026-05-10 14:21:13'),
+(27, 7, 40, '2026-05-10 14:21:21'),
+(28, 7, 31, '2026-05-10 14:26:01'),
+(29, 8, 25, '2026-05-10 14:48:30');
 
 -- --------------------------------------------------------
 
@@ -786,6 +953,7 @@ INSERT INTO `user_profile_assets` (`id`, `user_id`, `profile_asset_id`, `unlocke
 
 CREATE TABLE `votes` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `member_id` bigint(20) UNSIGNED DEFAULT NULL,
   `member_name` varchar(255) DEFAULT NULL,
   `ip_address` varchar(255) DEFAULT NULL,
@@ -798,10 +966,10 @@ CREATE TABLE `votes` (
 -- Dumping data for table `votes`
 --
 
-INSERT INTO `votes` (`id`, `member_id`, `member_name`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
-(1, 4, 'j-hope', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2026-05-08 04:11:32', '2026-05-08 04:11:32'),
-(2, 5, 'Jimin', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', '2026-05-09 12:47:19', '2026-05-09 12:47:19'),
-(3, 7, 'Jung Kook', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', '2026-05-09 12:47:26', '2026-05-09 12:47:26');
+INSERT INTO `votes` (`id`, `user_id`, `member_id`, `member_name`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, NULL, NULL, NULL, '2026-05-10 10:11:04', '2026-05-10 10:11:04'),
+(2, 7, 7, NULL, NULL, NULL, '2026-05-10 10:31:16', '2026-05-10 10:31:16'),
+(3, 8, 5, NULL, NULL, NULL, '2026-05-10 10:50:44', '2026-05-10 10:50:44');
 
 --
 -- Indexes for dumped tables
@@ -876,6 +1044,13 @@ ALTER TABLE `learning_lessons`
   ADD UNIQUE KEY `learning_lessons_slug_unique` (`slug`);
 
 --
+-- Indexes for table `learning_materials`
+--
+ALTER TABLE `learning_materials`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `learning_materials_slug_unique` (`slug`);
+
+--
 -- Indexes for table `members`
 --
 ALTER TABLE `members`
@@ -920,6 +1095,28 @@ ALTER TABLE `quiz_attempts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `quiz_attempts_user_id_foreign` (`user_id`),
   ADD KEY `quiz_attempts_learning_lesson_id_foreign` (`learning_lesson_id`);
+
+--
+-- Indexes for table `quiz_games`
+--
+ALTER TABLE `quiz_games`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `quiz_games_slug_unique` (`slug`);
+
+--
+-- Indexes for table `quiz_game_attempts`
+--
+ALTER TABLE `quiz_game_attempts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quiz_game_attempts_user_id_foreign` (`user_id`),
+  ADD KEY `quiz_game_attempts_quiz_game_id_foreign` (`quiz_game_id`);
+
+--
+-- Indexes for table `quiz_game_questions`
+--
+ALTER TABLE `quiz_game_questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quiz_game_questions_quiz_game_id_foreign` (`quiz_game_id`);
 
 --
 -- Indexes for table `quiz_questions`
@@ -983,6 +1180,7 @@ ALTER TABLE `user_profile_assets`
 --
 ALTER TABLE `votes`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `votes_user_id_unique` (`user_id`),
   ADD KEY `votes_member_id_foreign` (`member_id`);
 
 --
@@ -1032,6 +1230,12 @@ ALTER TABLE `learning_lessons`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `learning_materials`
+--
+ALTER TABLE `learning_materials`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
@@ -1041,19 +1245,19 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `nav_items`
 --
 ALTER TABLE `nav_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `point_transactions`
 --
 ALTER TABLE `point_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `profile_assets`
@@ -1066,6 +1270,24 @@ ALTER TABLE `profile_assets`
 --
 ALTER TABLE `quiz_attempts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `quiz_games`
+--
+ALTER TABLE `quiz_games`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `quiz_game_attempts`
+--
+ALTER TABLE `quiz_game_attempts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `quiz_game_questions`
+--
+ALTER TABLE `quiz_game_questions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `quiz_questions`
@@ -1101,13 +1323,13 @@ ALTER TABLE `timeline_events`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_profile_assets`
 --
 ALTER TABLE `user_profile_assets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `votes`
@@ -1137,6 +1359,19 @@ ALTER TABLE `point_transactions`
 ALTER TABLE `quiz_attempts`
   ADD CONSTRAINT `quiz_attempts_learning_lesson_id_foreign` FOREIGN KEY (`learning_lesson_id`) REFERENCES `learning_lessons` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `quiz_attempts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quiz_game_attempts`
+--
+ALTER TABLE `quiz_game_attempts`
+  ADD CONSTRAINT `quiz_game_attempts_quiz_game_id_foreign` FOREIGN KEY (`quiz_game_id`) REFERENCES `quiz_games` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `quiz_game_attempts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quiz_game_questions`
+--
+ALTER TABLE `quiz_game_questions`
+  ADD CONSTRAINT `quiz_game_questions_quiz_game_id_foreign` FOREIGN KEY (`quiz_game_id`) REFERENCES `quiz_games` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `quiz_questions`

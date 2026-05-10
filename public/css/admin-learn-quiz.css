@@ -1,0 +1,24 @@
+/* Admin Learn + Quiz pages */
+.admin-super-form textarea.tall-textarea { min-height: 220px; }
+.admin-super-form small { color: rgba(255,255,255,.58); font-weight: 700; }
+.quiz-question-admin-box,
+.quiz-question-list {
+    margin-top: 16px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.10);
+}
+.quiz-question-admin-box h3,
+.quiz-question-list h3 {
+    margin: 0 0 14px;
+    color: #fff;
+    font-size: 1.1rem;
+}
+.nested-question {
+    background: rgba(0,0,0,.18);
+    border-color: rgba(216,180,254,.16);
+}
+.admin-super-form input[type="url"] { word-break: break-all; }
+@media (max-width: 900px) {
+    .admin-super-form { grid-template-columns: 1fr !important; }
+    .admin-super-form .span-2 { grid-column: auto !important; }
+}

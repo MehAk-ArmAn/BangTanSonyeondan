@@ -10,7 +10,8 @@ class DatabaseSeeder extends Seeder
     {
         // Main upgraded content seed for BangTanSonyeondan.
         $this->call(GlowUpContentSeeder::class);
+
+        // Separate learning gallery + Blooket-style quiz arena seed.
+        $this->call(BtsLearningQuizSeeder::class);
     }
 }
-
-

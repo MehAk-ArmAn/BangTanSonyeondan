@@ -1,25 +1,28 @@
 <?php
 
+use App\Http\Controllers\VoteController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Auth\PublicAuthController;
-use App\Http\Controllers\BTSController;
-use App\Http\Controllers\BtsCopyController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\LearningController;
-use App\Http\Controllers\SongsController;
-use App\Http\Controllers\UserDashboardController;
-use App\Models\ProfileAsset;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Bt21Controller;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\LearningMaterialsController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\NavigationController;
+use App\Http\Controllers\Admin\QuizzesController;
 use App\Http\Controllers\Admin\QuotesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SongsController as AdminSongsController;
 use App\Http\Controllers\Admin\TimelineController;
 use App\Http\Controllers\Admin\VotesController;
+use App\Http\Controllers\Auth\PublicAuthController;
+use App\Http\Controllers\BTSController;
+use App\Http\Controllers\BtsCopyController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\LearningController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\SongsController;
+use App\Http\Controllers\UserDashboardController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +39,13 @@ Route::get('/search', [BTSController::class, 'search'])->name('search');
 Route::get('/bts-achievements', [BTSController::class, 'achievements'])->name('achievements');
 Route::get('/members/{slug}', [BTSController::class, 'memberPage'])->name('member.show');
 
-/* Learning + quiz pages */
+/* Learning gallery pages - no quizzes mixed inside. */
 Route::get('/learn', [LearningController::class, 'index'])->name('learn.index');
 Route::get('/learn/{slug}', [LearningController::class, 'show'])->name('learn.show');
+
+/* Blooket-style quiz arena - separate from learning material. */
+Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes.index');
+Route::get('/quizzes/{quiz:slug}', [QuizController::class, 'show'])->name('quizzes.show');
 Route::get('/leaderboard', [LearningController::class, 'leaderboard'])->name('leaderboard');
 
 /* Public auth */
@@ -57,12 +64,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile.edit');
     Route::put('/profile', [UserDashboardController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profile/assets/{asset}/unlock', [UserDashboardController::class, 'unlockAsset'])->name('profile.assets.unlock');
-    Route::post('/learn/{lesson}/submit', [LearningController::class, 'submit'])->name('learn.submit');
+    Route::post('/quizzes/{quiz:slug}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
 });
 
 /* Vote system */
-Route::get('/vote', [BTSController::class, 'showVoteForm'])->name('vote');
-Route::post('/vote', [BTSController::class, 'handleVote'])->name('vote.store');
+Route::get('/vote', [VoteController::class, 'index'])->name('vote.index');
+Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
 
 /* Old image helper route kept because some existing content may use route('bts.image'). */
 Route::get('/bts', fn () => response()->file(public_path('imgs/btsssss.jfif')))->name('bts.image');
@@ -94,6 +101,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('/quotes', QuotesController::class)->except(['show', 'create', 'edit']);
         Route::resource('/timeline', TimelineController::class)->except(['show', 'create', 'edit']);
         Route::resource('/bt21', Bt21Controller::class)->except(['show', 'create', 'edit']);
+        Route::resource('/learning-materials', LearningMaterialsController::class)->except(['show', 'create', 'edit']);
+        Route::resource('/quizzes', QuizzesController::class)->except(['show', 'create', 'edit']);
+        Route::post('/quizzes/{quiz}/questions', [QuizzesController::class, 'storeQuestion'])->name('quizzes.questions.store');
+        Route::put('/quiz-questions/{question}', [QuizzesController::class, 'updateQuestion'])->name('quiz-questions.update');
+        Route::delete('/quiz-questions/{question}', [QuizzesController::class, 'destroyQuestion'])->name('quiz-questions.destroy');
         Route::get('/votes', [VotesController::class, 'index'])->name('votes.index');
     });
 });

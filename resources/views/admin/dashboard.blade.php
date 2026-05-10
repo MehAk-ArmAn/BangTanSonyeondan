@@ -15,6 +15,8 @@
 
     <div class="admin-stats-grid">
         <a href="{{ route('admin.members.index') }}"><span>Members</span><b>{{ $membersCount }}</b></a>
+        <a href="{{ route('admin.learning-materials.index') }}"><span>Learning Materials</span><b>{{ $learningCount }}</b></a>
+        <a href="{{ route('admin.quizzes.index') }}"><span>Quiz Games</span><b>{{ $quizCount }}</b></a>
         <a href="{{ route('admin.songs.index') }}"><span>Songs</span><b>{{ $songsCount }}</b></a>
         <a href="{{ route('admin.gallery.index') }}"><span>Gallery</span><b>{{ $galleryCount }}</b></a>
         <a href="{{ route('admin.bt21.index') }}"><span>BT21</span><b>{{ $bt21Count }}</b></a>

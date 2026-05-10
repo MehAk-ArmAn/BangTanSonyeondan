@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.frontend.partials.head')
+    @stack('styles')
 </head>
 <body>
     <div class="purple-orb orb-one"></div>
@@ -24,7 +25,7 @@
     </main>
 
     <script src="{{ asset('js/bts.js') }}"></script>
-    
+
     @include('layouts.frontend.partials.footer')
     @stack('scripts')
 </body>

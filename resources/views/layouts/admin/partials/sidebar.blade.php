@@ -6,16 +6,18 @@
     </a>
 
     <nav>
-        <a href="/admin/overview">Overview</a>
-        <a href="/admin/settings">Settings</a>
-        <a href="/admin/settings#password">Password</a>
-        <a href="/admin/navigation">Navigation</a>
-        <a href="/admin/members">Members</a>
-        <a href="/admin/quotes">Quotes</a>
-        <a href="/admin/songs">Songs</a>
-        <a href="/admin/gallery">Gallery</a>
-        <a href="/admin/timeline">Timeline</a>
-        <a href="/admin/votes">Votes</a>
+        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+        <a href="{{ route('admin.settings.index') }}">Settings</a>
+        <a href="{{ route('admin.navigation.index') }}">Navigation</a>
+        <a href="{{ route('admin.members.index') }}">Members</a>
+        <a href="{{ route('admin.learning-materials.index') }}">Learning</a>
+        <a href="{{ route('admin.quizzes.index') }}">Quizzes</a>
+        <a href="{{ route('admin.quotes.index') }}">Quotes</a>
+        <a href="{{ route('admin.songs.index') }}">Songs</a>
+        <a href="{{ route('admin.gallery.index') }}">Gallery</a>
+        <a href="{{ route('admin.timeline.index') }}">Timeline</a>
+        <a href="{{ route('admin.bt21.index') }}">BT21</a>
+        <a href="{{ route('admin.votes.index') }}">Votes</a>
         <a href="{{ route('home') }}" target="_blank">View Site</a>
     </nav>
 
@@ -24,4 +26,3 @@
         <button type="submit" class="logout-btn">Logout</button>
     </form>
 </aside>
-
