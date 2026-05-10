@@ -88,73 +88,67 @@ class UserDashboardController extends Controller
         $user = Auth::user();
 
         $data = $request->validate([
-
             'name' => ['required', 'string', 'max:120'],
-
             'username' => [
                 'nullable',
                 'alpha_dash',
                 'min:3',
                 'max:30',
-                Rule::unique('users', 'username')->ignore($user->id)
+                Rule::unique('users', 'username')->ignore($user->id),
             ],
-
             'bio' => ['nullable', 'string', 'max:500'],
-
-            // ONE PROFILE PACK
             'profile_asset' => ['required', 'string', 'max:120'],
-
         ]);
 
-        // unlocked assets
         $unlockedKeys = $user->unlockedAssets()
             ->pluck('profile_assets.key')
             ->toArray();
 
-        // free assets
-        $freeKeys = ProfileAsset::where('cost', 0)
+        $freeKeys = ProfileAsset::where('is_active', true)
+            ->where('cost', 0)
             ->pluck('key')
             ->toArray();
 
-        // allowed
         $allowedKeys = array_unique(array_merge($unlockedKeys, $freeKeys));
 
-        // get selected asset
-        $asset = ProfileAsset::where('key', $data['profile_asset'])
+        $asset = ProfileAsset::where('is_active', true)
+            ->where('key', $data['profile_asset'])
             ->whereIn('key', $allowedKeys)
             ->first();
 
-        // locked or fake asset
-        if (!$asset) {
-
-            return back()->with(
-                'error',
-                'That profile pack is locked.'
-            );
-
+        if (! $asset) {
+            return back()
+                ->withInput()
+                ->with('error', 'That profile upgrade is locked. Earn points or unlock it first.');
         }
 
-        // update user
-        $user->update([
+        $nextAvatar = $user->avatar_key ?: 'favicons/logo.png';
+        $nextTheme = $user->profile_theme ?: 'galaxy-purple';
+        $assetType = strtolower((string) $asset->type);
+        $assetAvatar = $asset->avatar_image ?: $asset->image_path;
+        $assetTheme = $asset->theme_class ?: ($assetType === 'theme' ? $asset->key : null);
+
+        if ($assetType === 'bundle') {
+            $nextAvatar = $assetAvatar ?: $nextAvatar;
+            $nextTheme = $assetTheme ?: $nextTheme;
+        } elseif ($assetType === 'avatar') {
+            $nextAvatar = $assetAvatar ?: $asset->key;
+        } elseif ($assetType === 'theme') {
+            $nextTheme = $assetTheme ?: $asset->key;
+        } else {
+            $nextAvatar = $assetAvatar ?: $nextAvatar;
+            $nextTheme = $assetTheme ?: $nextTheme;
+        }
+
+        $user->forceFill([
             'name' => $data['name'],
-            'username' => $data['username'],
-            'bio' => $data['bio'],
-        ]);
+            'username' => $data['username'] ?: null,
+            'bio' => $data['bio'] ?: null,
+            'avatar_key' => $nextAvatar,
+            'profile_theme' => $nextTheme,
+        ])->save();
 
-        // get selected asset
-        $asset = ProfileAsset::where('key', $data['profile_asset'])->first();
-
-        // apply visuals ONLY if asset exists
-        if ($asset) {
-            $user->avatar_key = $asset->avatar_image;
-            $user->profile_theme = $asset->theme_class;
-            $user->save();
-        }
-
-        return back()->with(
-            'success',
-            'Profile updated.'
-        );
+        return back()->with('success', 'Profile updated! Your ARMY vibe is saved.');
     }
 
     public function unlockAsset(ProfileAsset $asset)

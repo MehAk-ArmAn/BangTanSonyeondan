@@ -81,7 +81,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('navItems', $navItems);
         View::share('footerBt21Characters', $bt21Characters);
 
-        View::share('adminEmail', $settings['admin_email'] ?? 'hello@bangtansonyeondan.com');
+        View::share('adminEmail', $settings['admin_email'] ?? 'admin@bangtansonyeondan.com');
         View::share('location', $settings['location'] ?? 'ARMY Hub');
         View::share('name', $settings['creator_name'] ?? 'Mehak Arman');
         View::share('phone', $settings['phone'] ?? '');
