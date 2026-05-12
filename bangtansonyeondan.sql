@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2026 at 05:43 PM
+-- Generation Time: May 12, 2026 at 08:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,6 +78,33 @@ CREATE TABLE `bts_copies` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bts_updates`
+--
+
+CREATE TABLE `bts_updates` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `source_label` varchar(255) DEFAULT NULL,
+  `excerpt` text DEFAULT NULL,
+  `body` longtext DEFAULT NULL,
+  `image_path` varchar(1000) DEFAULT NULL,
+  `video_url` varchar(1000) DEFAULT NULL,
+  `video_path` varchar(1000) DEFAULT NULL,
+  `links` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`links`)),
+  `is_pinned` tinyint(1) NOT NULL DEFAULT 0,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `published_at` timestamp NULL DEFAULT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cache`
 --
 
@@ -120,7 +147,6 @@ CREATE TABLE `daily_checkins` (
 --
 
 INSERT INTO `daily_checkins` (`id`, `user_id`, `checkin_date`, `points_earned`, `streak_after`, `created_at`, `updated_at`) VALUES
-(1, 6, '2026-05-08', 12, 1, '2026-05-08 04:08:31', '2026-05-08 04:08:31'),
 (2, 1, '2026-05-08', 12, 1, '2026-05-08 04:28:43', '2026-05-08 04:28:43'),
 (3, 7, '2026-05-09', 12, 1, '2026-05-09 12:45:52', '2026-05-09 12:45:52'),
 (4, 1, '2026-05-10', 12, 1, '2026-05-10 05:38:56', '2026-05-10 05:38:56'),
@@ -362,7 +388,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2026_05_09_192315_add_image_path_to_assets_table', 4),
 (16, '2026_05_10_090000_expand_user_points_columns', 5),
 (17, '2026_05_10_100000_split_learning_and_quizzes', 5),
-(18, '2026_05_12_150000_upgrade_user_profiles_publish_ready', 6);
+(18, '2026_05_12_150000_upgrade_user_profiles_publish_ready', 6),
+(19, '2026_05_12_170000_create_bts_updates_table', 7);
 
 -- --------------------------------------------------------
 
@@ -396,7 +423,8 @@ INSERT INTO `nav_items` (`id`, `label`, `url`, `sort_order`, `is_active`, `creat
 (10, 'Vote', '/vote', 11, 1, '2026-05-08 12:00:00', '2026-05-10 09:48:59'),
 (11, 'Quizzes', '/quizzes', 4, 1, '2026-05-10 08:44:31', '2026-05-10 08:44:31'),
 (12, 'ARMY Profiles', '/army', 1, 1, '2026-05-12 11:12:23', '2026-05-12 11:12:23'),
-(13, 'Profile', '/profile', 12, 1, '2026-05-12 11:13:04', '2026-05-12 11:13:04');
+(13, 'Profile', '/profile', 12, 1, '2026-05-12 11:13:04', '2026-05-12 11:13:04'),
+(14, 'BangTan Updates', '/updates', 13, 1, '2026-05-12 13:59:36', '2026-05-12 13:59:36');
 
 -- --------------------------------------------------------
 
@@ -432,8 +460,6 @@ CREATE TABLE `point_transactions` (
 --
 
 INSERT INTO `point_transactions` (`id`, `user_id`, `type`, `points`, `reason`, `meta`, `created_at`, `updated_at`) VALUES
-(5, 6, 'earn', 50, 'Welcome bonus', '{\"source\":\"registration\"}', '2026-05-08 04:02:54', '2026-05-08 04:02:54'),
-(6, 6, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-08 04:08:31', '2026-05-08 04:08:31'),
 (7, 1, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-08 04:28:43', '2026-05-08 04:28:43'),
 (8, 1, 'earn', 30, 'Quiz reward: BTS Origin Story', '{\"lesson_slug\":\"bts-origin-story\",\"attempt_id\":1}', '2026-05-08 04:30:04', '2026-05-08 04:30:04'),
 (9, 7, 'earn', 50, 'Welcome bonus', '{\"source\":\"registration\"}', '2026-05-09 12:45:33', '2026-05-09 12:45:33'),
@@ -470,7 +496,11 @@ INSERT INTO `point_transactions` (`id`, `user_id`, `type`, `points`, `reason`, `
 (40, 7, 'spend', -180, 'Unlocked profile upgrade: BT21 TATA Bundle', '{\"asset_key\":\"tata-bundle\"}', '2026-05-10 10:26:01', '2026-05-10 10:26:01'),
 (41, 7, 'earn', 100, 'Quiz reward: MV Detective: Round One', '{\"quiz_slug\":\"mv-detective-round-one\",\"attempt_id\":1}', '2026-05-10 10:27:01', '2026-05-10 10:27:01'),
 (42, 8, 'earn', 50, 'Welcome bonus', '{\"source\":\"registration\"}', '2026-05-10 10:48:30', '2026-05-10 10:48:30'),
-(43, 7, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-12 11:32:30', '2026-05-12 11:32:30');
+(43, 7, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-12 11:32:30', '2026-05-12 11:32:30'),
+(44, 9, 'earn', 50, 'Welcome bonus', '{\"source\":\"registration\"}', '2026-05-12 13:37:19', '2026-05-12 13:37:19'),
+(45, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 TATA Bundle', '{\"asset_key\":\"tata-bundle\"}', '2026-05-12 13:39:16', '2026-05-12 13:39:16'),
+(46, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 TATA Avatar', '{\"asset_key\":\"tata-avatar\"}', '2026-05-12 13:39:35', '2026-05-12 13:39:35'),
+(47, 9, 'spend', -120, 'Unlocked profile upgrade: BT21 TATA Theme', '{\"asset_key\":\"tata-theme\"}', '2026-05-12 13:42:32', '2026-05-12 13:42:32');
 
 -- --------------------------------------------------------
 
@@ -737,8 +767,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('JigqKiKncUAldv0TCVfdOCC9VAaX663kVGN47Yvq', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOEJyY0JCQ3lmVEFOdDhySmNQR01Tall1bTFHZEhmVjhKMmR0VlVkeiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO3M6NToicm91dGUiO3M6MTQ6InVzZXIuZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6OTt9', 1778610774),
 ('o8TUsONYOPsnCF71dm0vLGNOGP3KjjEujMk3lTBL', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiemU3bFVWakNLbU5xdFZDUGpsanR4YmN6aG5YRUNobFV0VWZjUURSSSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9idDIxIjtzOjU6InJvdXRlIjtzOjQ6ImJ0MjEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo3O30=', 1778600590),
-('oiyA3liT4m8NJCpkI12FePZYwe1Crzzea3RcGRex', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVUVwTHhDa2NRdVVhOE1vUVI1WkFPWEl6UUF3UDh5VlcxVHRFYkpkcyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9uYXZpZ2F0aW9uIjtzOjU6InJvdXRlIjtzOjIyOiJhZG1pbi5uYXZpZ2F0aW9uLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1778599845);
+('oOP7gpFfVdKzblnN5tzknuTep0ODgvsGVlB2Kmsf', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiS051OTVQZnNCN3lzNjhaSVJ6OGxrV3lRQmtXaVF6TjBQSkx2bGswSyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjM1OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vdXBkYXRlcyI7czo1OiJyb3V0ZSI7czoxOToiYWRtaW4udXBkYXRlcy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778609010);
 
 -- --------------------------------------------------------
 
@@ -915,10 +946,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `avatar_key`, `profile_theme`, `badge_key`, `profile_visibility`, `bio`, `points`, `streak_days`, `last_streak_date`, `google_id`, `auth_provider`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'BTS Admin', 'bts_admin', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 12, 1, '2026-05-10', NULL, 'email', 'YdRnYxEhd5IRCRi9WNxi3JySfWPZuQA2LkZcPM1OEvq7zJGWE3JBQL62hiOZ', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
-(6, 'Mehak Arman', 'mehak_frostnap', 'mehakarmaan1@gmail.com', NULL, '$2y$12$NSL1PCrWzlEJrBAYPNZuLuCPUVptKOnRY4a/tM58ChAJsZSRdaS42', 0, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 18446744073709551615, 1, '2026-05-08', NULL, 'email', NULL, '2026-05-08 04:02:54', '2026-05-08 04:08:31'),
-(7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', '67', 12, 1, '2026-05-12', NULL, 'email', 'q72pd1t26Z2AfLP0rTAPGpgyhKryCXpHVuOQTpmML3O9q5M6BDr74QdfiDqm', '2026-05-09 12:45:32', '2026-05-12 11:32:30'),
-(8, 'Mahreen Arman', 'ARMY_BTS_0t7I_-6-7', 'mahreenarmaan10@gmail.com', NULL, '$2y$12$8GBbL5u6jEM/cuM36lpWgukiBg2q8fqjxwKQUzwJq9DT.oLACoR5.', 0, 'favicons/logo.png', 'purple-heart-theme', NULL, 'public', '6-7', 18446744073709551615, 0, NULL, NULL, 'email', NULL, '2026-05-10 10:48:30', '2026-05-10 10:49:48');
+(1, 'Mehak Arman', '⊹ฺ Frostnap⁷♪⟭⟬VH3W💜 ⊹ฺ', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 7777777, 1, '2026-05-10', NULL, 'email', 'YdRnYxEhd5IRCRi9WNxi3JySfWPZuQA2LkZcPM1OEvq7zJGWE3JBQL62hiOZ', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
+(7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', '67', 50, 1, '2026-05-12', NULL, 'email', 'q72pd1t26Z2AfLP0rTAPGpgyhKryCXpHVuOQTpmML3O9q5M6BDr74QdfiDqm', '2026-05-09 12:45:32', '2026-05-12 11:32:30'),
+(8, 'Mahreen Arman', 'ARMY_BTS_0t7I_-6-7', 'mahreenarmaan10@gmail.com', NULL, '$2y$12$8GBbL5u6jEM/cuM36lpWgukiBg2q8fqjxwKQUzwJq9DT.oLACoR5.', 0, 'favicons/logo.png', 'purple-heart-theme', NULL, 'public', '6-7', 50, 0, NULL, NULL, 'email', NULL, '2026-05-10 10:48:30', '2026-05-10 10:49:48'),
+(9, 'Mehak Arman', '7Minus1_is_0', 'mehakarmaan1@gmail.com', NULL, '$2y$12$OwEKnd8rtzpeFqvdhHFCw.CmYIMHxvAlYw1mw9lTY0moK0om8.zc2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', NULL, 7777377, 0, NULL, NULL, 'email', NULL, '2026-05-12 13:37:19', '2026-05-12 14:31:31');
 
 -- --------------------------------------------------------
 
@@ -951,7 +982,11 @@ INSERT INTO `user_profile_assets` (`id`, `user_id`, `profile_asset_id`, `unlocke
 (26, 7, 33, '2026-05-10 14:21:13'),
 (27, 7, 40, '2026-05-10 14:21:21'),
 (28, 7, 31, '2026-05-10 14:26:01'),
-(29, 8, 25, '2026-05-10 14:48:30');
+(29, 8, 25, '2026-05-10 14:48:30'),
+(30, 9, 25, '2026-05-12 17:37:20'),
+(31, 9, 31, '2026-05-12 17:39:16'),
+(32, 9, 29, '2026-05-12 17:39:35'),
+(33, 9, 30, '2026-05-12 17:42:32');
 
 -- --------------------------------------------------------
 
@@ -996,6 +1031,13 @@ ALTER TABLE `bt21_characters`
 ALTER TABLE `bts_copies`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `bts_copies_bts_name_copy_title_unique` (`bts_name`,`copy_title`);
+
+--
+-- Indexes for table `bts_updates`
+--
+ALTER TABLE `bts_updates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bts_updates_slug_unique` (`slug`);
 
 --
 -- Indexes for table `cache`
@@ -1208,6 +1250,12 @@ ALTER TABLE `bts_copies`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `bts_updates`
+--
+ALTER TABLE `bts_updates`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `daily_checkins`
 --
 ALTER TABLE `daily_checkins`
@@ -1253,19 +1301,19 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `nav_items`
 --
 ALTER TABLE `nav_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `point_transactions`
 --
 ALTER TABLE `point_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `profile_assets`
@@ -1331,13 +1379,13 @@ ALTER TABLE `timeline_events`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_profile_assets`
 --
 ALTER TABLE `user_profile_assets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `votes`
