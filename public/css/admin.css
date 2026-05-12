@@ -50,3 +50,68 @@ button,
     color: transparent;
 }
 
+/* =====================================================
+   GLOBAL BULLET / LIST SPACING FIX - ADMIN PANEL
+   Makes admin notes, instructions, and lists readable
+===================================================== */
+
+.admin-main ul,
+.admin-main ol,
+.admin-card ul,
+.admin-card ol,
+.professional-card ul,
+.professional-card ol,
+.admin-details ul,
+.admin-details ol,
+.inside-details ul,
+.inside-details ol {
+    margin: 16px 0 22px;
+    padding-left: 26px;
+}
+
+.admin-main li,
+.admin-card li,
+.professional-card li,
+.admin-details li,
+.inside-details li {
+    margin-bottom: 11px;
+    padding-left: 4px;
+    line-height: 1.75;
+    color: rgba(255, 247, 255, 0.82);
+}
+
+.admin-main li:last-child,
+.admin-card li:last-child,
+.professional-card li:last-child,
+.admin-details li:last-child,
+.inside-details li:last-child {
+    margin-bottom: 0;
+}
+
+.admin-main li::marker,
+.admin-card li::marker,
+.professional-card li::marker,
+.admin-details li::marker,
+.inside-details li::marker {
+    color: #f472b6;
+    font-size: 1.05em;
+}
+
+.admin-main ul ul,
+.admin-main ol ol,
+.admin-main ul ol,
+.admin-main ol ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Keep admin navigation/buttons clean */
+.admin-sidebar nav,
+.admin-section-nav,
+.admin-side-nav,
+.admin-stats-grid,
+.admin-actions,
+.admin-card-header,
+.admin-topbar {
+    list-style: none;
+}
