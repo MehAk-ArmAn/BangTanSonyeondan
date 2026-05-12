@@ -1168,3 +1168,519 @@ textarea { min-height: 110px; resize: vertical; }
         flex-wrap: wrap !important;
     }
 }
+
+.dashboard-skin {
+    --profile-gradient: linear-gradient(135deg,#2e1065,#581c87,#111827);
+    background: var(--profile-gradient) !important;
+}
+
+.dashboard-hero.dashboard-skin {
+    position: relative;
+    overflow: hidden;
+    grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.dashboard-hero.dashboard-skin::before,
+.public-profile-hero::before {
+    content: "";
+    position: absolute;
+    inset: -120px;
+    background: radial-gradient(circle at 18% 10%, rgba(255,255,255,.18), transparent 28%), radial-gradient(circle at 88% 4%, rgba(236,72,153,.20), transparent 30%);
+    pointer-events: none;
+}
+
+.dashboard-identity-block,
+.dashboard-profile-card,
+.public-profile-copy,
+.public-profile-avatar {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.dashboard-badge-row span,
+.dashboard-badge-row a,
+.profile-hero-pills a {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 13px;
+    border-radius: 999px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 900;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(12px);
+}
+
+.dashboard-profile-card {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 24px;
+    border-radius: 32px;
+    background: rgba(0,0,0,.24);
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 24px 70px rgba(0,0,0,.28);
+}
+
+.dashboard-avatar-ring,
+.public-profile-avatar,
+.public-mini-avatar {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: rgba(5,2,12,.44);
+    border: 1px solid rgba(255,255,255,.22);
+    box-shadow: 0 20px 55px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.14);
+}
+
+.dashboard-avatar-ring {
+    width: 132px;
+    height: 132px;
+    border-radius: 36px;
+}
+
+.dashboard-avatar-ring img,
+.public-profile-avatar img,
+.public-mini-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.dashboard-profile-card b {
+    display: block;
+    font-size: 52px;
+    line-height: 1;
+}
+
+.dashboard-profile-card span,
+.dashboard-profile-card small {
+    color: #f5d0fe;
+    font-weight: 900;
+}
+
+.dashboard-material-card {
+    min-height: 255px;
+}
+
+.public-profile-hero {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 28px;
+    align-items: center;
+    margin-top: 58px;
+    padding: 36px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: var(--shadow);
+}
+
+.public-profile-avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 50px;
+}
+
+.public-profile-avatar strong,
+.public-mini-avatar strong {
+    font-size: 62px;
+}
+
+.public-profile-copy h1 {
+    margin: 12px 0;
+    font-size: clamp(42px, 7vw, 88px);
+    line-height: .9;
+    letter-spacing: -.07em;
+}
+
+.public-profile-copy p {
+    max-width: 780px;
+    color: rgba(255,255,255,.82);
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+.public-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.community-grid {
+    margin: 28px 0;
+}
+
+.public-mini-profile {
+    display: grid;
+    gap: 12px;
+    min-height: 280px;
+    padding: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    border: 1px solid rgba(255,255,255,.13);
+    box-shadow: 0 20px 60px rgba(0,0,0,.22);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.public-mini-profile:hover {
+    transform: translateY(-7px);
+    border-color: rgba(216,180,254,.5);
+    box-shadow: 0 30px 80px rgba(168,85,247,.20);
+}
+
+.public-mini-avatar {
+    width: 94px;
+    height: 94px;
+    border-radius: 28px;
+}
+
+.public-mini-profile h3 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.public-mini-profile p {
+    margin: 0;
+    color: rgba(255,255,255,.72);
+    line-height: 1.55;
+}
+
+.public-mini-profile span {
+    color: #f5d0fe;
+    font-weight: 900;
+}
+
+.profile-choice-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.12);
+}
+
+.compact-profile-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.theme-swatch {
+    border-radius: 28px;
+}
+
+.profile-share-panel {
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.profile-share-panel strong {
+    color: #f5d0fe;
+}
+
+.profile-share-panel input {
+    font-size: 13px;
+}
+
+.public-pagination {
+    margin: 30px 0 80px;
+}
+
+.swal2-popup {
+    border: 1px solid rgba(216,180,254,.22) !important;
+    box-shadow: 0 28px 90px rgba(0,0,0,.45) !important;
+}
+
+@media (max-width: 900px) {
+    .dashboard-hero.dashboard-skin,
+    .public-profile-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .public-profile-avatar {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+/* =====================================================
+   SMART NAVBAR AUTO-MORE SYSTEM
+   Moves links into More before navbar gets cramped
+===================================================== */
+
+.site-header {
+    display: grid !important;
+    grid-template-columns: auto minmax(180px, 1fr) minmax(230px, 320px) auto;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.brand-link {
+    min-width: 0;
+    max-width: 260px;
+}
+
+.brand-link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.smart-site-nav {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: nowrap !important;
+    overflow: visible;
+}
+
+.smart-nav-visible {
+    min-width: 0;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.smart-nav-visible .smart-nav-item,
+.smart-nav-hidden .smart-nav-item {
+    white-space: nowrap;
+}
+
+.smart-nav-more {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.smart-nav-more[hidden] {
+    display: none !important;
+}
+
+.smart-nav-more summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid rgba(216,180,254,.16);
+    background: rgba(255,255,255,.055);
+    user-select: none;
+}
+
+.smart-nav-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.smart-nav-more[open] summary,
+.smart-nav-more summary:hover {
+    color: #fff;
+    background: rgba(168,85,247,.18);
+}
+
+.smart-nav-hidden {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 270px;
+    max-height: 430px;
+    overflow-y: auto;
+    display: grid;
+    gap: 4px;
+    padding: 12px;
+    border-radius: 22px;
+    background: rgba(8, 3, 18, .97);
+    border: 1px solid rgba(216,180,254,.22);
+    box-shadow: 0 24px 80px rgba(0,0,0,.45);
+    backdrop-filter: blur(18px);
+    z-index: 100;
+    animation: navDrop .18s ease;
+}
+
+.smart-nav-hidden a {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 12px 14px !important;
+    border-radius: 16px !important;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.smart-nav-hidden a:hover {
+    color: #fff;
+    background: rgba(168,85,247,.18);
+    transform: translateX(4px);
+}
+
+.nav-search {
+    min-width: 0 !important;
+    width: 100%;
+}
+
+.nav-search input {
+    min-width: 0;
+}
+
+.nav-actions {
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+}
+
+@keyframes navDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 1180px) {
+    .site-header {
+        grid-template-columns: auto minmax(160px, 1fr) auto;
+    }
+
+    .nav-search {
+        grid-column: 1 / -1;
+        order: 5;
+    }
+}
+
+@media (max-width: 900px) {
+    .site-header {
+        position: sticky !important;
+        grid-template-columns: 1fr;
+        align-items: stretch !important;
+    }
+
+    .brand-link {
+        max-width: 100%;
+    }
+
+    .smart-site-nav {
+        justify-content: flex-start;
+    }
+
+    .smart-nav-visible {
+        justify-content: flex-start;
+    }
+
+    .smart-nav-hidden {
+        left: 0;
+        right: auto;
+    }
+
+    .nav-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap !important;
+    }
+}
+
+/* =====================================================
+   GLOBAL BULLET / LIST SPACING FIX - PUBLIC SITE
+   Makes bullets readable and less cramped everywhere
+===================================================== */
+
+.page-shell ul,
+.page-shell ol,
+.site-footer ul,
+.site-footer ol {
+    margin: 16px 0 22px;
+    padding-left: 26px;
+}
+
+.page-shell li,
+.site-footer li {
+    margin-bottom: 12px;
+    padding-left: 4px;
+    line-height: 1.75;
+    color: rgba(255, 247, 255, 0.82);
+}
+
+.page-shell li:last-child,
+.site-footer li:last-child {
+    margin-bottom: 0;
+}
+
+.page-shell li::marker,
+.site-footer li::marker {
+    color: #c084fc;
+    font-size: 1.05em;
+}
+
+.page-shell ul ul,
+.page-shell ol ol,
+.page-shell ul ol,
+.page-shell ol ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Better spacing for content-heavy sections */
+.lesson-body ul,
+.lesson-body ol,
+.material-body-copy ul,
+.material-body-copy ol,
+.learn-main-story ul,
+.learn-main-story ol,
+.learn-info-box ul,
+.learn-info-box ol,
+.glass-panel ul,
+.glass-panel ol,
+.profile-tip-card ul,
+.profile-tip-card ol {
+    display: grid;
+    gap: 10px;
+    margin: 18px 0 24px;
+    padding-left: 28px;
+}
+
+.lesson-body li,
+.material-body-copy li,
+.learn-main-story li,
+.learn-info-box li,
+.glass-panel li,
+.profile-tip-card li {
+    line-height: 1.85;
+}
+
+/* Stop button/nav style links from being affected */
+.site-nav,
+.nav-actions,
+.footer-mini-badges,
+.social-row,
+.hero-actions,
+.dashboard-badge-row,
+.profile-hero-pills {
+    list-style: none;
+}

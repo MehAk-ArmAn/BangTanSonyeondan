@@ -5,14 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'is_admin', 'avatar_key', 'profile_theme',
-        'bio', 'points', 'streak_days', 'last_streak_date', 'google_id', 'auth_provider',
+        'name',
+        'username',
+        'email',
+        'password',
+        'is_admin',
+        'avatar_key',
+        'profile_theme',
+        'badge_key',
+        'profile_visibility',
+        'bio',
+        'points',
+        'streak_days',
+        'last_streak_date',
+        'google_id',
+        'auth_provider',
     ];
 
     protected $hidden = [
@@ -37,6 +51,11 @@ class User extends Authenticatable
         return $this->hasMany(QuizAttempt::class);
     }
 
+    public function quizGameAttempts()
+    {
+        return $this->hasMany(QuizGameAttempt::class);
+    }
+
     public function pointTransactions()
     {
         return $this->hasMany(PointTransaction::class);
@@ -50,5 +69,20 @@ class User extends Authenticatable
     public function displayName(): string
     {
         return $this->username ?: $this->name;
+    }
+
+    public function publicHandle(): string
+    {
+        return $this->username ?: ('army-' . $this->id);
+    }
+
+    public function publicUrl(): string
+    {
+        return route('profiles.show', $this->publicHandle());
+    }
+
+    public function profileInitial(): string
+    {
+        return Str::upper(Str::substr($this->displayName(), 0, 1)) ?: 'A';
     }
 }

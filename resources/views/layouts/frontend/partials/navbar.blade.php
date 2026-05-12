@@ -1,34 +1,33 @@
-@php
-    $visibleNavItems = collect($navItems ?? [])->take(5);
-    $moreNavItems = collect($navItems ?? [])->slice(5);
-@endphp
-
-<header class="site-header">
+<header class="site-header" id="smartSiteHeader">
     <a href="{{ route('home') }}" class="brand-link" aria-label="BangTanSonyeondan Home">
         <img src="{{ asset('favicons/logo.png') }}" alt="BangTanSonyeondan logo">
         <span>{{ $siteSettings['site_title'] ?? 'BangTanSonyeondan' }}</span>
     </a>
 
-    <nav class="site-nav" aria-label="Main navigation">
-        @foreach($visibleNavItems as $item)
-            <a href="{{ url($item->url) }}">{{ $item->label }}</a>
-        @endforeach
+    <nav class="site-nav smart-site-nav" id="smartSiteNav" aria-label="Main navigation">
+        <div class="smart-nav-visible" id="smartNavVisible">
+            @foreach($navItems as $item)
+                <a
+                    href="{{ url($item->url) }}"
+                    class="smart-nav-item"
+                    data-nav-order="{{ $loop->index }}"
+                >
+                    {{ $item->label }}
+                </a>
+            @endforeach
+        </div>
 
-        @if($moreNavItems->count())
-            <details class="nav-more">
-                <summary>More <span>⌄</span></summary>
+        <details class="nav-more smart-nav-more" id="smartNavMore">
+            <summary>
+                More <span>⌄</span>
+            </summary>
 
-                <div class="nav-more-menu">
-                    @foreach($moreNavItems as $item)
-                        <a href="{{ url($item->url) }}">{{ $item->label }}</a>
-                    @endforeach
-                </div>
-            </details>
-        @endif
+            <div class="nav-more-menu smart-nav-hidden" id="smartNavHidden"></div>
+        </details>
     </nav>
 
     <form class="nav-search" action="{{ route('search') }}" method="GET" role="search">
-        <input type="search" name="q" value="{{ request('q') }}" placeholder="Search..." aria-label="Search website">
+        <input type="search" name="q" value="{{ request('q') }}" placeholder="Search BTS, songs, quotes..." aria-label="Search website">
         <button type="submit">Search</button>
     </form>
 

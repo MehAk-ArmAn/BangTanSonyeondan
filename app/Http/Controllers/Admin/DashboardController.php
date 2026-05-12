@@ -18,17 +18,27 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $count = function (string $table): int {
+            try {
+                return \Illuminate\Support\Facades\Schema::hasTable($table)
+                    ? \Illuminate\Support\Facades\DB::table($table)->count()
+                    : 0;
+            } catch (\Throwable $e) {
+                return 0;
+            }
+        };
+
         return view('admin.dashboard', [
-            'settingsCount' => SiteSetting::count(),
-            'navCount' => NavItem::count(),
-            'membersCount' => Member::count(),
-            'songsCount' => SongImage::count(),
-            'galleryCount' => GalleryImage::count(),
-            'quotesCount' => Quote::count(),
-            'timelineCount' => TimelineEvent::count(),
-            'usersCount' => User::count(),
-            'bt21Count' => Bt21Character::count(),
-            'votesCount' => Vote::count(),
+            'membersCount' => $count('members'),
+            'learningCount' => $count('learning_materials'),
+            'quizCount' => $count('quiz_games'),
+            'songsCount' => $count('songs_images'),
+            'galleryCount' => $count('gallery_images'),
+            'bt21Count' => $count('bt21_characters'),
+            'quotesCount' => $count('quotes'),
+            'timelineCount' => $count('timeline_events'),
+            'navCount' => $count('nav_items'),
+            'votesCount' => $count('votes'),
         ]);
     }
 }

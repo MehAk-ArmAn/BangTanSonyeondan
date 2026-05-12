@@ -12,21 +12,29 @@
     @include('layouts.frontend.partials.navbar')
 
     <main class="page-shell">
-        @if (session('success'))
-            <div class="public-alert success">{{ session('success') }}</div>
-        @endif
-        @if (session('error'))
-            <div class="public-alert error">{{ session('error') }}</div>
-        @endif
-        @if ($errors->any())
-            <div class="public-alert error">{{ $errors->first() }}</div>
-        @endif
+        <div id="flashData"
+             data-success="{{ session('success') }}"
+             data-error="{{ session('error') ?: ($errors->any() ? $errors->first() : '') }}"></div>
+
+        <noscript>
+            @if (session('success'))
+                <div class="public-alert success">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="public-alert error">{{ session('error') }}</div>
+            @endif
+            @if ($errors->any())
+                <div class="public-alert error">{{ $errors->first() }}</div>
+            @endif
+        </noscript>
+
         @yield('content')
     </main>
 
-    <script src="{{ asset('js/bts.js') }}"></script>
-
     @include('layouts.frontend.partials.footer')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/bts.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

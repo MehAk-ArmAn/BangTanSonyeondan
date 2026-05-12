@@ -47,6 +47,8 @@ Route::get('/learn/{slug}', [LearningController::class, 'show'])->name('learn.sh
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes.index');
 Route::get('/quizzes/{quiz:slug}', [QuizController::class, 'show'])->name('quizzes.show');
 Route::get('/leaderboard', [LearningController::class, 'leaderboard'])->name('leaderboard');
+Route::get('/army', [UserDashboardController::class, 'community'])->name('profiles.index');
+Route::get('/u/{profile}', [UserDashboardController::class, 'publicProfile'])->name('profiles.show');
 
 /* Public auth */
 Route::middleware('guest')->group(function () {
