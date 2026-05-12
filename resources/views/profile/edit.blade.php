@@ -80,6 +80,7 @@
     <form method="POST" action="{{ route('profile.update') }}" class="glass-panel profile-editor-card" id="armyProfileForm">
         @csrf
         @method('PUT')
+        <input type="hidden" name="profile_visibility" value="{{ old('profile_visibility', $user->profile_visibility ?? 'public') }}">
 
         <div class="profile-card-heading">
             <span class="eyebrow">Edit details</span>

@@ -158,32 +158,61 @@ class UserDashboardController extends Controller
                 Rule::unique('users', 'username')->ignore($user->id),
             ],
             'bio' => ['nullable', 'string', 'max:500'],
-            'profile_avatar' => ['nullable', 'string', 'max:120'],
-            'profile_theme' => ['nullable', 'string', 'max:120'],
-            'profile_badge' => ['nullable', 'string', 'max:120'],
-            'profile_visibility' => ['required', Rule::in(['public', 'private'])],
+
+            // Your Blade currently sends this one selected card key.
+            'profile_asset' => ['nullable', 'string', 'max:120'],
+
+            // Do not crash if old Blade or browser cache does not send this.
+            'profile_visibility' => ['nullable', Rule::in(['public', 'private'])],
         ]);
-
-        $allowedKeys = $this->allowedAssetKeys($user);
-
-        $avatar = $this->assetForSelection($data['profile_avatar'] ?? null, $allowedKeys, ['avatar', 'bundle']);
-        $theme = $this->assetForSelection($data['profile_theme'] ?? null, $allowedKeys, ['theme', 'bundle']);
-        $badge = $this->assetForSelection($data['profile_badge'] ?? null, $allowedKeys, ['badge', 'bundle']);
 
         $nextAvatar = $user->avatar_key ?: 'favicons/logo.png';
         $nextTheme = $user->profile_theme ?: 'galaxy-purple';
-        $nextBadge = $user->badge_key ?: null;
+        $nextBadge = $user->badge_key ?? null;
 
-        if ($avatar) {
-            $nextAvatar = $avatar->avatar_image ?: $avatar->image_path ?: $avatar->key;
-        }
+        if (! empty($data['profile_asset'])) {
+            $unlockedKeys = $user->unlockedAssets()
+                ->pluck('profile_assets.key')
+                ->toArray();
 
-        if ($theme) {
-            $nextTheme = $theme->theme_class ?: $theme->key;
-        }
+            $freeKeys = ProfileAsset::where('is_active', true)
+                ->where('cost', 0)
+                ->pluck('key')
+                ->toArray();
 
-        if ($badge) {
-            $nextBadge = $badge->badge_label ?: $badge->label ?: $badge->key;
+            $allowedKeys = array_unique(array_merge($unlockedKeys, $freeKeys));
+
+            $asset = ProfileAsset::where('is_active', true)
+                ->where('key', $data['profile_asset'])
+                ->whereIn('key', $allowedKeys)
+                ->first();
+
+            if (! $asset) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'That profile upgrade is locked. Earn points or unlock it first.');
+            }
+
+            $assetType = strtolower((string) $asset->type);
+            $assetAvatar = $asset->avatar_image ?: $asset->image_path;
+            $assetTheme = $asset->theme_class ?: ($assetType === 'theme' ? $asset->key : null);
+            $assetBadge = $asset->badge_label ?: ($assetType === 'badge' ? $asset->label : null);
+
+            if ($assetType === 'bundle') {
+                $nextAvatar = $assetAvatar ?: $nextAvatar;
+                $nextTheme = $assetTheme ?: $nextTheme;
+                $nextBadge = $assetBadge ?: $nextBadge;
+            } elseif ($assetType === 'avatar') {
+                $nextAvatar = $assetAvatar ?: $asset->key;
+            } elseif ($assetType === 'theme') {
+                $nextTheme = $assetTheme ?: $asset->key;
+            } elseif ($assetType === 'badge') {
+                $nextBadge = $assetBadge ?: $asset->label;
+            } else {
+                $nextAvatar = $assetAvatar ?: $nextAvatar;
+                $nextTheme = $assetTheme ?: $nextTheme;
+                $nextBadge = $assetBadge ?: $nextBadge;
+            }
         }
 
         $user->forceFill([
@@ -193,10 +222,10 @@ class UserDashboardController extends Controller
             'avatar_key' => $nextAvatar,
             'profile_theme' => $nextTheme,
             'badge_key' => $nextBadge,
-            'profile_visibility' => $data['profile_visibility'],
+            'profile_visibility' => $data['profile_visibility'] ?? ($user->profile_visibility ?? 'public'),
         ])->save();
 
-        return back()->with('success', 'Profile saved. Your dashboard and public profile now use this whole vibe.');
+        return back()->with('success', 'Profile updated! Your avatar, theme, badge, and dashboard vibe are saved.');
     }
 
     public function unlockAsset(ProfileAsset $asset)

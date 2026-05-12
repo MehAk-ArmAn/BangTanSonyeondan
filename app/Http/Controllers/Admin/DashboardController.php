@@ -39,6 +39,7 @@ class DashboardController extends Controller
             'timelineCount' => $count('timeline_events'),
             'navCount' => $count('nav_items'),
             'votesCount' => $count('votes'),
+            'updatesCount' => $count('bts_updates'),
         ]);
     }
 }

@@ -12,6 +12,7 @@
         ['label' => 'Timeline', 'url' => route('admin.timeline.index')],
         ['label' => 'BT21', 'url' => route('admin.bt21.index')],
         ['label' => 'Votes', 'url' => route('admin.votes.index')],
+        ['label' => 'BangTan Updates', 'url' => route('admin.updates.index')],
     ];
 @endphp
 

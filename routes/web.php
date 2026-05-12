@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BtsUpdateController;
+use App\Http\Controllers\Admin\BtsUpdatesController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -49,6 +51,8 @@ Route::get('/quizzes/{quiz:slug}', [QuizController::class, 'show'])->name('quizz
 Route::get('/leaderboard', [LearningController::class, 'leaderboard'])->name('leaderboard');
 Route::get('/army', [UserDashboardController::class, 'community'])->name('profiles.index');
 Route::get('/u/{profile}', [UserDashboardController::class, 'publicProfile'])->name('profiles.show');
+Route::get('/updates', [BtsUpdateController::class, 'index'])->name('updates.index');
+Route::get('/updates/{update:slug}', [BtsUpdateController::class, 'show'])->name('updates.show');
 
 /* Public auth */
 Route::middleware('guest')->group(function () {
@@ -108,6 +112,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/quizzes/{quiz}/questions', [QuizzesController::class, 'storeQuestion'])->name('quizzes.questions.store');
         Route::put('/quiz-questions/{question}', [QuizzesController::class, 'updateQuestion'])->name('quiz-questions.update');
         Route::delete('/quiz-questions/{question}', [QuizzesController::class, 'destroyQuestion'])->name('quiz-questions.destroy');
+        Route::resource('/updates', BtsUpdatesController::class)->except(['show', 'create', 'edit']);
         Route::get('/votes', [VotesController::class, 'index'])->name('votes.index');
     });
 });

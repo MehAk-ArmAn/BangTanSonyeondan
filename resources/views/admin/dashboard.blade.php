@@ -24,6 +24,7 @@
         <a href="{{ route('admin.timeline.index') }}"><span>Timeline</span><b>{{ $timelineCount }}</b></a>
         <a href="{{ route('admin.navigation.index') }}"><span>Nav Links</span><b>{{ $navCount }}</b></a>
         <a href="{{ route('admin.votes.index') }}"><span>Votes</span><b>{{ $votesCount }}</b></a>
+        <a href="{{ route('admin.updates.index') }}"><span>Latest Updates</span><b>{{ $updatesCount }}</b></a>
     </div>
 </section>
 @endsection

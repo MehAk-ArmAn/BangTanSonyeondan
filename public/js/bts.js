@@ -8,6 +8,7 @@
         setupProfileSharing();
         setupNavDropdownClose();
         setupSmartNavbar();
+        setupUpdateSharing();
     });
 
     function setupFlashAlerts() {
@@ -46,27 +47,38 @@
     function setupProfileLivePreview() {
         const form = document.getElementById('armyProfileForm');
         const previewCard = document.getElementById('profilePreviewCard');
+
         if (!form || !previewCard) return;
 
         const nameInput = document.getElementById('profileNameInput');
         const usernameInput = document.getElementById('profileUsernameInput');
         const bioInput = document.getElementById('profileBioInput');
         const bioCount = document.getElementById('bioCount');
+
         const previewName = document.getElementById('profilePreviewName');
         const previewBio = document.getElementById('profilePreviewBio');
-        const previewBadge = document.getElementById('profilePreviewBadge');
         const previewAvatar = document.getElementById('profilePreviewAvatar');
-        const choiceCards = form.querySelectorAll('.profile-choice-card');
+        const previewAsset = document.getElementById('profilePreviewAsset');
+
+        const searchInput = document.getElementById('assetSearch');
+        const filterSelect = document.getElementById('assetFilter');
+        const cards = Array.from(form.querySelectorAll('.profile-choice-card'));
+
         const originalPreviewBio = previewBio?.textContent?.trim() || '';
 
         function assetUrl(path) {
             if (!path) return '';
-            if (/^(https?:)?\/\//i.test(path) || path.startsWith('/')) return path;
+
+            if (/^(https?:)?\/\//i.test(path) || path.startsWith('/')) {
+                return path;
+            }
+
             const base = document.querySelector('meta[name="app-url"]')?.content || window.location.origin;
+
             return base.replace(/\/$/, '') + '/' + path.replace(/^\//, '');
         }
 
-        function profileName(value) {
+        function cleanName(value) {
             return (value || '').trim() || 'ARMY profile';
         }
 
@@ -75,50 +87,108 @@
             const displayName = (nameInput?.value || '').trim();
             const bio = (bioInput?.value || '').trim();
 
-            if (previewName) previewName.textContent = profileName(username || displayName);
-            if (previewBio) previewBio.textContent = bio || originalPreviewBio;
-            if (bioCount && bioInput) bioCount.textContent = bioInput.value.length;
+            if (previewName) {
+                previewName.textContent = cleanName(username || displayName);
+            }
+
+            if (previewBio) {
+                previewBio.textContent = bio || originalPreviewBio;
+            }
+
+            if (bioCount && bioInput) {
+                bioCount.textContent = bioInput.value.length;
+            }
         }
 
-        function clearSelected(role) {
-            choiceCards.forEach(function (item) {
-                if (item.dataset.previewRole === role) item.classList.remove('is-selected');
-            });
-        }
-
-        function selectChoice(card) {
-            const role = card.dataset.previewRole || 'asset';
-            clearSelected(role);
+        function selectCard(card) {
+            cards.forEach(item => item.classList.remove('is-selected'));
             card.classList.add('is-selected');
 
             const radio = card.querySelector('input[type="radio"]');
-            if (radio) radio.checked = true;
 
-            const gradient = card.dataset.gradient;
-            const theme = card.dataset.theme;
-            const avatar = card.dataset.avatar;
-            const badge = card.dataset.badge;
+            if (radio) {
+                radio.checked = true;
+            }
 
-            if (role === 'theme' && gradient) previewCard.style.setProperty('--profile-card-gradient', gradient);
-            if (role === 'theme' && theme) previewCard.dataset.theme = theme;
-            if (role === 'avatar' && previewAvatar && avatar) previewAvatar.src = assetUrl(avatar);
-            if (role === 'badge' && previewBadge && badge) previewBadge.textContent = badge;
+            const label = card.dataset.label || 'Selected profile vibe';
+            const avatar = card.dataset.avatar || '';
+            const theme = card.dataset.theme || '';
+            const gradient = card.dataset.gradient || '';
+
+            if (previewAsset) {
+                previewAsset.textContent = label;
+            }
+
+            if (gradient) {
+                previewCard.style.setProperty('--profile-card-gradient', gradient);
+            }
+
+            if (theme) {
+                previewCard.className = previewCard.className
+                    .split(' ')
+                    .filter(className => !['galaxy-purple', 'galaxy-stage', 'night-black', 'crimson-stage'].includes(className))
+                    .join(' ');
+
+                previewCard.classList.add(theme);
+            }
+
+            if (avatar && previewAvatar) {
+                previewAvatar.src = assetUrl(avatar);
+                previewAvatar.style.display = 'block';
+            }
         }
 
-        [nameInput, usernameInput, bioInput].forEach(function (input) {
-            if (input) input.addEventListener('input', updateTextPreview);
+        function filterCards() {
+            const query = (searchInput?.value || '').trim().toLowerCase();
+            const type = (filterSelect?.value || 'all').toLowerCase();
+
+            cards.forEach(card => {
+                const cardText = (card.dataset.name || '').toLowerCase();
+                const cardType = (card.dataset.type || '').toLowerCase();
+
+                const matchesSearch = query === '' || cardText.includes(query);
+                const matchesType = type === 'all' || cardType === type;
+
+                card.style.display = matchesSearch && matchesType ? '' : 'none';
+            });
+        }
+
+        [nameInput, usernameInput, bioInput].forEach(input => {
+            if (input) {
+                input.addEventListener('input', updateTextPreview);
+                input.addEventListener('keyup', updateTextPreview);
+                input.addEventListener('change', updateTextPreview);
+            }
         });
 
-        choiceCards.forEach(function (card) {
+        cards.forEach(card => {
             card.addEventListener('click', function () {
-                selectChoice(card);
+                selectCard(card);
             });
 
             const radio = card.querySelector('input[type="radio"]');
-            if (radio && radio.checked) selectChoice(card);
+
+            if (radio) {
+                radio.addEventListener('change', function () {
+                    selectCard(card);
+                });
+
+                if (radio.checked) {
+                    selectCard(card);
+                }
+            }
         });
 
+        if (searchInput) {
+            searchInput.addEventListener('input', filterCards);
+        }
+
+        if (filterSelect) {
+            filterSelect.addEventListener('change', filterCards);
+        }
+
         updateTextPreview();
+        filterCards();
     }
 
     function setupProfileSharing() {
@@ -337,6 +407,44 @@
             clearTimeout(timer);
             timer = setTimeout(callback, delay);
         };
+    }
+
+    function setupUpdateSharing() {
+        document.querySelectorAll('.js-share-update').forEach(function (button) {
+            button.addEventListener('click', async function () {
+                const url = button.dataset.shareUrl || window.location.href;
+                const title = button.dataset.shareTitle || document.title;
+
+                try {
+                    if (navigator.share) {
+                        await navigator.share({ title, url });
+                    } else if (navigator.clipboard) {
+                        await navigator.clipboard.writeText(url);
+
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update link copied',
+                                showConfirmButton: false,
+                                timer: 1800,
+                                background: '#120724',
+                                color: '#fff7ff'
+                            });
+                        } else {
+                            alert('Update link copied');
+                        }
+                    } else {
+                        window.prompt('Copy this update link:', url);
+                    }
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        alert('Could not share right now.');
+                    }
+                }
+            });
+        });
     }
 
 })();

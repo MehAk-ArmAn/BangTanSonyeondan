@@ -18,6 +18,7 @@
         <a href="{{ route('admin.timeline.index') }}">Timeline</a>
         <a href="{{ route('admin.bt21.index') }}">BT21</a>
         <a href="{{ route('admin.votes.index') }}">Votes</a>
+        <a href="{{ route('admin.updates.index') }}">BangTan Updates</a>
         <a href="{{ route('home') }}" target="_blank">View Site</a>
     </nav>
 
