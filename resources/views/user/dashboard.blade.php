@@ -26,7 +26,7 @@
         </div>
         <b>{{ number_format($user->points) }}</b>
         <span>Total points</span>
-        <small>#{{ $rank }} rank · {{ $user->streak_days }} day streak</small>
+        <small>#{{ $rank }} rank · {{ $displayStreak }} day streak</small>
     </div>
 </section>
 

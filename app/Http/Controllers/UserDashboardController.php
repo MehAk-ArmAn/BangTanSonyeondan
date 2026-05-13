@@ -22,6 +22,7 @@ class UserDashboardController extends Controller
         $user = Auth::user();
         $today = today();
         $skin = $this->profileSkin($user);
+        $displayStreak = $this->currentStreak($user);
 
         $rank = User::where('is_admin', false)
             ->where('points', '>', $user->points)
@@ -30,63 +31,63 @@ class UserDashboardController extends Controller
         return view('user.dashboard', [
             'user' => $user,
             'skin' => $skin,
-            'materials' => LearningMaterial::visible()->orderByDesc('is_featured')->orderBy('sort_order')->limit(6)->get(),
-            'quizzes' => QuizGame::visible()->withCount(['questions' => fn ($q) => $q->where('is_active', true)])->orderByDesc('is_featured')->orderBy('sort_order')->limit(6)->get(),
-            'recentAttempts' => QuizGameAttempt::with('quiz')->where('user_id', $user->id)->latest()->limit(5)->get(),
-            'recentPoints' => PointTransaction::where('user_id', $user->id)->latest()->limit(8)->get(),
-            'leaderboard' => User::where('is_admin', false)->orderByDesc('points')->orderBy('name')->limit(8)->get(),
-            'communityUsers' => User::where('is_admin', false)->where('profile_visibility', 'public')->where('id', '!=', $user->id)->orderByDesc('points')->orderBy('name')->limit(6)->get(),
-            'checkedInToday' => DailyCheckin::where('user_id', $user->id)->whereDate('checkin_date', $today)->exists(),
-            'assets' => ProfileAsset::active()->orderBy('sort_order')->get(),
-            'unlockedAssetIds' => $user->unlockedAssets()->pluck('profile_assets.id')->toArray(),
+            'displayStreak' => $displayStreak,
             'rank' => $rank,
-        ]);
-    }
 
-    public function community(Request $request)
-    {
-        $query = trim((string) $request->query('q', ''));
+            'materials' => LearningMaterial::where('is_active', true)
+                ->orderByDesc('is_featured')
+                ->orderBy('sort_order')
+                ->orderBy('title')
+                ->limit(6)
+                ->get(),
 
-        $users = User::where('is_admin', false)
-            ->where('profile_visibility', 'public')
-            ->when($query !== '', function ($q) use ($query) {
-                $like = '%' . $query . '%';
-                $q->where(function ($inner) use ($like) {
-                    $inner->where('name', 'like', $like)
-                        ->orWhere('username', 'like', $like)
-                        ->orWhere('bio', 'like', $like);
-                });
-            })
-            ->orderByDesc('points')
-            ->orderBy('name')
-            ->paginate(18)
-            ->withQueryString();
+            'quizzes' => QuizGame::where('is_active', true)
+                ->withCount(['questions' => fn ($q) => $q->where('is_active', true)])
+                ->orderByDesc('is_featured')
+                ->orderBy('sort_order')
+                ->orderBy('title')
+                ->limit(6)
+                ->get(),
 
-        return view('user.community', [
-            'users' => $users,
-            'query' => $query,
-        ]);
-    }
+            'recentAttempts' => QuizGameAttempt::with('quiz')
+                ->where('user_id', $user->id)
+                ->latest()
+                ->limit(5)
+                ->get(),
 
-    public function publicProfile(string $profile)
-    {
-        $user = User::where('profile_visibility', 'public')
-            ->where(function ($query) use ($profile) {
-                $query->where('username', $profile);
+            'recentPoints' => PointTransaction::where('user_id', $user->id)
+                ->latest()
+                ->limit(8)
+                ->get(),
 
-                if (str_starts_with($profile, 'army-')) {
-                    $query->orWhere('id', (int) str_replace('army-', '', $profile));
-                }
-            })
-            ->firstOrFail();
+            'leaderboard' => User::where('is_admin', false)
+                ->orderByDesc('points')
+                ->orderBy('name')
+                ->limit(8)
+                ->get(),
 
-        $skin = $this->profileSkin($user);
+            'communityUsers' => User::where('is_admin', false)
+                ->where(function ($query) {
+                    $query->where('profile_visibility', 'public')
+                        ->orWhereNull('profile_visibility');
+                })
+                ->where('id', '!=', $user->id)
+                ->orderByDesc('points')
+                ->orderBy('name')
+                ->limit(6)
+                ->get(),
 
-        return view('user.public-profile', [
-            'profileUser' => $user,
-            'skin' => $skin,
-            'recentAttempts' => QuizGameAttempt::with('quiz')->where('user_id', $user->id)->latest()->limit(4)->get(),
-            'recentPoints' => PointTransaction::where('user_id', $user->id)->latest()->limit(6)->get(),
+            'checkedInToday' => DailyCheckin::where('user_id', $user->id)
+                ->whereDate('checkin_date', $today)
+                ->exists(),
+
+            'assets' => ProfileAsset::where('is_active', true)
+                ->orderBy('sort_order')
+                ->get(),
+
+            'unlockedAssetIds' => $user->unlockedAssets()
+                ->pluck('profile_assets.id')
+                ->toArray(),
         ]);
     }
 
@@ -95,14 +96,16 @@ class UserDashboardController extends Controller
         $user = Auth::user();
         $today = today();
 
-        if (DailyCheckin::where('user_id', $user->id)->whereDate('checkin_date', $today)->exists()) {
+        $alreadyCheckedToday = DailyCheckin::where('user_id', $user->id)
+            ->whereDate('checkin_date', $today)
+            ->exists();
+
+        if ($alreadyCheckedToday) {
             return back()->with('success', 'You already claimed today’s streak points. Come back tomorrow.');
         }
 
-        $yesterday = $today->copy()->subDay();
-        $newStreak = $user->last_streak_date && Carbon::parse($user->last_streak_date)->isSameDay($yesterday)
-            ? $user->streak_days + 1
-            : 1;
+        $currentStreak = $this->currentStreak($user);
+        $newStreak = $currentStreak + 1;
 
         $points = min(10 + ($newStreak * 2), 40);
 
@@ -127,19 +130,18 @@ class UserDashboardController extends Controller
             'meta' => ['streak_days' => $newStreak],
         ]);
 
-        return back()->with('success', "Daily streak claimed! +{$points} points.");
+        return back()->with('success', "Daily streak claimed! +{$points} points. Your streak is now {$newStreak} days.");
     }
 
     public function profile()
     {
         $user = Auth::user();
-        $assets = ProfileAsset::active()->orderBy('sort_order')->get();
-        $unlockedAssetIds = $user->unlockedAssets()->pluck('profile_assets.id')->toArray();
 
         return view('profile.edit', [
             'user' => $user,
-            'assets' => $assets,
-            'unlockedAssetIds' => $unlockedAssetIds,
+            'assets' => ProfileAsset::where('is_active', true)->orderBy('sort_order')->get(),
+            'unlockedAssetIds' => $user->unlockedAssets()->pluck('profile_assets.id')->toArray(),
+            'displayStreak' => $this->currentStreak($user),
             'skin' => $this->profileSkin($user),
         ]);
     }
@@ -158,11 +160,7 @@ class UserDashboardController extends Controller
                 Rule::unique('users', 'username')->ignore($user->id),
             ],
             'bio' => ['nullable', 'string', 'max:500'],
-
-            // Your Blade currently sends this one selected card key.
             'profile_asset' => ['nullable', 'string', 'max:120'],
-
-            // Do not crash if old Blade or browser cache does not send this.
             'profile_visibility' => ['nullable', Rule::in(['public', 'private'])],
         ]);
 
@@ -257,42 +255,110 @@ class UserDashboardController extends Controller
             ]);
         });
 
-        return back()->with('success', 'Upgrade unlocked. Go apply it from your profile studio.');
+        return back()->with('success', 'Upgrade unlocked.');
     }
 
-    private function allowedAssetKeys(User $user): array
+    public function community(Request $request)
     {
-        $unlockedKeys = $user->unlockedAssets()->pluck('profile_assets.key')->toArray();
-        $freeKeys = ProfileAsset::active()->where('cost', 0)->pluck('key')->toArray();
+        $query = trim((string) $request->query('q', ''));
 
-        return array_values(array_unique(array_merge($unlockedKeys, $freeKeys)));
+        $users = User::where('is_admin', false)
+            ->where(function ($q) {
+                $q->where('profile_visibility', 'public')
+                    ->orWhereNull('profile_visibility');
+            })
+            ->when($query !== '', function ($q) use ($query) {
+                $like = '%' . $query . '%';
+
+                $q->where(function ($inner) use ($like) {
+                    $inner->where('name', 'like', $like)
+                        ->orWhere('username', 'like', $like)
+                        ->orWhere('bio', 'like', $like);
+                });
+            })
+            ->orderByDesc('points')
+            ->orderBy('name')
+            ->paginate(18)
+            ->withQueryString();
+
+        return view('user.community', [
+            'users' => $users,
+            'query' => $query,
+        ]);
     }
 
-    private function assetForSelection(?string $key, array $allowedKeys, array $types): ?ProfileAsset
+    public function publicProfile(string $profile)
     {
-        if (! $key) {
-            return null;
+        $profileUser = User::where(function ($q) {
+                $q->where('profile_visibility', 'public')
+                    ->orWhereNull('profile_visibility');
+            })
+            ->where(function ($query) use ($profile) {
+                $query->where('username', $profile);
+
+                if (str_starts_with($profile, 'army-')) {
+                    $query->orWhere('id', (int) str_replace('army-', '', $profile));
+                }
+            })
+            ->firstOrFail();
+
+        return view('user.public-profile', [
+            'profileUser' => $profileUser,
+            'skin' => $this->profileSkin($profileUser),
+            'recentAttempts' => QuizGameAttempt::with('quiz')->where('user_id', $profileUser->id)->latest()->limit(4)->get(),
+            'recentPoints' => PointTransaction::where('user_id', $profileUser->id)->latest()->limit(6)->get(),
+        ]);
+    }
+
+    private function currentStreak(User $user): int
+    {
+        $dates = DailyCheckin::where('user_id', $user->id)
+            ->orderByDesc('checkin_date')
+            ->pluck('checkin_date')
+            ->map(fn ($date) => Carbon::parse($date)->toDateString())
+            ->unique()
+            ->values();
+
+        if ($dates->isEmpty()) {
+            return 0;
         }
 
-        return ProfileAsset::active()
-            ->where('key', $key)
-            ->whereIn('key', $allowedKeys)
-            ->where(function ($query) use ($types) {
-                $query->whereIn('type', $types);
-            })
-            ->first();
+        $today = today();
+        $yesterday = today()->subDay();
+
+        $latestDate = Carbon::parse($dates->first());
+
+        if (! $latestDate->isSameDay($today) && ! $latestDate->isSameDay($yesterday)) {
+            return 0;
+        }
+
+        $expectedDate = $latestDate->copy();
+        $streak = 0;
+
+        foreach ($dates as $date) {
+            $checkinDate = Carbon::parse($date);
+
+            if ($checkinDate->isSameDay($expectedDate)) {
+                $streak++;
+                $expectedDate->subDay();
+            } else {
+                break;
+            }
+        }
+
+        return $streak;
     }
 
     private function profileSkin(User $user): array
     {
-        $themeAsset = ProfileAsset::active()
+        $themeAsset = ProfileAsset::where('is_active', true)
             ->where(function ($query) use ($user) {
                 $query->where('key', $user->profile_theme)
                     ->orWhere('theme_class', $user->profile_theme);
             })
             ->first();
 
-        $avatarAsset = ProfileAsset::active()
+        $avatarAsset = ProfileAsset::where('is_active', true)
             ->where(function ($query) use ($user) {
                 $query->where('key', $user->avatar_key)
                     ->orWhere('avatar_image', $user->avatar_key)
@@ -301,7 +367,7 @@ class UserDashboardController extends Controller
             ->first();
 
         $badgeAsset = $user->badge_key
-            ? ProfileAsset::active()
+            ? ProfileAsset::where('is_active', true)
                 ->where(function ($query) use ($user) {
                     $query->where('key', $user->badge_key)
                         ->orWhere('badge_label', $user->badge_key)
