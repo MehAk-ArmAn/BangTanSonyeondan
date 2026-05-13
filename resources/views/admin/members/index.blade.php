@@ -20,7 +20,7 @@
         <label>Accent Color<input name="accent_color" value="{{ $member->accent_color }}"></label>
         <label>BT21 Character<input name="bt21_character" value="{{ $member->bt21_character }}"></label>
         <label>Intro Title<input name="intro_title" value="{{ $member->intro_title }}"></label>
-        <label>Image Path<input name="image" value="{{ $member->image }}"></label>
+        <label>Image Path<input name="image" value="{{ asset(member_asset($member->image)) }}"></label>
         <label>Upload New Image<input type="file" name="image_file" accept="image/*"></label>
         <label>Favicon<input name="favicon" value="{{ $member->favicon }}"></label>
         <label>Sort Order<input type="number" name="sort_order" value="{{ $member->sort_order }}"></label>

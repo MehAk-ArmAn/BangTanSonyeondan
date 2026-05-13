@@ -157,9 +157,20 @@ class MediaGalleryController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'caption' => ['nullable', 'string'],
             'file_path' => ['nullable', 'string', 'max:1000'],
-            'media_file' => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp,gif,mp4,webm,mov', 'max:51200'],
             'thumbnail_path' => ['nullable', 'string', 'max:1000'],
-            'thumbnail_file' => ['nullable', 'image', 'max:5120'],
+            'media_file' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,jfif,png,webp,gif,mp4,webm,mov',
+                'max:51200',
+            ],
+
+            'thumbnail_file' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,jfif,png,webp,gif',
+                'max:5120',
+            ],
             'video_url' => ['nullable', 'url', 'max:1000'],
             'tags' => ['nullable', 'string', 'max:1000'],
             'sort_order' => ['nullable', 'integer', 'min:0'],

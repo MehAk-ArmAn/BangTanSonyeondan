@@ -34,7 +34,12 @@ class MembersController extends Controller
             'bt21_character' => ['nullable', 'string', 'max:255'],
             'intro_title' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:1000'],
-            'image_file' => ['nullable', 'image', 'max:4096'],
+            'image_file' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,jfif,png,webp,gif',
+                'max:8192',
+            ],
             'favicon' => ['nullable', 'string', 'max:1000'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
@@ -44,8 +49,8 @@ class MembersController extends Controller
         ]);
 
         $uploaded = $this->uploadAdminImage($request->file('image_file'), 'members');
-        if ($uploaded) {
-            $data['image'] = $uploaded;
+        if ($uploadedImage = $this->uploadMemberImage($request, 'image_file')) {
+            $data['image_path'] = $uploadedImage;
         }
 
         $data['slug'] = Str::slug($data['stage_name'] ?: $data['name']);
@@ -55,5 +60,34 @@ class MembersController extends Controller
 
         $member->update($data);
         return back()->with('success', 'Member profile updated.');
+    }
+
+    private function uploadMemberImage(\Illuminate\Http\Request $request, string $field): ?string
+    {
+        if (! $request->hasFile($field)) {
+            return null;
+        }
+
+        $file = $request->file($field);
+
+        if (! $file || ! $file->isValid()) {
+            return null;
+        }
+
+        $extension = strtolower($file->getClientOriginalExtension() ?: 'jpg');
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeName = \Illuminate\Support\Str::slug($originalName) ?: 'member';
+        $fileName = $safeName . '-' . time() . '-' . \Illuminate\Support\Str::random(6) . '.' . $extension;
+
+        $relativeFolder = 'members';
+        $publicFolder = public_path($relativeFolder);
+
+        if (! is_dir($publicFolder)) {
+            mkdir($publicFolder, 0755, true);
+        }
+
+        $file->move($publicFolder, $fileName);
+
+        return $relativeFolder . '/' . $fileName;
     }
 }

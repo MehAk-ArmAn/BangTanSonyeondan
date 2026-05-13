@@ -1,6 +1,31 @@
 @extends('layouts.frontend.app')
 
 @php
+    $learningAsset = function ($path) {
+        $path = trim((string) $path);
+
+        if ($path === '') {
+            return null;
+        }
+
+        // External links stay untouched.
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        // Already has folder path.
+        if (
+            str_starts_with($path, 'learning/') ||
+            str_starts_with($path, 'media-gallery/') ||
+            str_starts_with($path, 'imgs/') ||
+            str_starts_with($path, 'storage/')
+        ) {
+            return $path;
+        }
+
+        // Plain filename becomes public/learning/filename
+        return 'learning/' . ltrim($path, '/');
+    };
     $lesson = $material ?? $lesson;
 
     $decodeList = function ($value) {
@@ -78,7 +103,7 @@
 <section class="learn-detail-hero">
     <div class="learn-detail-bg">
         @if(!empty($lesson->image_path))
-            <img src="{{ asset($lesson->image_path) }}" alt="{{ $lesson->title }}">
+            <img src="{{ asset($learningAsset($lesson->image_path)) }}" alt="{{ $lesson->title }}">
         @endif
     </div>
 
@@ -158,9 +183,15 @@
 
         <div class="learn-gallery-grid">
             @foreach($galleryImages as $image)
-                <div class="learn-gallery-card">
-                    <img src="{{ asset($image) }}" alt="{{ $lesson->title }} image {{ $loop->iteration }}">
-                </div>
+                @php
+                    $imagePath = $learningAsset($image);
+                @endphp
+
+                @if($imagePath)
+                    <div class="learn-gallery-card">
+                        <img src="{{ asset($imagePath) }}" alt="{{ $lesson->title }} image {{ $loop->iteration }}">
+                    </div>
+                @endif
             @endforeach
         </div>
     </section>
@@ -178,7 +209,7 @@
                     style="width:100%; min-height:420px; border:0;"
                 ></iframe>
             @elseif(!empty($videoPoster))
-                <img src="{{ asset($videoPoster) }}" alt="{{ $lesson->title }} video poster">
+                <img src="{{ asset($learningAsset($videoPoster)) }}" alt="{{ $lesson->title }} video poster">
             @endif
 
             <div class="learn-video-content">

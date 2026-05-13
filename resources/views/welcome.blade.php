@@ -48,7 +48,7 @@
     <div class="member-grid legacy-cards">
         @foreach($featuredMembers as $member)
             <a class="member-tile" href="{{ route('member.show', $member->slug ?: $member->name) }}" style="--accent: {{ $member->accent_color ?? '#a855f7' }}">
-                <img src="{{ $member->imageUrl() }}" alt="{{ $member->stage_name ?: $member->name }}">
+                <img src="{{ member_asset($member->image) }}" alt="{{ $member->stage_name ?: $member->name }}">
                 <div>
                     <span>{{ $member->bt21_character }}</span>
                     <h3>{{ $member->stage_name ?: $member->nickname }}</h3>
