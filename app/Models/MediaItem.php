@@ -48,7 +48,15 @@ class MediaItem extends Model
 
     public function thumbnailSrc(): ?string
     {
-        return $this->thumbnail_path ?: $this->file_path;
+        if ($this->thumbnail_path) {
+            return $this->thumbnail_path;
+        }
+
+        if ($this->media_type === 'image') {
+            return $this->file_path;
+        }
+
+        return null;
     }
 
     public function youtubeEmbedUrl(): ?string

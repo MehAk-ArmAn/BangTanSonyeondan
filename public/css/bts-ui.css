@@ -2231,7 +2231,7 @@ textarea { min-height: 110px; resize: vertical; }
     min-height: 86px;
     display: grid;
     grid-template-columns: 48px 1fr auto;
-    gap: 10px;
+    gap: 50px;
     align-items: center;
     scroll-snap-align: start;
     padding: 12px;

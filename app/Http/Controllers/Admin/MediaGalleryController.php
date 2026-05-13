@@ -169,7 +169,7 @@ class MediaGalleryController extends Controller
         ]);
     }
 
-    private function uploadFile(Request $request, string $field, string $folder): ?string
+    private function uploadFile(Request $request, string $field, string $folder = ''): ?string
     {
         if (! $request->hasFile($field)) {
             return null;
@@ -181,7 +181,22 @@ class MediaGalleryController extends Controller
             return null;
         }
 
-        return 'storage/' . $file->store('admin/media-gallery/' . $folder, 'public');
+        $extension = strtolower($file->getClientOriginalExtension() ?: 'file');
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+        $safeName = \Illuminate\Support\Str::slug($originalName) ?: 'media';
+        $fileName = $safeName . '-' . time() . '-' . \Illuminate\Support\Str::random(6) . '.' . $extension;
+
+        $relativeFolder = 'media-gallery';
+        $publicFolder = public_path($relativeFolder);
+
+        if (! is_dir($publicFolder)) {
+            mkdir($publicFolder, 0755, true);
+        }
+
+        $file->move($publicFolder, $fileName);
+
+        return $relativeFolder . '/' . $fileName;
     }
 
     private function uniqueAlbumSlug(string $title, ?int $ignoreId = null): string
