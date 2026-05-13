@@ -86,7 +86,7 @@
 <section class="section-block">
     <div class="section-heading">
         <span class="eyebrow">Quiz arena</span>
-        <h2>Blooket-style point grind.</h2>
+        <h2>Quizzes point grind.</h2>
         <p>Pick a quiz, answer questions, earn points, and unlock cooler profile styles.</p>
     </div>
 

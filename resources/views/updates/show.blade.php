@@ -66,7 +66,7 @@
 
 <section class="update-content-layout">
     <article class="update-main-body">
-        {!! nl2br(e($update->body ?: 'Write the full update content from admin. You can add paragraphs, context, fan notes, source explanation, comeback details, event details, MV notes, or anything important for ARMY.')) !!}
+        {!! nl2br(e($update->body ?: 'Full details for this update will be added soon.')) !!}
     </article>
 
     <aside class="update-side-panel">

@@ -162,7 +162,7 @@
             @empty
                 <div class="profile-empty-state">
                     <h3>No profile assets found.</h3>
-                    <p>Add profile assets from the database/admin seed, then come back here.</p>
+                    <p>Profile upgrades will appear here once they are available.</p>
                 </div>
             @endforelse
         </div>
