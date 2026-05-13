@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 12, 2026 at 08:37 PM
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 13, 2026 at 04:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -150,7 +150,8 @@ INSERT INTO `daily_checkins` (`id`, `user_id`, `checkin_date`, `points_earned`, 
 (2, 1, '2026-05-08', 12, 1, '2026-05-08 04:28:43', '2026-05-08 04:28:43'),
 (3, 7, '2026-05-09', 12, 1, '2026-05-09 12:45:52', '2026-05-09 12:45:52'),
 (4, 1, '2026-05-10', 12, 1, '2026-05-10 05:38:56', '2026-05-10 05:38:56'),
-(5, 7, '2026-05-12', 12, 1, '2026-05-12 11:32:30', '2026-05-12 11:32:30');
+(5, 7, '2026-05-12', 12, 1, '2026-05-12 11:32:30', '2026-05-12 11:32:30'),
+(6, 9, '2026-05-13', 12, 1, '2026-05-13 01:12:42', '2026-05-13 01:12:42');
 
 -- --------------------------------------------------------
 
@@ -301,11 +302,78 @@ CREATE TABLE `learning_materials` (
 --
 
 INSERT INTO `learning_materials` (`id`, `slug`, `title`, `category`, `topic_type`, `difficulty`, `excerpt`, `body`, `image_path`, `gallery_images`, `video_poster`, `official_url`, `youtube_url`, `source_label`, `links`, `fun_facts`, `history_notes`, `sort_order`, `is_featured`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'bts-101-official-start-here', 'BTS 101: Start Here', 'BTS 101', 'Guide', 'Beginner', 'A clean starter guide for new ARMY: who BTS are, why they matter, and where to watch official content.', 'BTS, also known as Bangtan Sonyeondan, are a seven-member group from South Korea.\n\nUse this page as a starter map: learn the members, check official channels, watch the MVs, then try the quizzes separately in the Quiz Arena.\n\nFor a real fan site, always guide users back to official sources so streams, views, and support go to BTS directly.', 'imgs/learn/bts-101-official-start-here/cover.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/', 'https://www.youtube.com/@BTS', 'Official BTS site + BANGTANTV', '[{\"label\":\"Official BTS Website\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/\",\"type\":\"Official\"},{\"label\":\"BANGTANTV YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@BTS\",\"type\":\"Official YouTube\"},{\"label\":\"HYBE LABELS YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@HYBELABELS\",\"type\":\"Official YouTube\"}]', NULL, NULL, 1, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(1, 'bts-101-official-start-here', 'BTS 101: Start Here', 'BTS 101', 'Guide', 'Beginner', 'A clean starter guide for new ARMY: who BTS are, why they matter, and where to watch official content.', 'BTS, also known as Bangtan Sonyeondan, are a seven-member group from South Korea.\r\n\r\nUse this page as a starter map: learn the members, check official channels, watch the MVs, then try the quizzes separately in the Quiz Arena.\r\n\r\nFor a real fan site, always guide users back to official sources so streams, views, and support go to BTS directly.', 'storage/admin/learning/XceoMnjRJvg4t7lzxfuv0xukwPdzzcZpg57NTWlI.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/', 'https://www.youtube.com/@BTS', 'Official BTS site + BANGTANTV', '[{\"label\":\"Official BTS Website\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/\",\"type\":\"Official\"},{\"label\":\"BANGTANTV YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@BTS\",\"type\":\"Official YouTube\"},{\"label\":\"HYBE LABELS YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@HYBELABELS\",\"type\":\"Official YouTube\"}]', NULL, NULL, 1, 1, 1, '2026-05-10 08:45:23', '2026-05-13 03:18:30'),
 (2, 'members-and-bt21-map', 'Members + BT21 Map', 'Members', 'Guide', 'Beginner', 'A quick guide connecting the seven members with their roles, charms, and BT21 characters.', 'This topic helps users understand the difference between BTS member profiles and BT21 character pages.\n\nMember pages should feel emotional and story-based. BT21 pages should feel colorful, playful, animated, and character-anatomy focused.', 'imgs/learn/members-and-bt21-map/cover.jpg', NULL, NULL, 'https://www.bt21.com/', 'https://www.youtube.com/@BT21_official', 'BT21 Official', '[{\"label\":\"BT21 Official Website\",\"url\":\"https:\\/\\/www.bt21.com\\/\",\"type\":\"Official\"},{\"label\":\"BT21 Official YouTube\",\"url\":\"https:\\/\\/www.youtube.com\\/@BT21_official\",\"type\":\"Official YouTube\"}]', NULL, NULL, 2, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
 (3, 'spring-day-mv-study', 'MV Study: Spring Day', 'Music Videos', 'MV Study', 'Intermediate', 'Watch the official MV, then learn the themes, visuals, and emotional meaning fans connect with Spring Day.', 'Spring Day is one of BTS’s most emotional songs. A learning material like this can include: release context, lyrics themes, visual motifs, fan interpretations, and official links.\n\nKeep the quiz separate. This page is for learning, watching, reading, and saving useful links.', 'imgs/learn/spring-day-mv-study/cover.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/discography/detail/you_never_walk_alone.html', 'https://www.youtube.com/watch?v=xEeFrLSkMm8', 'Official MV', '[{\"label\":\"Spring Day Official MV\",\"url\":\"https:\\/\\/www.youtube.com\\/watch?v=xEeFrLSkMm8\",\"type\":\"Official MV\"},{\"label\":\"You Never Walk Alone Discography\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/discography\\/detail\\/you_never_walk_alone.html\",\"type\":\"Official\"}]', NULL, NULL, 3, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
 (4, 'dynamite-mv-study', 'MV Study: Dynamite', 'Music Videos', 'MV Study', 'Beginner', 'A bright MV guide for Dynamite with official MV link, comeback energy, styling notes, and quiz prep hints.', 'Dynamite is perfect for a beginner MV study because it is colorful, easy to recognize, and popular with casual listeners too.\n\nUse this page to explain styling, setting, choreography moments, and the feel-good disco-pop concept.', 'imgs/learn/dynamite-mv-study/cover.jpg', NULL, NULL, 'https://ibighit.com/bts/eng/discography/detail/dynamite.html', 'https://www.youtube.com/watch?v=gdZLi9oWNZg', 'Official MV', '[{\"label\":\"Dynamite Official MV\",\"url\":\"https:\\/\\/www.youtube.com\\/watch?v=gdZLi9oWNZg\",\"type\":\"Official MV\"},{\"label\":\"Dynamite Discography\",\"url\":\"https:\\/\\/ibighit.com\\/bts\\/eng\\/discography\\/detail\\/dynamite.html\",\"type\":\"Official\"}]', NULL, NULL, 4, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
-(5, 'army-terms-and-fandom-culture', 'ARMY Terms + Fandom Culture', 'ARMY Culture', 'Glossary', 'Beginner', 'A friendly glossary for new users: bias, comeback, era, streaming, purple, borahae, and more.', 'This page can become a full glossary. Keep it helpful, warm, and beginner-friendly so new ARMY do not feel lost.\n\nAdmin can keep adding terms and links as the website grows.', 'imgs/learn/army-terms-and-fandom-culture/cover.jpg', NULL, NULL, 'https://weverse.io/bts/feed', 'https://www.youtube.com/@BTS', 'Official community + videos', '[{\"label\":\"BTS on Weverse\",\"url\":\"https:\\/\\/weverse.io\\/bts\\/feed\",\"type\":\"Official Community\"},{\"label\":\"BANGTANTV\",\"url\":\"https:\\/\\/www.youtube.com\\/@BTS\",\"type\":\"Official YouTube\"}]', NULL, NULL, 5, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23');
+(5, 'army-terms-and-fandom-culture', 'ARMY Terms + Fandom Culture', 'ARMY Culture', 'Glossary', 'Beginner', 'A friendly glossary for new users: bias, comeback, era, streaming, purple, borahae, and more.', 'This page can become a full glossary. Keep it helpful, warm, and beginner-friendly so new ARMY do not feel lost.\n\nAdmin can keep adding terms and links as the website grows.', 'imgs/learn/army-terms-and-fandom-culture/cover.jpg', NULL, NULL, 'https://weverse.io/bts/feed', 'https://www.youtube.com/@BTS', 'Official community + videos', '[{\"label\":\"BTS on Weverse\",\"url\":\"https:\\/\\/weverse.io\\/bts\\/feed\",\"type\":\"Official Community\"},{\"label\":\"BANGTANTV\",\"url\":\"https:\\/\\/www.youtube.com\\/@BTS\",\"type\":\"Official YouTube\"}]', NULL, NULL, 5, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(6, 'baby-army-start-here', 'Baby ARMY Start Here', 'BTS 101', 'Starter Guide', 'Beginner', 'A calm, friendly first guide for new ARMYs who want to understand who BTS are without getting overwhelmed.', 'BTS, also known as Bangtan Sonyeondan, are a seven-member group under BIGHIT MUSIC. The members are RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook. For a new fan, the best way to begin is simple: learn the members, listen to a few key songs, use official sources, and take your time. BTS are known for music that connects personal stories, youth, pressure, dreams, self-love, friendship, and growth. You do not need to know everything in one day. Being ARMY starts with curiosity, respect, and enjoying the music.', 'media-gallery/bts-101-cover.jpg', '[\"media-gallery/bts-101-1.jpg\", \"media-gallery/bts-101-2.jpg\"]', 'media-gallery/bts-101-video.jpg', 'https://ibighit.com/en/bts/profile/', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'BIGHIT profile + BANGTANTV', '[{\"label\": \"Official BTS Profile\", \"url\": \"https://ibighit.com/en/bts/profile/\", \"type\": \"Official\"}, {\"label\": \"BANGTANTV Official YouTube\", \"url\": \"https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ\", \"type\": \"Official Video\"}, {\"label\": \"BTS Official Discography\", \"url\": \"https://ibighit.com/en/bts/discography/\", \"type\": \"Official\"}]', '[\"BTS has seven members.\", \"ARMY is the name used by BTS fans.\", \"Official sources are the safest place to check facts.\"]', '[\"Start with the official profile to learn member names.\", \"Use the official discography to explore albums in order.\", \"Use BANGTANTV and HYBE/BIGHIT channels for official video content.\"]', 1, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(7, 'bts-members-official-guide', 'The 7 BTS Members', 'Members', 'Official Guide', 'Beginner', 'A simple guide to the seven members using official names and a baby-ARMY friendly explanation.', 'BTS has seven members: RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook. Each member brings a different color to the group through vocals, rap, dance, performance, writing, production, personality, and stage presence. A new fan should learn names slowly instead of rushing. Start with stage names, then connect them to songs, performances, interviews, and solo projects. The most important thing is respect: members are real artists, not characters, and official profiles are the best starting point.', 'media-gallery/bts-members-cover.jpg', '[\"media-gallery/bts-members-1.jpg\", \"media-gallery/bts-members-2.jpg\"]', 'media-gallery/bts-members-video.jpg', 'https://ibighit.com/en/bts/profile/', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'BIGHIT official profile', '[{\"label\": \"Official BTS Profile\", \"url\": \"https://ibighit.com/en/bts/profile/\", \"type\": \"Official\"}, {\"label\": \"BANGTANTV\", \"url\": \"https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ\", \"type\": \"Official Video\"}]', '[\"The seven-member structure is one of the first facts every Baby ARMY should learn.\", \"Stage names are commonly used in official and fan spaces.\", \"Learning members through performances is easier than memorizing everything at once.\"]', '[\"Use official profile information first.\", \"Then watch group performances and interviews to recognize each member naturally.\"]', 2, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(8, 'bts-debut-and-early-message', 'BTS Debut and Early Message', 'History', 'Era Guide', 'Beginner', 'Learn how BTS began with 2 COOL 4 SKOOL and the message behind No More Dream.', 'BTS debuted in 2013 with the 2 COOL 4 SKOOL era. The official BIGHIT discography page introduces No More Dream as the debut track and presents the early message around the question: What is your dream? This is important because BTS did not begin only with bright pop songs. Their early identity was strongly connected to youth, pressure, school, dreams, and speaking honestly. For Baby ARMYs, this era helps explain why fans often say BTS music feels personal.', 'media-gallery/bts-debut-cover.jpg', '[\"media-gallery/bts-debut-1.jpg\", \"media-gallery/bts-debut-2.jpg\"]', 'media-gallery/bts-debut-video.jpg', 'https://ibighit.com/en/bts/discography/detail/2_cool_4_school', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'BIGHIT official discography', '[{\"label\": \"2 COOL 4 SKOOL Official Page\", \"url\": \"https://ibighit.com/en/bts/discography/detail/2_cool_4_school\", \"type\": \"Official\"}, {\"label\": \"BTS Discography\", \"url\": \"https://ibighit.com/en/bts/discography/\", \"type\": \"Official\"}]', '[\"No More Dream is connected to BTS early debut message.\", \"The early concept focused on youth and dreams.\", \"This era helps explain the group name and early hip-hop identity.\"]', '[\"2013 marks the beginning of BTS as a released group.\", \"2 COOL 4 SKOOL is the starting point for official discography study.\", \"The early message asked young people to think about their own dreams.\"]', 3, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(9, 'bts-discography-map', 'How to Explore BTS Discography', 'Music', 'Listening Guide', 'Beginner', 'A beginner map for exploring BTS music through official album pages, eras, and themes.', 'BTS discography can feel huge, so Baby ARMYs should explore it like a map. Start with the official discography page, then choose one era at a time. Early releases show youth and pressure. Later albums explore growth, love, identity, self-acceptance, and reflection. Do not rush. Listen to title tracks first, then B-sides, then live performances. A good fan site should guide people to official music pages and official videos so learners do not depend on random claims.', 'media-gallery/bts-discography-cover.jpg', '[\"media-gallery/bts-discography-1.jpg\", \"media-gallery/bts-discography-2.jpg\"]', 'media-gallery/bts-discography-video.jpg', 'https://ibighit.com/en/bts/discography/', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'BIGHIT official discography', '[{\"label\": \"BTS Official Discography\", \"url\": \"https://ibighit.com/en/bts/discography/\", \"type\": \"Official\"}, {\"label\": \"BANGTANTV\", \"url\": \"https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ\", \"type\": \"Official Video\"}]', '[\"Discography means the official list of releases.\", \"An era usually includes music, visuals, performances, styling, and messages.\", \"Baby ARMYs can learn better by studying one era at a time.\"]', '[\"Start with official album pages.\", \"Move from title tracks to B-sides.\", \"Use official videos to understand performances and concepts.\"]', 4, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(10, 'love-yourself-era-guide', 'LOVE YOURSELF Era Guide', 'Music', 'Era Guide', 'Beginner', 'A gentle introduction to the Love Yourself message and why Answer matters in the series.', 'The LOVE YOURSELF era is one of the most important BTS learning paths for Baby ARMYs. BIGHIT describes LOVE YOURSELF 結 ANSWER as the final piece of the puzzle. The series is often connected with self-reflection, love, identity, and learning to accept yourself. For beginners, this era is a good place to understand how BTS connects music, story, visuals, and emotional message. When explaining this era, stay grounded in official album pages and avoid overclaiming hidden theories as facts.', 'media-gallery/love-yourself-cover.jpg', '[\"media-gallery/love-yourself-1.jpg\", \"media-gallery/love-yourself-2.jpg\"]', 'media-gallery/love-yourself-video.jpg', 'https://ibighit.com/en/bts/discography/detail/love_yourself-answer', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'BIGHIT official album page', '[{\"label\": \"LOVE YOURSELF Answer Official Page\", \"url\": \"https://ibighit.com/en/bts/discography/detail/love_yourself-answer\", \"type\": \"Official\"}, {\"label\": \"BTS Discography\", \"url\": \"https://ibighit.com/en/bts/discography/\", \"type\": \"Official\"}]', '[\"ANSWER is described by BIGHIT as the final piece of the puzzle.\", \"This era is useful for learning about self-love themes.\", \"It is better to separate official album facts from fan theories.\"]', '[\"Study the Love Yourself releases in order.\", \"Use official album pages for facts.\", \"Use lyrics and performances carefully, without inventing meanings.\"]', 5, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(11, 'proof-anthology-guide', 'Proof: BTS History in One Album', 'Music', 'Album Guide', 'Beginner', 'A beginner guide to Proof, the anthology album that looks back at BTS history.', 'Proof is an anthology album released by BTS on June 10, 2022. BIGHIT describes Proof as the core of BTS history. For Baby ARMYs, this album can work like a doorway into older eras because it collects key parts of the group journey. It is not just a random playlist. It is a reflection of where BTS came from, what their music represented, and how their story built over time. Use Proof as a listening map, then go backward into the original albums.', 'media-gallery/proof-cover.jpg', '[\"media-gallery/proof-1.jpg\", \"media-gallery/proof-2.jpg\"]', 'media-gallery/proof-video.jpg', 'https://ibighit.com/en/bts/discography/detail/proof', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'BIGHIT official album page', '[{\"label\": \"Proof Official Page\", \"url\": \"https://ibighit.com/en/bts/discography/detail/proof\", \"type\": \"Official\"}, {\"label\": \"BTS Discography\", \"url\": \"https://ibighit.com/en/bts/discography/\", \"type\": \"Official\"}]', '[\"Proof is an anthology album.\", \"BIGHIT describes Proof as the core of BTS history.\", \"It is useful for new fans who want a guided entry into older eras.\"]', '[\"Use Proof as a summary of BTS history.\", \"Then explore the original releases behind the songs.\", \"Connect songs to their original eras for deeper understanding.\"]', 6, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(12, 'official-bts-sources-guide', 'How to Check BTS Facts Safely', 'ARMY Culture', 'Source Guide', 'Beginner', 'A safety guide for Baby ARMYs: how to avoid fake BTS facts and use official sources.', 'Not every viral post is true. Baby ARMYs should learn how to check BTS facts before sharing them. Use the official BIGHIT profile for member information, official discography pages for albums, BANGTANTV and official music channels for video content, and official community announcements when available. Fan explanations can be helpful, but they should not replace official sources. A good ARMY learns, checks, and shares responsibly.', 'media-gallery/official-sources-cover.jpg', '[\"media-gallery/official-sources-1.jpg\", \"media-gallery/official-sources-2.jpg\"]', 'media-gallery/official-sources-video.jpg', 'https://ibighit.com/en/bts/profile/', 'https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ', 'Official source guide', '[{\"label\": \"BTS Official Profile\", \"url\": \"https://ibighit.com/en/bts/profile/\", \"type\": \"Official\"}, {\"label\": \"BTS Official Discography\", \"url\": \"https://ibighit.com/en/bts/discography/\", \"type\": \"Official\"}, {\"label\": \"BANGTANTV\", \"url\": \"https://www.youtube.com/channel/UCLkAepWjdylmXSltofFvsYQ\", \"type\": \"Official Video\"}]', '[\"Official sources protect your site from spreading false information.\", \"Fan theories should be labeled as theories, not facts.\", \"A clean source habit makes your website more trusted.\"]', '[\"Check the official profile for member information.\", \"Check the official discography for albums.\", \"Check official video channels for performances and clips.\"]', 7, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media_albums`
+--
+
+CREATE TABLE `media_albums` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `cover_path` varchar(1000) DEFAULT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `media_albums`
+--
+
+INSERT INTO `media_albums` (`id`, `slug`, `title`, `description`, `cover_path`, `sort_order`, `is_featured`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'bts-eras', 'BTS Eras', 'Photos and videos organized by BTS eras.', NULL, 1, 1, 1, '2026-05-13 05:23:56', '2026-05-13 05:23:56'),
+(2, 'members', 'Members', 'Member-focused photos, edits, and clips.', NULL, 2, 1, 1, '2026-05-13 05:23:56', '2026-05-13 05:23:56'),
+(3, 'bt21', 'BT21', 'BT21 characters, cute media, and animations.', NULL, 3, 0, 1, '2026-05-13 05:23:56', '2026-05-13 05:23:56'),
+(4, 'concerts', 'Concerts', 'Stage, tours, fan moments, and performance clips.', NULL, 4, 0, 1, '2026-05-13 05:23:56', '2026-05-13 05:23:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media_items`
+--
+
+CREATE TABLE `media_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `media_album_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `media_type` varchar(255) NOT NULL DEFAULT 'image',
+  `title` varchar(255) NOT NULL,
+  `caption` text DEFAULT NULL,
+  `file_path` varchar(1000) DEFAULT NULL,
+  `thumbnail_path` varchar(1000) DEFAULT NULL,
+  `video_url` varchar(1000) DEFAULT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `taken_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `media_items`
+--
+
+INSERT INTO `media_items` (`id`, `media_album_id`, `media_type`, `title`, `caption`, `file_path`, `thumbnail_path`, `video_url`, `tags`, `sort_order`, `is_featured`, `is_active`, `taken_at`, `created_at`, `updated_at`) VALUES
+(1, 2, 'image', 'BTS', '0t7 TOGETHERRR', 'media-gallery/btssss-1778655308-k7Awl9.jfif', NULL, NULL, NULL, 0, 1, 1, NULL, '2026-05-13 02:45:26', '2026-05-13 02:55:08');
 
 -- --------------------------------------------------------
 
@@ -389,7 +457,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2026_05_10_090000_expand_user_points_columns', 5),
 (17, '2026_05_10_100000_split_learning_and_quizzes', 5),
 (18, '2026_05_12_150000_upgrade_user_profiles_publish_ready', 6),
-(19, '2026_05_12_170000_create_bts_updates_table', 7);
+(19, '2026_05_12_170000_create_bts_updates_table', 7),
+(20, '2026_05_12_180000_create_media_gallery_system', 8);
 
 -- --------------------------------------------------------
 
@@ -416,7 +485,7 @@ INSERT INTO `nav_items` (`id`, `label`, `url`, `sort_order`, `is_active`, `creat
 (3, 'Learn', '/learn', 3, 1, '2026-05-10 08:44:31', '2026-05-10 08:44:31'),
 (4, 'Timeline', '/bts-achievements', 5, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:33'),
 (5, 'Songs', '/songs', 6, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:22'),
-(6, 'Gallery', '/gallery', 7, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:18'),
+(6, 'Media Gallery', '/gallery', 7, 1, '2026-05-08 12:00:00', '2026-05-13 02:42:27'),
 (7, 'Quotes', '/quotes', 8, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:15'),
 (8, 'BT21', '/bt21', 9, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:11'),
 (9, 'Leaderboard', '/leaderboard', 10, 1, '2026-05-08 12:00:00', '2026-05-10 09:49:07'),
@@ -500,7 +569,8 @@ INSERT INTO `point_transactions` (`id`, `user_id`, `type`, `points`, `reason`, `
 (44, 9, 'earn', 50, 'Welcome bonus', '{\"source\":\"registration\"}', '2026-05-12 13:37:19', '2026-05-12 13:37:19'),
 (45, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 TATA Bundle', '{\"asset_key\":\"tata-bundle\"}', '2026-05-12 13:39:16', '2026-05-12 13:39:16'),
 (46, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 TATA Avatar', '{\"asset_key\":\"tata-avatar\"}', '2026-05-12 13:39:35', '2026-05-12 13:39:35'),
-(47, 9, 'spend', -120, 'Unlocked profile upgrade: BT21 TATA Theme', '{\"asset_key\":\"tata-theme\"}', '2026-05-12 13:42:32', '2026-05-12 13:42:32');
+(47, 9, 'spend', -120, 'Unlocked profile upgrade: BT21 TATA Theme', '{\"asset_key\":\"tata-theme\"}', '2026-05-12 13:42:32', '2026-05-12 13:42:32'),
+(48, 9, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-13 01:12:42', '2026-05-13 01:12:42');
 
 -- --------------------------------------------------------
 
@@ -619,7 +689,13 @@ CREATE TABLE `quiz_games` (
 INSERT INTO `quiz_games` (`id`, `slug`, `title`, `category`, `difficulty`, `description`, `cover_image`, `time_limit_seconds`, `points_per_question`, `bonus_points`, `sort_order`, `is_featured`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'bts-101-rookie-army', 'BTS 101: Rookie ARMY', 'BTS 101', 'easy', 'Quick starter quiz for new ARMY. Simple, cute, and point-friendly.', 'imgs/btsssss.jfif', 0, 10, 20, 1, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
 (2, 'mv-detective-round-one', 'MV Detective: Round One', 'Music Videos', 'medium', 'Spot the MV, era, and concept clues. More points, more drama.', 'imgs/songs/dna.jfif', 0, 20, 40, 2, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
-(3, 'borahae-legend-mode', 'Borahae Legend Mode', 'ARMY Culture', 'hard', 'Harder ARMY culture questions for users who want serious leaderboard energy.', 'imgs/bts-crowd.jfif', 0, 35, 80, 3, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23');
+(3, 'borahae-legend-mode', 'Borahae Legend Mode', 'ARMY Culture', 'hard', 'Harder ARMY culture questions for users who want serious leaderboard energy.', 'imgs/bts-crowd.jfif', 0, 35, 80, 3, 0, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(4, 'baby-army-basics-quiz', 'Baby ARMY Basics Quiz', 'BTS 101', 'easy', 'A starter quiz for new ARMYs learning the most basic official BTS facts.', 'media-gallery/quiz-baby-army.jpg', 0, 10, 25, 1, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(5, 'bts-members-quiz', 'The 7 Members Quiz', 'Members', 'easy', 'Learn the seven members and practice recognizing official BTS member facts.', 'media-gallery/quiz-members.jpg', 0, 10, 25, 2, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(6, 'bts-debut-quiz', 'Debut Era Quiz', 'History', 'medium', 'A quiz about the beginning of BTS and the 2 COOL 4 SKOOL era.', 'media-gallery/quiz-debut.jpg', 0, 15, 35, 3, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(7, 'bts-official-sources-quiz', 'Official Sources Quiz', 'ARMY Culture', 'easy', 'A quiz teaching Baby ARMYs how to check BTS facts responsibly.', 'media-gallery/quiz-sources.jpg', 0, 10, 25, 4, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(8, 'bts-discography-starter-quiz', 'Discography Starter Quiz', 'Music', 'medium', 'A beginner quiz about official discography, albums, and eras.', 'media-gallery/quiz-discography.jpg', 0, 15, 35, 5, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(9, 'love-yourself-proof-quiz', 'Love Yourself + Proof Quiz', 'Music', 'medium', 'A quiz about LOVE YOURSELF Answer and Proof using official album facts.', 'media-gallery/quiz-love-proof.jpg', 0, 15, 35, 6, 0, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31');
 
 -- --------------------------------------------------------
 
@@ -680,7 +756,37 @@ INSERT INTO `quiz_game_questions` (`id`, `quiz_game_id`, `question`, `options`, 
 (6, 2, 'Which song title is also a type of genetic molecule?', '[\"Fire\",\"DNA\",\"Save Me\",\"Mic Drop\"]', 1, 'DNA is the correct answer.', 20, 3, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
 (7, 3, 'What does “bias” usually mean in K-pop fandom language?', '[\"Favorite member\",\"Least favorite song\",\"Stage outfit\",\"Album version\"]', 0, 'A bias is usually your favorite member.', 35, 1, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
 (8, 3, 'What does “comeback” usually refer to?', '[\"A new release\\/promotion period\",\"An old concert only\",\"A fan account\",\"A hairstyle\"]', 0, 'A comeback is a new release and promotional era.', 35, 2, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
-(9, 3, 'Which platform is commonly used for official artist-fan community updates?', '[\"Weverse\",\"Only maps\",\"A calculator app\",\"A weather site\"]', 0, 'Weverse is used for official community updates.', 35, 3, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23');
+(9, 3, 'Which platform is commonly used for official artist-fan community updates?', '[\"Weverse\",\"Only maps\",\"A calculator app\",\"A weather site\"]', 0, 'Weverse is used for official community updates.', 35, 3, 1, '2026-05-10 08:45:23', '2026-05-10 08:45:23'),
+(10, 4, 'How many members are in BTS?', '[\"7\", \"5\", \"4\", \"9\"]', 0, 'BTS has seven members: RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook.', 10, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(11, 4, 'Which source is safest for checking official BTS member information?', '[\"BIGHIT official profile\", \"Random comment section\", \"Unverified fan edit\", \"A meme account\"]', 0, 'Official profile pages are safer than random viral posts.', 10, 2, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(12, 4, 'What is the name of BTS fans?', '[\"ARMY\", \"MOA\", \"BLINK\", \"ONCE\"]', 0, 'BTS fans are called ARMY.', 10, 3, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(13, 4, 'Which channel is identified as BTS official YouTube channel?', '[\"BANGTANTV\", \"A random lyric channel\", \"A drama clips channel\", \"A fan reupload page\"]', 0, 'BANGTANTV is BTS official YouTube channel.', 10, 4, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(14, 4, 'What should Baby ARMYs do before sharing a BTS fact?', '[\"Check a reliable source\", \"Share instantly\", \"Only trust screenshots\", \"Ignore dates\"]', 0, 'Checking reliable sources helps avoid spreading false information.', 10, 5, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(15, 5, 'Which list contains only BTS members?', '[\"RM, Jin, SUGA, j-hope, Jimin, V, Jung Kook\", \"RM, Jin, SUGA, Yeonjun, Jimin, V, Jung Kook\", \"Jin, SUGA, Lisa, Jimin, V, Jung Kook, RM\", \"RM, Jin, Felix, j-hope, Jimin, V, Jung Kook\"]', 0, 'The official seven members are RM, Jin, SUGA, j-hope, Jimin, V, and Jung Kook.', 10, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(16, 5, 'Which member name is styled with a hyphen in the official member list?', '[\"j-hope\", \"Jhopee\", \"J Hope King\", \"Hope-J\"]', 0, 'The official stage name is styled j-hope.', 10, 2, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(17, 5, 'Which is the correct official spelling?', '[\"Jung Kook\", \"Jungkookiee\", \"JungCook\", \"Jungkook BTS forever only\"]', 0, 'The official profile uses Jung Kook as the member name.', 10, 3, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(18, 5, 'Which member is written in all caps on the official profile?', '[\"SUGA\", \"Suga Min\", \"Sugaaa\", \"Yoongi Only\"]', 0, 'The official profile uses SUGA.', 10, 4, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(19, 5, 'Why should member facts be checked carefully?', '[\"Because real artists deserve accurate information\", \"Because false facts are fun\", \"Because rumors are official\", \"Because screenshots never lie\"]', 0, 'Respectful fan content should avoid spreading false information.', 10, 5, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(20, 6, 'Which BTS era is connected to their debut track No More Dream?', '[\"2 COOL 4 SKOOL\", \"LOVE YOURSELF Answer\", \"Proof\", \"BE\"]', 0, 'BIGHIT official discography connects No More Dream with 2 COOL 4 SKOOL.', 15, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(21, 6, 'What question is strongly connected to the early No More Dream message?', '[\"What is your dream?\", \"What is your favorite color?\", \"Where is the party?\", \"Who is your bias?\"]', 0, 'The official 2 COOL 4 SKOOL page centers the message around dreams.', 15, 2, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(22, 6, 'Which year is BTS debut era commonly connected with?', '[\"2013\", \"2020\", \"2022\", \"2018\"]', 0, 'BTS debut era begins in 2013.', 15, 3, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(23, 6, 'What kind of themes appear in early BTS learning?', '[\"Youth, pressure, dreams, and honesty\", \"Only cooking and travel\", \"Only fantasy characters\", \"Only sports rankings\"]', 0, 'Early BTS learning often connects to youth, pressure, dreams, and honest expression.', 15, 4, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(24, 6, 'What should a Baby ARMY use to study debut-era facts?', '[\"Official discography page\", \"Random edits only\", \"Comment rumors only\", \"Unlabeled reposts only\"]', 0, 'Official discography pages are the safest starting point.', 15, 5, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(25, 7, 'Which page is best for official BTS member information?', '[\"BIGHIT BTS profile\", \"A random TikTok caption\", \"A meme template\", \"A deleted screenshot\"]', 0, 'The official BIGHIT profile is the safer source.', 10, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(26, 7, 'Which page is best for official album information?', '[\"BIGHIT BTS discography\", \"A random comment\", \"A fanwar post\", \"An unverified image\"]', 0, 'The official discography is best for album information.', 10, 2, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(27, 7, 'What should fan theories be labeled as?', '[\"Theories\", \"Confirmed facts\", \"Official announcements\", \"Legal records\"]', 0, 'Theories can be fun, but they should not be presented as confirmed facts.', 10, 3, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(28, 7, 'What is a safer habit before posting news?', '[\"Check date and source\", \"Ignore the date\", \"Use only emojis\", \"Trust any viral post\"]', 0, 'Dates and sources matter, especially for current BTS updates.', 10, 4, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(29, 7, 'Which is better for your website credibility?', '[\"Official links and careful wording\", \"Fake drama\", \"Unverified claims\", \"No sources ever\"]', 0, 'Official links and careful wording make the site more trusted.', 10, 5, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(30, 8, 'What does discography mean?', '[\"A list of music releases\", \"A food menu\", \"A dance challenge only\", \"A profile picture\"]', 0, 'Discography means the official list of music releases.', 15, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(31, 8, 'What is a good way for Baby ARMYs to explore BTS music?', '[\"One era at a time\", \"Memorize everything in one day\", \"Only read rumors\", \"Skip official pages\"]', 0, 'One era at a time is easier and more accurate.', 15, 2, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(32, 8, 'Which official page helps users explore BTS albums?', '[\"BTS Discography\", \"A random playlist comment\", \"A photo-only page\", \"A joke page\"]', 0, 'The BIGHIT discography page is the official album map.', 15, 3, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(33, 8, 'What should come first when learning an era?', '[\"Official release facts\", \"Invented meanings\", \"Unverified rumors\", \"Random screenshots\"]', 0, 'Official release facts should come before theories or opinions.', 15, 4, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(34, 8, 'Which is a good next step after title tracks?', '[\"Listen to B-sides and live performances\", \"Stop learning forever\", \"Only read comments\", \"Ignore album context\"]', 0, 'B-sides and live performances help fans understand the music more deeply.', 15, 5, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(35, 9, 'How does BIGHIT describe LOVE YOURSELF Answer?', '[\"The final piece of the puzzle\", \"The first BTS single album\", \"A cooking show\", \"A random video playlist\"]', 0, 'The official album page describes Answer as the final piece of the puzzle.', 15, 1, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(36, 9, 'What type of album is Proof?', '[\"Anthology album\", \"Debut single album\", \"Only a live concert DVD\", \"A fan-made playlist\"]', 0, 'Proof is an anthology album.', 15, 2, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(37, 9, 'When did BIGHIT say Proof was released?', '[\"June 10, 2022\", \"June 13, 2013\", \"August 24, 2018\", \"January 1, 2026\"]', 0, 'The official Proof page says it was released on June 10, 2022.', 15, 3, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(38, 9, 'What does BIGHIT call Proof?', '[\"The core of BTS history\", \"A fashion catalog only\", \"A random remix page\", \"A fan theory board\"]', 0, 'The official Proof page describes it as the core of BTS history.', 15, 4, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31'),
+(39, 9, 'What should Baby ARMYs do after listening to Proof?', '[\"Explore the original eras behind the songs\", \"Assume Proof is the only BTS release\", \"Ignore the older albums\", \"Only read comments\"]', 0, 'Proof can be used as a map into BTS history and original releases.', 15, 5, 1, '2026-05-13 07:26:31', '2026-05-13 07:26:31');
 
 -- --------------------------------------------------------
 
@@ -767,9 +873,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('JigqKiKncUAldv0TCVfdOCC9VAaX663kVGN47Yvq', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOEJyY0JCQ3lmVEFOdDhySmNQR01Tall1bTFHZEhmVjhKMmR0VlVkeiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO3M6NToicm91dGUiO3M6MTQ6InVzZXIuZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6OTt9', 1778610774),
-('o8TUsONYOPsnCF71dm0vLGNOGP3KjjEujMk3lTBL', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiemU3bFVWakNLbU5xdFZDUGpsanR4YmN6aG5YRUNobFV0VWZjUURSSSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9idDIxIjtzOjU6InJvdXRlIjtzOjQ6ImJ0MjEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo3O30=', 1778600590),
-('oOP7gpFfVdKzblnN5tzknuTep0ODgvsGVlB2Kmsf', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiS051OTVQZnNCN3lzNjhaSVJ6OGxrV3lRQmtXaVF6TjBQSkx2bGswSyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjM1OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vdXBkYXRlcyI7czo1OiJyb3V0ZSI7czoxOToiYWRtaW4udXBkYXRlcy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778609010);
+('9jMBA0PIIexcLHDiusfEezde8fO5bHueKXV4RRvb', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiODFqd1FFeUJVNmtOQVZUV1E2M0FTeFVZQlBsVndrU1VlV1cyc3NtWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7czo0OiJob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6OTt9', 1778661119),
+('WFySrYQO33vOcx7IKkGlCKsPqWoXNDZ6YV9jmlGr', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRUgxSkcyU3hjSDlUZ1l5UTRCQU5jU0pRb3VrWEdPenRvVmpiMkRSUiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sZWFybmluZy1tYXRlcmlhbHMiO3M6NToicm91dGUiO3M6MzA6ImFkbWluLmxlYXJuaW5nLW1hdGVyaWFscy5pbmRleCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778656711);
 
 -- --------------------------------------------------------
 
@@ -949,7 +1054,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (1, 'Mehak Arman', '⊹ฺ Frostnap⁷♪⟭⟬VH3W💜 ⊹ฺ', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 7777777, 1, '2026-05-10', NULL, 'email', 'YdRnYxEhd5IRCRi9WNxi3JySfWPZuQA2LkZcPM1OEvq7zJGWE3JBQL62hiOZ', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
 (7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', '67', 50, 1, '2026-05-12', NULL, 'email', 'q72pd1t26Z2AfLP0rTAPGpgyhKryCXpHVuOQTpmML3O9q5M6BDr74QdfiDqm', '2026-05-09 12:45:32', '2026-05-12 11:32:30'),
 (8, 'Mahreen Arman', 'ARMY_BTS_0t7I_-6-7', 'mahreenarmaan10@gmail.com', NULL, '$2y$12$8GBbL5u6jEM/cuM36lpWgukiBg2q8fqjxwKQUzwJq9DT.oLACoR5.', 0, 'favicons/logo.png', 'purple-heart-theme', NULL, 'public', '6-7', 50, 0, NULL, NULL, 'email', NULL, '2026-05-10 10:48:30', '2026-05-10 10:49:48'),
-(9, 'Mehak Arman', '7Minus1_is_0', 'mehakarmaan1@gmail.com', NULL, '$2y$12$OwEKnd8rtzpeFqvdhHFCw.CmYIMHxvAlYw1mw9lTY0moK0om8.zc2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', NULL, 7777377, 0, NULL, NULL, 'email', NULL, '2026-05-12 13:37:19', '2026-05-12 14:31:31');
+(9, 'Mehak Arman', '7Minus1_is_0', 'mehakarmaan1@gmail.com', NULL, '$2y$12$OwEKnd8rtzpeFqvdhHFCw.CmYIMHxvAlYw1mw9lTY0moK0om8.zc2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', NULL, 7777389, 1, '2026-05-13', NULL, 'email', NULL, '2026-05-12 13:37:19', '2026-05-13 01:12:42');
 
 -- --------------------------------------------------------
 
@@ -1012,7 +1117,8 @@ CREATE TABLE `votes` (
 INSERT INTO `votes` (`id`, `user_id`, `member_id`, `member_name`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES
 (1, 1, 3, NULL, NULL, NULL, '2026-05-10 10:11:04', '2026-05-10 10:11:04'),
 (2, 7, 7, NULL, NULL, NULL, '2026-05-10 10:31:16', '2026-05-10 10:31:16'),
-(3, 8, 5, NULL, NULL, NULL, '2026-05-10 10:50:44', '2026-05-10 10:50:44');
+(3, 8, 5, NULL, NULL, NULL, '2026-05-10 10:50:44', '2026-05-10 10:50:44'),
+(4, 9, 6, NULL, NULL, NULL, '2026-05-13 03:34:47', '2026-05-13 03:34:47');
 
 --
 -- Indexes for dumped tables
@@ -1099,6 +1205,20 @@ ALTER TABLE `learning_lessons`
 ALTER TABLE `learning_materials`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `learning_materials_slug_unique` (`slug`);
+
+--
+-- Indexes for table `media_albums`
+--
+ALTER TABLE `media_albums`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `media_albums_slug_unique` (`slug`);
+
+--
+-- Indexes for table `media_items`
+--
+ALTER TABLE `media_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `media_items_media_album_id_foreign` (`media_album_id`);
 
 --
 -- Indexes for table `members`
@@ -1259,7 +1379,7 @@ ALTER TABLE `bts_updates`
 -- AUTO_INCREMENT for table `daily_checkins`
 --
 ALTER TABLE `daily_checkins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1289,7 +1409,19 @@ ALTER TABLE `learning_lessons`
 -- AUTO_INCREMENT for table `learning_materials`
 --
 ALTER TABLE `learning_materials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `media_albums`
+--
+ALTER TABLE `media_albums`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `media_items`
+--
+ALTER TABLE `media_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `members`
@@ -1301,7 +1433,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `nav_items`
@@ -1313,7 +1445,7 @@ ALTER TABLE `nav_items`
 -- AUTO_INCREMENT for table `point_transactions`
 --
 ALTER TABLE `point_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `profile_assets`
@@ -1331,7 +1463,7 @@ ALTER TABLE `quiz_attempts`
 -- AUTO_INCREMENT for table `quiz_games`
 --
 ALTER TABLE `quiz_games`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `quiz_game_attempts`
@@ -1343,7 +1475,7 @@ ALTER TABLE `quiz_game_attempts`
 -- AUTO_INCREMENT for table `quiz_game_questions`
 --
 ALTER TABLE `quiz_game_questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `quiz_questions`
@@ -1391,7 +1523,7 @@ ALTER TABLE `user_profile_assets`
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -1402,6 +1534,12 @@ ALTER TABLE `votes`
 --
 ALTER TABLE `daily_checkins`
   ADD CONSTRAINT `daily_checkins_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `media_items`
+--
+ALTER TABLE `media_items`
+  ADD CONSTRAINT `media_items_media_album_id_foreign` FOREIGN KEY (`media_album_id`) REFERENCES `media_albums` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `point_transactions`
