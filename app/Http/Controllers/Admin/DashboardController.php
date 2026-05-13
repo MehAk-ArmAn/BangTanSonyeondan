@@ -3,16 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bt21Character;
-use App\Models\GalleryImage;
-use App\Models\Member;
-use App\Models\NavItem;
-use App\Models\Quote;
-use App\Models\SiteSetting;
-use App\Models\SongImage;
-use App\Models\TimelineEvent;
-use App\Models\User;
-use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DashboardController extends Controller
 {
@@ -20,8 +12,8 @@ class DashboardController extends Controller
     {
         $count = function (string $table): int {
             try {
-                return \Illuminate\Support\Facades\Schema::hasTable($table)
-                    ? \Illuminate\Support\Facades\DB::table($table)->count()
+                return Schema::hasTable($table)
+                    ? DB::table($table)->count()
                     : 0;
             } catch (\Throwable $e) {
                 return 0;
@@ -33,13 +25,18 @@ class DashboardController extends Controller
             'learningCount' => $count('learning_materials'),
             'quizCount' => $count('quiz_games'),
             'songsCount' => $count('songs_images'),
-            'galleryCount' => $count('gallery_images'),
+
+            // Old gallery removed from dashboard.
+            // New phone-style gallery uses media_items.
+            'mediaGalleryCount' => $count('media_items'),
+
             'bt21Count' => $count('bt21_characters'),
             'quotesCount' => $count('quotes'),
             'timelineCount' => $count('timeline_events'),
             'navCount' => $count('nav_items'),
             'votesCount' => $count('votes'),
             'updatesCount' => $count('bts_updates'),
+            'usersCount' => $count('users'),
         ]);
     }
 }

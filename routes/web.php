@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\MediaGalleryController;
+use App\Http\Controllers\Admin\MediaGalleryController as AdminMediaGalleryController;
 use App\Http\Controllers\BtsUpdateController;
 use App\Http\Controllers\Admin\BtsUpdatesController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Bt21Controller;
-use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\LearningMaterialsController;
 use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\NavigationController;
@@ -19,7 +20,6 @@ use App\Http\Controllers\Admin\VotesController;
 use App\Http\Controllers\Auth\PublicAuthController;
 use App\Http\Controllers\BTSController;
 use App\Http\Controllers\BtsCopyController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LearningController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SongsController;
@@ -35,7 +35,7 @@ Route::get('/', [BTSController::class, 'home'])->name('home');
 Route::get('/quotes', [BTSController::class, 'quotes'])->name('quotes');
 Route::get('/bt21', [BTSController::class, 'bt21'])->name('bt21');
 Route::get('/Bt21', [BTSController::class, 'bt21']);
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/gallery', [MediaGalleryController::class, 'index'])->name('gallery.index');
 Route::get('/songs', [SongsController::class, 'index'])->name('songs');
 Route::get('/search', [BTSController::class, 'search'])->name('search');
 Route::get('/bts-achievements', [BTSController::class, 'achievements'])->name('achievements');
@@ -103,7 +103,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('/navigation', NavigationController::class)->except(['show', 'create', 'edit']);
         Route::resource('/members', MembersController::class)->only(['index', 'update']);
         Route::resource('/songs', AdminSongsController::class)->except(['show', 'create', 'edit']);
-        Route::resource('/gallery', AdminGalleryController::class)->except(['show', 'create', 'edit']);
         Route::resource('/quotes', QuotesController::class)->except(['show', 'create', 'edit']);
         Route::resource('/timeline', TimelineController::class)->except(['show', 'create', 'edit']);
         Route::resource('/bt21', Bt21Controller::class)->except(['show', 'create', 'edit']);
@@ -114,6 +113,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/quiz-questions/{question}', [QuizzesController::class, 'destroyQuestion'])->name('quiz-questions.destroy');
         Route::resource('/updates', BtsUpdatesController::class)->except(['show', 'create', 'edit']);
         Route::get('/votes', [VotesController::class, 'index'])->name('votes.index');
+
+        Route::get('/media-gallery', [AdminMediaGalleryController::class, 'index'])->name('media-gallery.index');
+
+        Route::post('/media-gallery/albums', [AdminMediaGalleryController::class, 'storeAlbum'])->name('media-gallery.albums.store');
+        Route::put('/media-gallery/albums/{album}', [AdminMediaGalleryController::class, 'updateAlbum'])->name('media-gallery.albums.update');
+        Route::delete('/media-gallery/albums/{album}', [AdminMediaGalleryController::class, 'destroyAlbum'])->name('media-gallery.albums.destroy');
+
+        Route::post('/media-gallery/items', [AdminMediaGalleryController::class, 'storeItem'])->name('media-gallery.items.store');
+        Route::put('/media-gallery/items/{item}', [AdminMediaGalleryController::class, 'updateItem'])->name('media-gallery.items.update');
+        Route::delete('/media-gallery/items/{item}', [AdminMediaGalleryController::class, 'destroyItem'])->name('media-gallery.items.destroy');
     });
 });
 

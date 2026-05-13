@@ -9,6 +9,7 @@
         setupNavDropdownClose();
         setupSmartNavbar();
         setupUpdateSharing();
+        setupPhoneGallery();
     });
 
     function setupFlashAlerts() {
@@ -444,6 +445,112 @@
                     }
                 }
             });
+        });
+    }
+
+    function setupPhoneGallery() {
+        const items = Array.from(document.querySelectorAll('[data-gallery-item]'));
+        const lightbox = document.getElementById('phoneLightbox');
+        const stage = document.getElementById('lightboxStage');
+        const closeBtn = document.getElementById('lightboxClose');
+        const prevBtn = document.getElementById('lightboxPrev');
+        const nextBtn = document.getElementById('lightboxNext');
+        const titleEl = document.getElementById('lightboxTitle');
+        const textEl = document.getElementById('lightboxText');
+        const albumEl = document.getElementById('lightboxAlbum');
+
+        if (!items.length || !lightbox || !stage) return;
+
+        let currentIndex = 0;
+
+        function isYoutube(rawSrc, src) {
+            return (rawSrc || '').includes('youtube.com/embed') || (src || '').includes('youtube.com/embed');
+        }
+
+        function openAt(index) {
+            currentIndex = Math.max(0, Math.min(index, items.length - 1));
+
+            const item = items[currentIndex];
+            const type = item.dataset.type || 'image';
+            const src = item.dataset.src || '';
+            const rawSrc = item.dataset.rawSrc || '';
+            const title = item.dataset.title || 'Media';
+            const caption = item.dataset.caption || '';
+            const album = item.dataset.album || 'Gallery';
+
+            stage.innerHTML = '';
+
+            if (type === 'youtube' || isYoutube(rawSrc, src)) {
+                const iframe = document.createElement('iframe');
+                iframe.src = rawSrc.includes('youtube.com/embed') ? rawSrc : src;
+                iframe.allowFullscreen = true;
+                iframe.loading = 'lazy';
+                iframe.title = title;
+                stage.appendChild(iframe);
+            } else if (type === 'video') {
+                const video = document.createElement('video');
+                video.controls = true;
+                video.autoplay = true;
+                video.playsInline = true;
+
+                const source = document.createElement('source');
+                source.src = src;
+                video.appendChild(source);
+
+                stage.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = title;
+                stage.appendChild(img);
+            }
+
+            if (titleEl) titleEl.textContent = title;
+            if (textEl) textEl.textContent = caption;
+            if (albumEl) albumEl.textContent = album;
+
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            stage.innerHTML = '';
+            document.body.style.overflow = '';
+        }
+
+        function next() {
+            openAt((currentIndex + 1) % items.length);
+        }
+
+        function prev() {
+            openAt((currentIndex - 1 + items.length) % items.length);
+        }
+
+        items.forEach(function (item, index) {
+            item.addEventListener('click', function () {
+                openAt(index);
+            });
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        if (nextBtn) nextBtn.addEventListener('click', next);
+        if (prevBtn) prevBtn.addEventListener('click', prev);
+
+        lightbox.addEventListener('click', function (event) {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (!lightbox.classList.contains('is-open')) return;
+
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'ArrowRight') next();
+            if (event.key === 'ArrowLeft') prev();
         });
     }
 

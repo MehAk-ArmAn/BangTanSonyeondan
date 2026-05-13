@@ -1,19 +1,29 @@
 @php
-    $adminMenu = [
-        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
-        ['label' => 'Settings', 'url' => route('admin.settings.index')],
-        ['label' => 'Navigation', 'url' => route('admin.navigation.index')],
-        ['label' => 'Members', 'url' => route('admin.members.index')],
-        ['label' => 'Songs', 'url' => route('admin.songs.index')],
-        ['label' => 'Gallery', 'url' => route('admin.gallery.index')],
-        ['label' => 'Learning', 'url' => route('admin.learning-materials.index')],
-        ['label' => 'Quizzes', 'url' => route('admin.quizzes.index')],
-        ['label' => 'Quotes', 'url' => route('admin.quotes.index')],
-        ['label' => 'Timeline', 'url' => route('admin.timeline.index')],
-        ['label' => 'BT21', 'url' => route('admin.bt21.index')],
-        ['label' => 'Votes', 'url' => route('admin.votes.index')],
-        ['label' => 'BangTan Updates', 'url' => route('admin.updates.index')],
-    ];
+    $adminMenu = [];
+
+    $addAdminLink = function ($label, $routeName) use (&$adminMenu) {
+        if (\Illuminate\Support\Facades\Route::has($routeName)) {
+            $adminMenu[] = [
+                'label' => $label,
+                'url' => route($routeName),
+            ];
+        }
+    };
+
+    $addAdminLink('Dashboard', 'admin.dashboard');
+    $addAdminLink('Settings', 'admin.settings.index');
+    $addAdminLink('Navigation', 'admin.navigation.index');
+    $addAdminLink('BangTan Updates', 'admin.updates.index');
+    $addAdminLink('Media Gallery', 'admin.media-gallery.index');
+    $addAdminLink('Members', 'admin.members.index');
+    $addAdminLink('Learning', 'admin.learning-materials.index');
+    $addAdminLink('Quizzes', 'admin.quizzes.index');
+    $addAdminLink('Songs', 'admin.songs.index');
+    $addAdminLink('Quotes', 'admin.quotes.index');
+    $addAdminLink('Timeline', 'admin.timeline.index');
+    $addAdminLink('BT21', 'admin.bt21.index');
+    $addAdminLink('Votes', 'admin.votes.index');
+    $addAdminLink('Users', 'admin.users.index');
 @endphp
 
 <nav class="admin-section-nav">
@@ -21,18 +31,3 @@
         <a href="{{ $item['url'] }}">{{ $item['label'] }}</a>
     @endforeach
 </nav>
-
-@if(session('success'))
-    <div class="admin-alert success">{{ session('success') }}</div>
-@endif
-
-@if($errors->any())
-    <div class="admin-alert danger">
-        <strong>Fix these:</strong>
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
