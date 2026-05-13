@@ -9,7 +9,7 @@
         <div class="hero-actions">
             <a class="btn primary" href="{{ route('learn.index') }}">Start Learning</a>
             <a class="btn ghost" href="{{ route('register') }}">Create Account</a>
-            <a class="btn ghost" href="{{ route('achievements') }}">Old Hero Timeline</a>
+            <a class="btn ghost" href="{{ route('achievements') }}">Timeline</a>
         </div>
     </div>
     <div class="hero-card legacy-image-card">
