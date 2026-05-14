@@ -23,7 +23,7 @@
         <a class="learn-topic-card" href="{{ route('learn.show', $lesson->slug) }}">
             <div class="learn-topic-image">
                 @if($lesson->image_path)
-                    <img src="{{ asset($lesson->image_path) }}" alt="{{ $lesson->title }}">
+                    <img src="{{ asset(learning_asset_path($lesson->image_path)) }}" alt="{{ $lesson->title }}">
                 @else
                     <div class="learn-image-placeholder">
                         <span>Image space</span>
