@@ -22,10 +22,6 @@
         <a href="{{ route('admin.profile-assets.index') }}">Profile Packs</a>
         <a href="{{ route('admin.users.index') }}">Users</a>
 
-        @if(\Illuminate\Support\Facades\Route::has('admin.users.index'))
-            <a href="{{ route('admin.users.index') }}">Users</a>
-        @endif
-
         <a href="{{ route('home') }}" target="_blank">View Site</a>
     </nav>
 

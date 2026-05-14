@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 13, 2026 at 08:58 PM
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 14, 2026 at 08:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -151,7 +151,8 @@ INSERT INTO `daily_checkins` (`id`, `user_id`, `checkin_date`, `points_earned`, 
 (3, 7, '2026-05-09', 12, 1, '2026-05-09 12:45:52', '2026-05-09 12:45:52'),
 (4, 1, '2026-05-10', 12, 1, '2026-05-10 05:38:56', '2026-05-10 05:38:56'),
 (5, 7, '2026-05-12', 12, 1, '2026-05-12 11:32:30', '2026-05-12 11:32:30'),
-(6, 9, '2026-05-13', 12, 1, '2026-05-13 01:12:42', '2026-05-13 01:12:42');
+(6, 9, '2026-05-13', 12, 1, '2026-05-13 01:12:42', '2026-05-13 01:12:42'),
+(7, 9, '2026-05-14', 14, 2, '2026-05-14 01:02:43', '2026-05-14 01:02:43');
 
 -- --------------------------------------------------------
 
@@ -460,7 +461,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2026_05_10_100000_split_learning_and_quizzes', 5),
 (18, '2026_05_12_150000_upgrade_user_profiles_publish_ready', 6),
 (19, '2026_05_12_170000_create_bts_updates_table', 7),
-(20, '2026_05_12_180000_create_media_gallery_system', 8);
+(20, '2026_05_12_180000_create_media_gallery_system', 8),
+(21, '2026_05_14_000000_admin_profile_assets_and_user_controls', 9);
 
 -- --------------------------------------------------------
 
@@ -572,7 +574,23 @@ INSERT INTO `point_transactions` (`id`, `user_id`, `type`, `points`, `reason`, `
 (45, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 TATA Bundle', '{\"asset_key\":\"tata-bundle\"}', '2026-05-12 13:39:16', '2026-05-12 13:39:16'),
 (46, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 TATA Avatar', '{\"asset_key\":\"tata-avatar\"}', '2026-05-12 13:39:35', '2026-05-12 13:39:35'),
 (47, 9, 'spend', -120, 'Unlocked profile upgrade: BT21 TATA Theme', '{\"asset_key\":\"tata-theme\"}', '2026-05-12 13:42:32', '2026-05-12 13:42:32'),
-(48, 9, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-13 01:12:42', '2026-05-13 01:12:42');
+(48, 9, 'earn', 12, 'Daily streak check-in', '{\"streak_days\":1}', '2026-05-13 01:12:42', '2026-05-13 01:12:42'),
+(49, 9, 'earn', 14, 'Daily streak check-in', '{\"streak_days\":2}', '2026-05-14 01:02:43', '2026-05-14 01:02:43'),
+(50, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 VAN Avatar', '{\"asset_key\":\"bt21-van-avatar\"}', '2026-05-14 01:57:51', '2026-05-14 01:57:51'),
+(51, 9, 'spend', -120, 'Unlocked profile upgrade: BT21 CHIMMY Theme', '{\"asset_key\":\"chimmy-theme\"}', '2026-05-14 01:57:55', '2026-05-14 01:57:55'),
+(52, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 CHIMMY Avatar', '{\"asset_key\":\"chimmy-avatar\"}', '2026-05-14 01:57:58', '2026-05-14 01:57:58'),
+(53, 9, 'spend', -120, 'Unlocked profile upgrade: BT21 KOYA Theme', '{\"asset_key\":\"koya-theme\"}', '2026-05-14 01:58:03', '2026-05-14 01:58:03'),
+(54, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 KOYA Bundle', '{\"asset_key\":\"koya-bundle\"}', '2026-05-14 01:58:09', '2026-05-14 01:58:09'),
+(55, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 SHOOKY Bundle', '{\"asset_key\":\"shooky-bundle\"}', '2026-05-14 01:58:13', '2026-05-14 01:58:13'),
+(56, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 COOKY Bundle', '{\"asset_key\":\"cooky-bundle\"}', '2026-05-14 01:58:18', '2026-05-14 01:58:18'),
+(57, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 RJ Bundle', '{\"asset_key\":\"rj-bundle\"}', '2026-05-14 01:58:22', '2026-05-14 01:58:22'),
+(58, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 KOYA Avatar', '{\"asset_key\":\"koya-avatar\"}', '2026-05-14 01:58:27', '2026-05-14 01:58:27'),
+(59, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 MANG Avatar', '{\"asset_key\":\"mang-avatar\"}', '2026-05-14 01:58:31', '2026-05-14 01:58:31'),
+(60, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 MANG Bundle', '{\"asset_key\":\"mang-bundle\"}', '2026-05-14 01:58:36', '2026-05-14 01:58:36'),
+(61, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 RJ Avatar', '{\"asset_key\":\"rj-avatar\"}', '2026-05-14 01:58:41', '2026-05-14 01:58:41'),
+(62, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 SHOOKY Avatar', '{\"asset_key\":\"shooky-avatar\"}', '2026-05-14 01:58:46', '2026-05-14 01:58:46'),
+(63, 9, 'spend', -100, 'Unlocked profile upgrade: BT21 COOKY Avatar', '{\"asset_key\":\"cooky-avatar\"}', '2026-05-14 01:58:51', '2026-05-14 01:58:51'),
+(64, 9, 'spend', -180, 'Unlocked profile upgrade: BT21 CHIMMY Bundle', '{\"asset_key\":\"chimmy-bundle\"}', '2026-05-14 01:58:57', '2026-05-14 01:58:57');
 
 -- --------------------------------------------------------
 
@@ -620,7 +638,8 @@ INSERT INTO `profile_assets` (`id`, `key`, `label`, `type`, `description`, `cost
 (39, 'cooky-avatar', 'BT21 COOKY Avatar', 'avatar', 'Buff pink bunny energy.', 100, 'favicons/COOKY.png', NULL, 15, 1, '2026-05-09 21:01:10', '2026-05-09 21:01:10', NULL, NULL, NULL),
 (40, 'cooky-bundle', 'BT21 COOKY Bundle', 'bundle', 'Full COOKY profile pack.', 180, 'favicons/COOKY.png', 'linear-gradient(135deg,#f472b6,#831843,#111827)', 16, 1, '2026-05-09 21:01:10', '2026-05-09 21:01:10', 'favicons/COOKY.png', 'cooky-theme', NULL),
 (41, 'mang-avatar', 'BT21 MANG Avatar', 'avatar', 'Mysterious dance horse vibes.', 100, 'favicons/MANG.png', NULL, 17, 1, '2026-05-09 21:01:10', '2026-05-09 21:01:10', NULL, NULL, NULL),
-(42, 'mang-bundle', 'BT21 MANG Bundle', 'bundle', 'Full MANG profile pack.', 180, 'favicons/MANG.png', 'linear-gradient(135deg,#a855f7,#312e81,#111827)', 18, 1, '2026-05-09 21:01:10', '2026-05-09 21:01:10', 'favicons/MANG.png', 'mang-theme', NULL);
+(42, 'mang-bundle', 'BT21 MANG Bundle', 'bundle', 'Full MANG profile pack.', 180, 'favicons/MANG.png', 'linear-gradient(135deg,#a855f7,#312e81,#111827)', 18, 1, '2026-05-09 21:01:10', '2026-05-09 21:01:10', 'favicons/MANG.png', 'mang-theme', NULL),
+(43, 'bt21-van-avatar', 'BT21 VAN Avatar', 'avatar', '⚔️POWERFUL GUARDIAN ENERGY 🛡️🥷🏽', 100, 'profile-assets/van-1778738237-aEPLiX.png', NULL, 0, 1, '2026-05-14 01:57:17', '2026-05-14 01:57:17', 'profile-assets/van-1778738237-uKlVNG.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -876,6 +895,8 @@ CREATE TABLE `sessions` (
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('C6FoH0CIv7OdyBOfajzyDg89ydjVGCHu5FGkZJq7', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSTdGWDVJTGRaOGZnMExYVThvRDlKWTBZYzhzMmo2cjdQZklRc0dSZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sZWFybmluZy1tYXRlcmlhbHMiO3M6NToicm91dGUiO3M6MzA6ImFkbWluLmxlYXJuaW5nLW1hdGVyaWFscy5pbmRleCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778696843),
+('r4D3EPLAWEtJlF9xpmMGmhO7P8AkxdzhNBSAS6TB', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicTVVaHIzeHdOaDBEMkxZWXVCSFB4MkNPTmU3T3ZhbDBlUlpXdUppdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sZWFybmluZy1tYXRlcmlhbHMiO3M6NToicm91dGUiO3M6MzA6ImFkbWluLmxlYXJuaW5nLW1hdGVyaWFscy5pbmRleCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778738757),
+('tK17yhf8F2ZOE7ZlKo6qQ5Di1toGQpaKuVHaQnJn', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMldMajJaNnM3MmZ6SmNVRVhVcWI1cE11ckYxOVRBbFl3RW94dktHRCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sZWFybiI7czo1OiJyb3V0ZSI7czoxMToibGVhcm4uaW5kZXgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo5O30=', 1778738746),
 ('TNDKZOsuWH3pM363uFLj5uprvswPBwovm5McACXk', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMTNTcVF6cU1XVG5ZWEc4aFpQc08xT3pUSGJsTUZqOHBOSVlibmhVaSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9idHMtYWNoaWV2ZW1lbnRzIjtzOjU6InJvdXRlIjtzOjEyOiJhY2hpZXZlbWVudHMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1778698617);
 
 -- --------------------------------------------------------
@@ -1056,7 +1077,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (1, 'Mehak Arman', '⊹ฺ Frostnap⁷♪⟭⟬VH3W💜 ⊹ฺ', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 7777777, 1, '2026-05-10', NULL, 'email', 'YdRnYxEhd5IRCRi9WNxi3JySfWPZuQA2LkZcPM1OEvq7zJGWE3JBQL62hiOZ', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
 (7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', '67', 50, 1, '2026-05-12', NULL, 'email', 'q72pd1t26Z2AfLP0rTAPGpgyhKryCXpHVuOQTpmML3O9q5M6BDr74QdfiDqm', '2026-05-09 12:45:32', '2026-05-12 11:32:30'),
 (8, 'Mahreen Arman', 'ARMY_BTS_0t7I_-6-7', 'mahreenarmaan10@gmail.com', NULL, '$2y$12$8GBbL5u6jEM/cuM36lpWgukiBg2q8fqjxwKQUzwJq9DT.oLACoR5.', 0, 'favicons/logo.png', 'purple-heart-theme', NULL, 'public', '6-7', 50, 0, NULL, NULL, 'email', NULL, '2026-05-10 10:48:30', '2026-05-10 10:49:48'),
-(9, 'Mehak Arman', '7Minus1_is_0', 'mehakarmaan1@gmail.com', NULL, '$2y$12$OwEKnd8rtzpeFqvdhHFCw.CmYIMHxvAlYw1mw9lTY0moK0om8.zc2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', NULL, 7777389, 1, '2026-05-13', NULL, 'email', NULL, '2026-05-12 13:37:19', '2026-05-13 01:12:42');
+(9, 'Mehak Arman', '7Minus1_is_0', 'mehakarmaan1@gmail.com', NULL, '$2y$12$OwEKnd8rtzpeFqvdhHFCw.CmYIMHxvAlYw1mw9lTY0moK0om8.zc2', 0, 'favicons/TATA.png', 'tata-theme', 'MeeehAk_ArMy_0t7', 'public', 'Hiiii Mehak here BTS FOREVERRRRRRRRR -I’m here to celebrate BTS, connect with ARMY, and keep my favorite songs, moments, and memories in one place.', 7777777, 7777777, '2026-05-14', NULL, 'email', 'cCE6P684AIkQxjHtscFznezJzgZOZMEgFOGISIwGd0BboRdYqNFGNJ2JYExR', '2026-05-12 13:37:19', '2026-05-14 02:04:55');
 
 -- --------------------------------------------------------
 
@@ -1093,7 +1114,22 @@ INSERT INTO `user_profile_assets` (`id`, `user_id`, `profile_asset_id`, `unlocke
 (30, 9, 25, '2026-05-12 17:37:20'),
 (31, 9, 31, '2026-05-12 17:39:16'),
 (32, 9, 29, '2026-05-12 17:39:35'),
-(33, 9, 30, '2026-05-12 17:42:32');
+(33, 9, 30, '2026-05-12 17:42:32'),
+(34, 9, 43, '2026-05-14 05:57:51'),
+(35, 9, 27, '2026-05-14 05:57:55'),
+(36, 9, 26, '2026-05-14 05:57:58'),
+(37, 9, 33, '2026-05-14 05:58:03'),
+(38, 9, 34, '2026-05-14 05:58:09'),
+(39, 9, 38, '2026-05-14 05:58:13'),
+(40, 9, 40, '2026-05-14 05:58:18'),
+(41, 9, 36, '2026-05-14 05:58:22'),
+(42, 9, 32, '2026-05-14 05:58:27'),
+(43, 9, 41, '2026-05-14 05:58:31'),
+(44, 9, 42, '2026-05-14 05:58:36'),
+(45, 9, 35, '2026-05-14 05:58:41'),
+(46, 9, 37, '2026-05-14 05:58:46'),
+(47, 9, 39, '2026-05-14 05:58:51'),
+(48, 9, 28, '2026-05-14 05:58:57');
 
 -- --------------------------------------------------------
 
@@ -1381,7 +1417,7 @@ ALTER TABLE `bts_updates`
 -- AUTO_INCREMENT for table `daily_checkins`
 --
 ALTER TABLE `daily_checkins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1435,7 +1471,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `nav_items`
@@ -1447,13 +1483,13 @@ ALTER TABLE `nav_items`
 -- AUTO_INCREMENT for table `point_transactions`
 --
 ALTER TABLE `point_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `profile_assets`
 --
 ALTER TABLE `profile_assets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `quiz_attempts`
@@ -1519,7 +1555,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_profile_assets`
 --
 ALTER TABLE `user_profile_assets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `votes`

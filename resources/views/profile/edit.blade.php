@@ -250,8 +250,8 @@
             </article>
         @empty
             <div class="glass-panel profile-empty-state">
-                <h3>Bestie you unlocked everything available.</h3>
-                <p>That profile shop is cleared. Absolute ARMY collector energy.</p>
+                <h3>Army, you have unlocked everything available.</h3>
+                <p>The profile shop is all sold out 🎉</p>
             </div>
         @endforelse
     </div>
