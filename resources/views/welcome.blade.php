@@ -13,8 +13,8 @@
         </div>
     </div>
     <div class="hero-card legacy-image-card">
-        <img src="{{ asset('imgs/btsssss.jfif') }}" alt="BangTanSonyeondan hero">
-        <div class="floating-badge">Dark · Black · Purple · ARMY</div>
+        <img src="{{ asset('imgs/collage.jpg') }}" alt="BangTanSonyeondan hero">
+        <div class="floating-badge">BTS · ARMY</div>
     </div>
 </section>
 
@@ -39,20 +39,64 @@
     </div>
 </section>
 
-<section class="section-block" id="members">
+<section class="section-block members-showcase-section" id="members">
     <div class="section-heading">
         <span class="eyebrow">Member Vaults</span>
-        <h2>Seven profiles, but keep it dark, purple, and iconic.</h2>
-        <p>Each member page has profile details, story text, facts, skill tags, links, and personal color accents.</p>
+
+        <h2>
+            Seven artists. Seven identities. One universe.
+        </h2>
+
+        <p>
+            Explore cinematic member profiles with stories, visuals, BT21 identities,
+            skill tags, social links, and iconic BTS aesthetics.
+        </p>
     </div>
-    <div class="member-grid legacy-cards">
+
+    <div class="members-showcase-grid">
         @foreach($featuredMembers as $member)
-            <a class="member-tile" href="{{ route('member.show', $member->slug ?: $member->name) }}" style="--accent: {{ $member->accent_color ?? '#a855f7' }}">
-                <img src="{{ member_asset($member->image) }}" alt="{{ $member->stage_name ?: $member->name }}">
-                <div>
-                    <span>{{ $member->bt21_character }}</span>
-                    <h3>{{ $member->stage_name ?: $member->nickname }}</h3>
-                    <p>{{ $member->intro_title ?: $member->role }}</p>
+            <a
+                class="member-showcase-card"
+                href="{{ route('member.show', $member->slug ?: $member->name) }}"
+                style="--accent: {{ $member->accent_color ?? '#a855f7' }}"
+            >
+                <div class="member-showcase-image-wrap">
+                    <img
+                        src="{{ asset(member_asset($member->image)) }}"
+                        alt="{{ $member->stage_name ?: $member->name }}"
+                    >
+
+                    <div class="member-showcase-overlay"></div>
+
+                    <div class="member-showcase-glow"></div>
+
+                    @if($member->bt21_character)
+                        <span class="member-showcase-bt21">
+                            {{ $member->bt21_character }}
+                        </span>
+                    @endif
+                </div>
+
+                <div class="member-showcase-content">
+                    <span class="member-showcase-role">
+                        {{ $member->role }}
+                    </span>
+
+                    <h3>
+                        {{ $member->stage_name ?: $member->nickname ?: $member->name }}
+                    </h3>
+
+                    <p>
+                        {{ $member->intro_title ?: 'Enter profile vault' }}
+                    </p>
+
+                    <div class="member-showcase-footer">
+                        <span>Open Profile</span>
+
+                        <div class="member-showcase-arrow">
+                            →
+                        </div>
+                    </div>
                 </div>
             </a>
         @endforeach

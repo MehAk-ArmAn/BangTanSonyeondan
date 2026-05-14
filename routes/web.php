@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ProfileAssetsController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\MediaGalleryController;
 use App\Http\Controllers\Admin\MediaGalleryController as AdminMediaGalleryController;
 use App\Http\Controllers\BtsUpdateController;
@@ -123,6 +125,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/media-gallery/items', [AdminMediaGalleryController::class, 'storeItem'])->name('media-gallery.items.store');
         Route::put('/media-gallery/items/{item}', [AdminMediaGalleryController::class, 'updateItem'])->name('media-gallery.items.update');
         Route::delete('/media-gallery/items/{item}', [AdminMediaGalleryController::class, 'destroyItem'])->name('media-gallery.items.destroy');
+
+        Route::resource('/profile-assets', ProfileAssetsController::class)->except(['show', 'create', 'edit']);
+
+        Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+        Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
+        Route::post('/users/{user}/assets', [UsersController::class, 'syncAssets'])->name('users.assets.sync');
+        Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
     });
 });
 

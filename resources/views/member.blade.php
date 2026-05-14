@@ -3,7 +3,7 @@
 @section('content')
 <section class="member-hero" style="--accent: {{ $member->accent_color ?? '#a855f7' }}">
     <div class="member-portrait">
-        <img src="{{ (member_asset($member->image) }}" alt="{{ $member->stage_name ?: $member->name }}">
+        <img src="{{ asset(member_asset($member->image)) }}" alt="{{ $member->stage_name ?: $member->name }}">
     </div>
     <div class="member-profile-copy">
         <span class="eyebrow">{{ $member->bt21_character }} · Member Vault</span>

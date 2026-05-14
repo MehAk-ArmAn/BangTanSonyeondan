@@ -19,6 +19,8 @@
         <a href="{{ route('admin.timeline.index') }}">Timeline</a>
         <a href="{{ route('admin.bt21.index') }}">BT21</a>
         <a href="{{ route('admin.votes.index') }}">Votes</a>
+        <a href="{{ route('admin.profile-assets.index') }}">Profile Packs</a>
+        <a href="{{ route('admin.users.index') }}">Users</a>
 
         @if(\Illuminate\Support\Facades\Route::has('admin.users.index'))
             <a href="{{ route('admin.users.index') }}">Users</a>

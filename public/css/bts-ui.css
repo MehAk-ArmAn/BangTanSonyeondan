@@ -2567,3 +2567,492 @@ textarea { min-height: 110px; resize: vertical; }
         padding: 70px 12px 150px;
     }
 }
+
+/* =========================================================
+   BTS MEMBERS SHOWCASE
+========================================================= */
+
+.members-showcase-section {
+    position: relative;
+}
+
+.members-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 34px;
+}
+
+.member-showcase-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24, 12, 36, 0.95) 0%,
+            rgba(11, 7, 18, 0.98) 100%
+        );
+
+    border: 1px solid rgba(168, 85, 247, 0.16);
+
+    text-decoration: none;
+    color: white;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+    min-height: 560px;
+
+    display: flex;
+    flex-direction: column;
+
+    isolation: isolate;
+}
+
+.member-showcase-card:hover {
+    transform: translateY(-10px);
+
+    border-color: rgba(168, 85, 247, 0.45);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(168, 85, 247, 0.18);
+}
+
+.member-showcase-image-wrap {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.member-showcase-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition:
+        transform .7s ease,
+        filter .5s ease;
+}
+
+.member-showcase-card:hover img {
+    transform: scale(1.06);
+
+    filter:
+        saturate(1.08)
+        contrast(1.03);
+}
+
+.member-showcase-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(5, 5, 8, 0.96) 0%,
+            rgba(5, 5, 8, 0.25) 45%,
+            rgba(5, 5, 8, 0) 100%
+        );
+
+    z-index: 1;
+}
+
+.member-showcase-glow {
+    position: absolute;
+    inset: auto 0 -90px 0;
+    height: 180px;
+
+    background:
+        radial-gradient(
+            circle,
+            color-mix(in srgb, var(--accent) 60%, transparent) 0%,
+            transparent 72%
+        );
+
+    opacity: .6;
+
+    filter: blur(26px);
+
+    z-index: 0;
+}
+
+.member-showcase-bt21 {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    z-index: 3;
+
+    padding: 8px 12px;
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.48);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: #f5d0fe;
+}
+
+.member-showcase-content {
+    position: relative;
+    z-index: 2;
+
+    padding: 22px 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    flex: 1;
+}
+
+.member-showcase-role {
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+
+    color: #c084fc;
+
+    opacity: .92;
+}
+
+.member-showcase-content h3 {
+    font-size: 1.35rem;
+    line-height: 1.1;
+    font-weight: 800;
+
+    margin: 0;
+
+    color: #fff;
+}
+
+.member-showcase-content p {
+    margin: 0;
+
+    color: rgba(255,255,255,0.72);
+
+    line-height: 1.65;
+    font-size: .95rem;
+}
+
+.member-showcase-footer {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 18px;
+}
+
+.member-showcase-footer span {
+    color: #f5d0fe;
+    font-weight: 700;
+    letter-spacing: .03em;
+}
+
+.member-showcase-arrow {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(168,85,247,0.35),
+            rgba(88,28,135,0.95)
+        );
+
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.member-showcase-card:hover .member-showcase-arrow {
+    transform: translateX(5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(192,132,252,0.55),
+            rgba(126,34,206,1)
+        );
+}
+
+/* =========================================================
+   BTS MEMBERS EXTRA MOTION / ANIMATION
+========================================================= */
+
+.members-showcase-grid {
+    perspective: 1200px;
+}
+
+.member-showcase-card {
+    animation: memberCardReveal .8s ease both;
+    transform-style: preserve-3d;
+}
+
+.member-showcase-card:nth-child(1) { animation-delay: .05s; }
+.member-showcase-card:nth-child(2) { animation-delay: .12s; }
+.member-showcase-card:nth-child(3) { animation-delay: .19s; }
+.member-showcase-card:nth-child(4) { animation-delay: .26s; }
+.member-showcase-card:nth-child(5) { animation-delay: .33s; }
+.member-showcase-card:nth-child(6) { animation-delay: .40s; }
+.member-showcase-card:nth-child(7) { animation-delay: .47s; }
+
+.member-showcase-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+        conic-gradient(
+            from var(--spin-angle, 0deg),
+            transparent 0deg,
+            color-mix(in srgb, var(--accent) 70%, #fff 10%) 70deg,
+            transparent 140deg,
+            transparent 360deg
+        );
+    opacity: 0;
+    filter: blur(14px);
+    transition: opacity .35s ease;
+    animation: memberBorderSpin 5s linear infinite;
+}
+
+.member-showcase-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            115deg,
+            transparent 0%,
+            transparent 38%,
+            rgba(255,255,255,.18) 48%,
+            transparent 58%,
+            transparent 100%
+        );
+    transform: translateX(-140%);
+    opacity: 0;
+}
+
+.member-showcase-card:hover {
+    transform:
+        translateY(-14px)
+        rotateX(4deg)
+        rotateY(-3deg)
+        scale(1.015);
+}
+
+.member-showcase-card:hover::before {
+    opacity: .65;
+}
+
+.member-showcase-card:hover::after {
+    opacity: 1;
+    animation: memberShine .85s ease;
+}
+
+.member-showcase-image-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 20%),
+        radial-gradient(circle at 70% 10%, color-mix(in srgb, var(--accent) 38%, transparent), transparent 26%);
+    opacity: .42;
+    mix-blend-mode: screen;
+    animation: memberAuraPulse 3.4s ease-in-out infinite;
+}
+
+.member-showcase-glow {
+    animation: memberGlowFloat 3.8s ease-in-out infinite;
+}
+
+.member-showcase-bt21 {
+    animation: memberBadgeFloat 2.8s ease-in-out infinite;
+}
+
+.member-showcase-content h3 {
+    transition:
+        transform .35s ease,
+        text-shadow .35s ease,
+        color .35s ease;
+}
+
+.member-showcase-card:hover .member-showcase-content h3 {
+    transform: translateY(-3px);
+    color: #fff;
+    text-shadow:
+        0 0 18px color-mix(in srgb, var(--accent) 75%, #fff 10%),
+        0 0 34px rgba(168,85,247,.45);
+}
+
+.member-showcase-content p {
+    transition: transform .35s ease, color .35s ease;
+}
+
+.member-showcase-card:hover .member-showcase-content p {
+    transform: translateY(-2px);
+    color: rgba(255,255,255,.88);
+}
+
+.member-showcase-arrow {
+    animation: memberArrowPulse 2.2s ease-in-out infinite;
+}
+
+.member-showcase-card:hover .member-showcase-arrow {
+    animation: memberArrowRun .65s ease infinite alternate;
+}
+
+@keyframes memberCardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(34px) scale(.96);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes memberBorderSpin {
+    to {
+        --spin-angle: 360deg;
+    }
+}
+
+@keyframes memberShine {
+    from {
+        transform: translateX(-140%);
+    }
+
+    to {
+        transform: translateX(140%);
+    }
+}
+
+@keyframes memberAuraPulse {
+    0%, 100% {
+        opacity: .32;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .62;
+        transform: scale(1.04);
+    }
+}
+
+@keyframes memberGlowFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: .55;
+    }
+
+    50% {
+        transform: translateY(-18px) scale(1.15);
+        opacity: .85;
+    }
+}
+
+@keyframes memberBadgeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(2deg);
+    }
+}
+
+@keyframes memberArrowPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(168,85,247,0);
+    }
+
+    50% {
+        box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 60%, transparent);
+    }
+}
+
+@keyframes memberArrowRun {
+    from {
+        transform: translateX(2px) scale(1);
+    }
+
+    to {
+        transform: translateX(9px) scale(1.08);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .member-showcase-card,
+    .member-showcase-card::before,
+    .member-showcase-card::after,
+    .member-showcase-image-wrap::before,
+    .member-showcase-glow,
+    .member-showcase-bt21,
+    .member-showcase-arrow {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1700px) {
+    .members-showcase-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+    .members-showcase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .members-showcase-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-showcase-card {
+        min-height: unset;
+    }
+
+    .member-showcase-image-wrap {
+        height: 360px;
+    }
+}

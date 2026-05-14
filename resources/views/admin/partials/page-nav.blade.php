@@ -24,6 +24,8 @@
     $addAdminLink('BT21', 'admin.bt21.index');
     $addAdminLink('Votes', 'admin.votes.index');
     $addAdminLink('Users', 'admin.users.index');
+    $addAdminLink('Profile Packs', 'admin.profile-assets.index');
+    $addAdminLink('Users', 'admin.users.index');
 @endphp
 
 <nav class="admin-section-nav">

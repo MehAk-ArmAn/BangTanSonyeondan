@@ -115,3 +115,17 @@ button,
 .admin-topbar {
     list-style: none;
 }
+
+.admin-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 14px 0 18px;
+}
+
+.admin-checkbox-grid .check-row {
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.12);
+}
