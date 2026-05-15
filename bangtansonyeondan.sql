@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 14, 2026 at 09:12 AM
+-- Generation Time: May 15, 2026 at 06:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -893,6 +893,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('a300Gm5a3mA5HS8Z982bNS4mttIrmWLSOihrxWuj', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid3FKMzMzZEw2TmNSa1pTRzJCWFplRThOV1VLTzB1aGh4Q09jR2kyUyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7czo0OiJob21lIjt9fQ==', 1778820281),
 ('C6FoH0CIv7OdyBOfajzyDg89ydjVGCHu5FGkZJq7', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSTdGWDVJTGRaOGZnMExYVThvRDlKWTBZYzhzMmo2cjdQZklRc0dSZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sZWFybmluZy1tYXRlcmlhbHMiO3M6NToicm91dGUiO3M6MzA6ImFkbWluLmxlYXJuaW5nLW1hdGVyaWFscy5pbmRleCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778696843),
 ('r4D3EPLAWEtJlF9xpmMGmhO7P8AkxdzhNBSAS6TB', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicTVVaHIzeHdOaDBEMkxZWXVCSFB4MkNPTmU3T3ZhbDBlUlpXdUppdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sZWFybi9idHMtbWVtYmVycy1vZmZpY2lhbC1ndWlkZSI7czo1OiJyb3V0ZSI7czoxMDoibGVhcm4uc2hvdyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1778741836),
 ('tK17yhf8F2ZOE7ZlKo6qQ5Di1toGQpaKuVHaQnJn', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMldMajJaNnM3MmZ6SmNVRVhVcWI1cE11ckYxOVRBbFl3RW94dktHRCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sZWFybi9idHMtbWVtYmVycy1vZmZpY2lhbC1ndWlkZSI7czo1OiJyb3V0ZSI7czoxMDoibGVhcm4uc2hvdyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjk7fQ==', 1778742721),
@@ -918,13 +919,13 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'site_title', 'BangTanSonyeondan', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(1, 'site_title', 'BangTan', '2026-05-08 12:00:00', '2026-05-15 00:37:00'),
 (2, 'site_subtitle', 'A dark purple BTS learning website with member profiles, songs, gallery, quotes, BT21 anatomy profiles, quizzes, points, streaks, and leaderboard.', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (3, 'hero_kicker', 'BTS FOREVER · ARMY HOMEBASE', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(4, 'hero_title', 'BangTanSonyeondan', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
+(4, 'hero_title', 'BangTan', '2026-05-08 12:00:00', '2026-05-15 00:37:00'),
 (5, 'hero_body', 'A fan-made BTS hub where ARMY can learn, explore member vaults, take quizzes, earn points, unlock profile upgrades, and climb the leaderboard.', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(6, 'footer_text', 'BangTanSonyeondan is a fan-made website created with love. Please support official BTS channels whenever possible.', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
-(7, 'admin_email', 'support@bangtansonyeondan.com', '2026-05-08 12:00:00', '2026-05-09 13:06:37'),
+(6, 'footer_text', 'BangTan is a fan-made website created with love. Please support official BTS channels whenever possible.', '2026-05-08 12:00:00', '2026-05-15 00:37:00'),
+(7, 'admin_email', 'support@bangtan.info', '2026-05-08 12:00:00', '2026-05-15 00:37:00'),
 (8, 'location', 'ARMY Hub', '2026-05-08 12:00:00', '2026-05-08 12:00:00'),
 (9, 'creator_name', 'Mehak Arman', '2026-05-08 12:00:00', '2026-05-10 04:44:45'),
 (10, 'phone', NULL, '2026-05-08 12:00:00', '2026-05-09 13:06:37'),
@@ -1074,7 +1075,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `avatar_key`, `profile_theme`, `badge_key`, `profile_visibility`, `bio`, `points`, `streak_days`, `last_streak_date`, `google_id`, `auth_provider`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mehak Arman', '⊹ฺ Frostnap⁷♪⟭⟬VH3W💜 ⊹ฺ', 'admin@bangtansonyeondan.com', NULL, '$2y$12$QFxj5sWagBmuc.m4lGttCecWEDBpvokXkXbb7rebm9RUCuzzSwp6.', 1, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 7777777, 1, '2026-05-10', NULL, 'email', 'YdRnYxEhd5IRCRi9WNxi3JySfWPZuQA2LkZcPM1OEvq7zJGWE3JBQL62hiOZ', '2026-05-08 12:00:00', '2026-05-10 05:38:56'),
+(1, 'Mehak Arman', '⊹ฺ Frostnap⁷♪⟭⟬VH3W💜 ⊹ฺ', 'admin@bangtan.info', NULL, '$2y$12$dRyzUmm6ZFILv2wl1fOHCuy7iDEwUIZKUbskdVo7xa7kkxW.yHRZe', 1, 'purple-heart', 'galaxy-purple', NULL, 'public', NULL, 7777777, 1, '2026-05-10', NULL, 'email', 'a8AinkDAnUYzIn1VdQTHzJPVCmskI0XAhm6WCO2xr5wtM1eW0vSOfpc4aJWA', '2026-05-08 12:00:00', '2026-05-15 00:39:16'),
 (7, 'Hamdan Arman', '6_7', 'hamdanarmaan@gmail.com', NULL, '$2y$12$XlDYktFO5OCirbPfsr0lk.Za5MnDJTKA1M.wLnX4XpPw8a7y.pyV2', 0, 'favicons/TATA.png', 'tata-theme', NULL, 'public', '67', 50, 1, '2026-05-12', NULL, 'email', 'q72pd1t26Z2AfLP0rTAPGpgyhKryCXpHVuOQTpmML3O9q5M6BDr74QdfiDqm', '2026-05-09 12:45:32', '2026-05-12 11:32:30'),
 (8, 'Mahreen Arman', 'ARMY_BTS_0t7I_-6-7', 'mahreenarmaan10@gmail.com', NULL, '$2y$12$8GBbL5u6jEM/cuM36lpWgukiBg2q8fqjxwKQUzwJq9DT.oLACoR5.', 0, 'favicons/logo.png', 'purple-heart-theme', NULL, 'public', '6-7', 50, 0, NULL, NULL, 'email', NULL, '2026-05-10 10:48:30', '2026-05-10 10:49:48'),
 (9, 'Mehak Arman', '7Minus1_is_0', 'mehakarmaan1@gmail.com', NULL, '$2y$12$OwEKnd8rtzpeFqvdhHFCw.CmYIMHxvAlYw1mw9lTY0moK0om8.zc2', 0, 'favicons/TATA.png', 'tata-theme', 'MeeehAk_ArMy_0t7', 'public', 'Hiiii Mehak here BTS FOREVERRRRRRRRR -I’m here to celebrate BTS, connect with ARMY, and keep my favorite songs, moments, and memories in one place.', 7777777, 7777777, '2026-05-14', NULL, 'email', 'cCE6P684AIkQxjHtscFznezJzgZOZMEgFOGISIwGd0BboRdYqNFGNJ2JYExR', '2026-05-12 13:37:19', '2026-05-14 02:04:55');
